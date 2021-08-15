@@ -18,18 +18,20 @@ namespace WindowsFormsApplication5
             InitializeComponent();
         }
 
+        DataTableCollection Tables = PsqlData.ds.Tables;
+
         private void TryConnectToBD()
         {
             try
             {
-                Меню.connection.Open();
+                PsqlData.connection.Open();
             }
             catch (Npgsql.NpgsqlException)
             {
                 MessageBox.Show("Ошибка подключения к базе данных!", "Ошибка");
                 Environment.Exit(0);
             }
-            Меню.connection.Close();
+            PsqlData.connection.Close();
         }
 
         private void Авторизация_Load(object sender, EventArgs e)
@@ -41,11 +43,11 @@ namespace WindowsFormsApplication5
             TryConnectToBD();
 
             sql = "SELECT * FROM users ORDER BY login";
-            Меню.Table_Fill("Пользователи", sql);
+            PsqlData.Table_Fill("Пользователи", sql);
 
-            for (int i = 0; i < Меню.ds.Tables["Пользователи"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Пользователи"].Rows.Count; i++)
             {
-                comboBox1.Items.Add(Меню.ds.Tables["Пользователи"].Rows[i]["login"].ToString());
+                comboBox1.Items.Add(Tables["Пользователи"].Rows[i]["login"].ToString());
             }
 
             textBox1.UseSystemPasswordChar = true;
@@ -73,20 +75,20 @@ namespace WindowsFormsApplication5
             }
 
 
-            Меню.ds.Tables["Пользователи"].DefaultView.RowFilter = "login = '" + comboBox1.Text + "'";
-            if (Меню.ds.Tables["Пользователи"].DefaultView.Count == 0)
+            Tables["Пользователи"].DefaultView.RowFilter = "login = '" + comboBox1.Text + "'";
+            if (Tables["Пользователи"].DefaultView.Count == 0)
             {
                 MessageBox.Show("Не такого пользователя!", "Ошибка");
                 return;
             }
 
-            if (!Меню.ds.Tables["Пользователи"].DefaultView[0].Row.ItemArray[1].ToString().Equals(comboBox1.Text))
+            if (!Tables["Пользователи"].DefaultView[0].Row.ItemArray[1].ToString().Equals(comboBox1.Text))
             {
                 MessageBox.Show("Пользователь с таким логином не найден!", "Ошибка");
                 return;
             }
 
-            if (textBox1.Text == Меню.ds.Tables["Пользователи"].DefaultView[0].Row.ItemArray[2].ToString())
+            if (textBox1.Text == Tables["Пользователи"].DefaultView[0].Row.ItemArray[2].ToString())
             {                
                 Hide();
                 polzov = comboBox1.Text;
@@ -99,7 +101,7 @@ namespace WindowsFormsApplication5
             {
                 MessageBox.Show("Неправильный пароль", "Ошибка");
             }
-            Меню.connection.Close();
+            PsqlData.connection.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

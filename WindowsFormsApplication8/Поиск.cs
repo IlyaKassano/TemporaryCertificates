@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.OleDb;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WindowsFormsApplication5
@@ -20,7 +14,7 @@ namespace WindowsFormsApplication5
         }
 
         public static int n = -1;
-        string nop = "";
+        DataTableCollection Tables = PsqlData.ds.Tables;
 
         private void resize()
         {
@@ -52,7 +46,7 @@ namespace WindowsFormsApplication5
             }
 
             string sql;
-            Меню.connection.Open();
+            PsqlData.connection.Open();
 
             sql = "SELECT kodclient AS \"Код клиента\", (secondname || ' ' || firstname || ' ' || middlename) AS Клиент, gender AS Пол, " +
                     "telephone AS \"Телефон\", address AS \"Адрес\", snils AS \"СНИЛС\", typedocument AS \"Тип документа удост. личн.\", " + 
@@ -60,10 +54,10 @@ namespace WindowsFormsApplication5
                 "FROM Client INNER JOIN Document ON Document.koddoc = Client.kodclient " +
                 "ORDER BY Клиент";
 
-            Меню.Table_Fill("Поиск_клиент", sql);
+            PsqlData.Table_Fill("Поиск_клиент", sql);
 
-            dataGridView1.DataSource = Меню.ds.Tables["Поиск_клиент"];
-            Меню.ds.Tables["Поиск_клиент"].DefaultView.RowFilter = "";
+            dataGridView1.DataSource = Tables["Поиск_клиент"];
+            Tables["Поиск_клиент"].DefaultView.RowFilter = "";
             //dataGridView1.Columns[0].Visible = false;
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.BorderStyle = BorderStyle.None;
@@ -78,26 +72,26 @@ namespace WindowsFormsApplication5
                 "FROM Representative " + 
                     "INNER JOIN Office ON Office.kodoffice = Representative.office " + 
                 "ORDER BY Представитель";
-            Меню.Table_Fill("Поиск_представитель", sql);
+            PsqlData.Table_Fill("Поиск_представитель", sql);
 
             sql = "SELECT kodoffice AS \"Код офиса\", name AS \"Наименование\", telephone AS Телефон, address AS Адрес " +
                 "FROM Office " +
                 "ORDER BY kodoffice";
-            Меню.Table_Fill("Поиск_офис", sql);
+            PsqlData.Table_Fill("Поиск_офис", sql);
 
-            for (int i = 0; i < Меню.ds.Tables["Поиск_клиент"].Columns.Count; i++)
+            for (int i = 0; i < Tables["Поиск_клиент"].Columns.Count; i++)
             {
-                comboBox1.Items.Add(Меню.ds.Tables["Поиск_клиент"].Columns[i].ColumnName);
+                comboBox1.Items.Add(Tables["Поиск_клиент"].Columns[i].ColumnName);
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Поиск_представитель"].Columns.Count; i++)
+            for (int i = 0; i < Tables["Поиск_представитель"].Columns.Count; i++)
             {
-                comboBox5.Items.Add(Меню.ds.Tables["Поиск_представитель"].Columns[i].ColumnName);
+                comboBox5.Items.Add(Tables["Поиск_представитель"].Columns[i].ColumnName);
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Поиск_офис"].Columns.Count; i++)
+            for (int i = 0; i < Tables["Поиск_офис"].Columns.Count; i++)
             {
-                comboBox7.Items.Add(Меню.ds.Tables["Поиск_офис"].Columns[i].ColumnName);
+                comboBox7.Items.Add(Tables["Поиск_офис"].Columns[i].ColumnName);
             }
         }
 
@@ -146,24 +140,24 @@ namespace WindowsFormsApplication5
         private void radioButton8_CheckedChanged(object sender, EventArgs e)
         {
             //dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = Меню.ds.Tables["Поиск_клиент"];
-            Меню.ds.Tables["Поиск_клиент"].DefaultView.RowFilter = "";
+            dataGridView1.DataSource = Tables["Поиск_клиент"];
+            Tables["Поиск_клиент"].DefaultView.RowFilter = "";
             resize();
         }
 
         private void radioButton10_CheckedChanged(object sender, EventArgs e)
         {
             //dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = Меню.ds.Tables["Поиск_представитель"];
-            Меню.ds.Tables["Поиск_представитель"].DefaultView.RowFilter = "";
+            dataGridView1.DataSource = Tables["Поиск_представитель"];
+            Tables["Поиск_представитель"].DefaultView.RowFilter = "";
             resize();
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
             //dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = Меню.ds.Tables["Поиск_офис"];
-            Меню.ds.Tables["Поиск_офис"].DefaultView.RowFilter = "";
+            dataGridView1.DataSource = Tables["Поиск_офис"];
+            Tables["Поиск_офис"].DefaultView.RowFilter = "";
             resize();
         }
 
@@ -181,19 +175,19 @@ namespace WindowsFormsApplication5
                 return;
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Поиск_клиент"].Columns.Count; i++)
+            for (int i = 0; i < Tables["Поиск_клиент"].Columns.Count; i++)
             {
-                if (Меню.ds.Tables["Поиск_клиент"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
+                if (Tables["Поиск_клиент"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
                     break;
 
-                if (i == Меню.ds.Tables["Поиск_клиент"].Columns.Count - 1)
+                if (i == Tables["Поиск_клиент"].Columns.Count - 1)
                 {
-                    MessageBox.Show("Не изменяйте значения вручную в элементах выбора, а выбирайте из списка!", "Ошибка");
+                    MessageBox.Show("Не изменяйте значения вручную в элементах выбора! Значения необходимо выбирать из списка.", "Ошибка");
                     return;
                 }
             }
 
-            dataGridView1.DataSource = Меню.ds.Tables["Поиск_клиент"];
+            dataGridView1.DataSource = Tables["Поиск_клиент"];
             el_values.search(el_values, 0, radioButton1);
             resize();
         }
@@ -201,20 +195,7 @@ namespace WindowsFormsApplication5
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             Elements elements = new Elements(textBox1, comboBox2, dateTimePicker1, dateTimePicker2, comboBox1);
-            object[] items = {
-                        "Паспорт",
-                        "Свидетельство о рождении",
-                        "Паспорт гражданина СССР",
-                        "Временное удостоверение личности гражданина",
-                        "Удостоверение беженца",
-                        "Свидетельство о рассмотрении ходатайства о признании беженцем по существу",
-                        "Свидетельство о предоставлении временного убежища",
-                        "Копия жалобы о лишении статуса беженца",
-                        "Паспорт иностранного гражданина",
-                        "Документ иностранного гражданина",
-                        "Вид на жительство",
-                        "Документ лица без гражданства",
-                        "Удостоверение сотрудника Евразийской экономической комиссии)" };
+            string[] items = new Massives().items;
 
             switch (elements.comboBoxSel_el.SelectedItem)
             {
@@ -223,9 +204,9 @@ namespace WindowsFormsApplication5
                     break;
                 case "Клиент":
                     elements.choose_element(2, 1);
-                    for (int i = 0; i < Меню.ds.Tables["Поиск_клиент"].Rows.Count; i++)
+                    for (int i = 0; i < Tables["Поиск_клиент"].Rows.Count; i++)
                     {
-                        elements.comboBox_el.Items.Add(Меню.ds.Tables["Поиск_клиент"].Rows[i]["Клиент"].ToString());
+                        elements.comboBox_el.Items.Add(Tables["Поиск_клиент"].Rows[i]["Клиент"].ToString());
                     }
                     break;
                 case "Пол":
@@ -282,19 +263,19 @@ namespace WindowsFormsApplication5
                 return;
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Поиск_представитель"].Columns.Count; i++)
+            for (int i = 0; i < Tables["Поиск_представитель"].Columns.Count; i++)
             {
-                if (Меню.ds.Tables["Поиск_представитель"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
+                if (Tables["Поиск_представитель"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
                     break;
 
-                if (i == Меню.ds.Tables["Поиск_представитель"].Columns.Count - 1)
+                if (i == Tables["Поиск_представитель"].Columns.Count - 1)
                 {
                     MessageBox.Show("Не изменяйте значения вручную в элементах выбора, а выбирайте из списка!", "Ошибка");
                     return;
                 }
             }
 
-            dataGridView1.DataSource = Меню.ds.Tables["Поиск_представитель"];
+            dataGridView1.DataSource = Tables["Поиск_представитель"];
             el_values.search(el_values, 1, radioButton2);
             resize();
         }
@@ -313,19 +294,19 @@ namespace WindowsFormsApplication5
                 return;
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Поиск_офис"].Columns.Count; i++)
+            for (int i = 0; i < Tables["Поиск_офис"].Columns.Count; i++)
             {
-                if (Меню.ds.Tables["Поиск_офис"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
+                if (Tables["Поиск_офис"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
                     break;
 
-                if (i == Меню.ds.Tables["Поиск_офис"].Columns.Count - 1)
+                if (i == Tables["Поиск_офис"].Columns.Count - 1)
                 {
                     MessageBox.Show("Не изменяйте значения вручную в элементах выбора, а выбирайте из списка!", "Ошибка");
                     return;
                 }
             }
 
-            dataGridView1.DataSource = Меню.ds.Tables["Поиск_офис"];
+            dataGridView1.DataSource = Tables["Поиск_офис"];
             el_values.search(el_values, 2, radioButton3);
             resize();
         }
@@ -341,9 +322,9 @@ namespace WindowsFormsApplication5
                     break;
                 case "Представитель":
                     elements.choose_element(2, 2);
-                    for (int i = 0; i < Меню.ds.Tables["Поиск_представитель"].Rows.Count; i++)
+                    for (int i = 0; i < Tables["Поиск_представитель"].Rows.Count; i++)
                     {
-                        elements.comboBox_el.Items.Add(Меню.ds.Tables["Поиск_представитель"].Rows[i]["Представитель"].ToString());
+                        elements.comboBox_el.Items.Add(Tables["Поиск_представитель"].Rows[i]["Представитель"].ToString());
                     }
                     break;
                 case "Пол":
@@ -360,9 +341,9 @@ namespace WindowsFormsApplication5
                     break;
                 case "Офис":
                     elements.choose_element(2, 2);
-                    for (int i = 0; i < Меню.ds.Tables["Поиск_офис"].Rows.Count; i++)
+                    for (int i = 0; i < Tables["Поиск_офис"].Rows.Count; i++)
                     {
-                        elements.comboBox_el.Items.Add(Меню.ds.Tables["Поиск_офис"].Rows[i]["Наименование"]);
+                        elements.comboBox_el.Items.Add(Tables["Поиск_офис"].Rows[i]["Наименование"]);
                     }
                     break;
                 default: break;
@@ -380,9 +361,9 @@ namespace WindowsFormsApplication5
                     break;
                 case "Наименование":
                     elements.choose_element(2, 3);
-                    for (int i = 0; i < Меню.ds.Tables["Поиск_офис"].Rows.Count; i++)
+                    for (int i = 0; i < Tables["Поиск_офис"].Rows.Count; i++)
                     {
-                        elements.comboBox_el.Items.Add(Меню.ds.Tables["Поиск_офис"].Rows[i]["Наименование"]);
+                        elements.comboBox_el.Items.Add(Tables["Поиск_офис"].Rows[i]["Наименование"]);
                     }
                     break;
                 case "Телефон":
@@ -433,207 +414,6 @@ namespace WindowsFormsApplication5
             Параметры_поиска параметры = new Параметры_поиска();
             параметры.Show();
             параметры.Activate();
-        }
-    }
-
-    class Elements
-    {
-        TextBox textBox;
-        ComboBox comboBox;
-        ComboBox comboBoxSel;
-        DateTimePicker dtp1;
-        DateTimePicker dtp2;
-
-        public Elements(TextBox TextBox, ComboBox ComboBox, DateTimePicker DTP1, DateTimePicker DTP2, ComboBox ComboBoxSel)
-        {
-            textBox = TextBox;
-            comboBox = ComboBox;
-            comboBoxSel = ComboBoxSel;
-            dtp1 = DTP1;
-            dtp2 = DTP2;
-        }
-        public TextBox textBox_el
-        {
-            get { return textBox; }
-            set { textBox = value; }
-        }
-
-        public ComboBox comboBox_el
-        {
-            get { return comboBox; }
-            set { comboBox = value; }
-        }
-
-        public DateTimePicker dtp1_el
-        {
-            get { return dtp1; }
-            set { dtp1 = value; }
-        }
-
-        public DateTimePicker dtp2_el
-        {
-            get { return dtp2; }
-            set { dtp2 = value; }
-        }
-
-        public ComboBox comboBoxSel_el
-        {
-            get { return comboBoxSel; }
-            set { comboBoxSel = value; }
-        }
-
-        public object choosen_value
-        {
-            get
-            {
-                if (textBox.Visible == true)
-                {
-                    switch (comboBoxSel.Text)
-                    {
-                        case "Код клиента":
-                        case "Код представителя":
-                        case "Код офиса":
-                            if (textBox.Text != "")
-                                return Convert.ToInt32(textBox.Text); 
-                            break;
-                        default: break;
-                    }
-
-                    return textBox.Text;
-                }
-                else if (comboBox.Visible == true)
-                {
-                    return comboBox.Text;
-                }
-                else if (dtp1.Visible == true)
-                {
-                    return dtp1.Value.Date;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        public void search(Elements el_values, int idxTable, RadioButton rb)
-        {
-            string[] tables = { "Поиск_клиент", "Поиск_представитель", "Поиск_офис" };
-            if (el_values.choosen_value.GetType().Name == "Int32")
-            {
-                Меню.ds.Tables[tables[idxTable]].DefaultView.RowFilter = "[" + el_values.comboBoxSel_el.Text + "] = " + el_values.choosen_value.ToString();
-            }
-            else
-            {
-                if (el_values.is_dtp() && Параметры_поиска.typeSearchDate)
-                {
-                    if (el_values.dtp1_el.Value > el_values.dtp2_el.Value)
-                    {
-                        MessageBox.Show("Второй элемент даты (правый) не может быть меньше первого!", "Ошибка");
-                        rb.Checked = false;
-                        return;
-                    }
-
-                    Меню.ds.Tables[tables[idxTable]].DefaultView.RowFilter = "[" + el_values.comboBoxSel_el.Text + "] >= '" + el_values.choosen_value.ToString() + "' AND " + "[" + el_values.comboBoxSel_el.Text + "] <= '" + el_values.dtp2_el.Value.Date.ToString() + "'";
-                }
-                else if (el_values.is_dtp())
-                {
-                    Меню.ds.Tables[tables[idxTable]].DefaultView.RowFilter = "[" + el_values.comboBoxSel_el.Text + "] = '" + el_values.choosen_value.ToString() + "'";
-                }
-                else
-                {
-                    if (!Параметры_поиска.typeSearchString)
-                        Меню.ds.Tables[tables[idxTable]].DefaultView.RowFilter = "[" + el_values.comboBoxSel_el.Text + "] = '" + el_values.choosen_value.ToString() + "'";
-                    else
-                        Меню.ds.Tables[tables[idxTable]].DefaultView.RowFilter = "[" + el_values.comboBoxSel_el.Text + "] LIKE '*" + el_values.choosen_value.ToString() + "*'";
-                }
-            }
-        }
-
-        public bool is_dtp()
-        {
-            return dtp1.Visible;
-        }
-
-        public void choose_element(int el, int radioNum)
-        {
-            int dtp2_indent = 127;
-            System.Drawing.Point cl_location;
-
-            switch (radioNum)
-            {
-                case 1: cl_location = new System.Drawing.Point(440, 38); break;
-                case 2: cl_location = new System.Drawing.Point(440, 99); break;
-                case 3: cl_location = new System.Drawing.Point(440, 157); break;
-                default: cl_location = new System.Drawing.Point(440, 38); break;
-            }
-
-            System.Drawing.Point cl_cbLocation = new System.Drawing.Point(cl_location.X, cl_location.Y + 25);
-            System.Drawing.Point cl_dtp1Location = new System.Drawing.Point(cl_location.X - 254, cl_location.Y + 26);
-            System.Drawing.Point cl_dtp2Location = new System.Drawing.Point(cl_dtp1Location.X + dtp2_indent, cl_dtp1Location.Y);
-            textBox.Text = "";
-            comboBox.Items.Clear();
-            comboBox.Text = "";
-            dtp1.Value = DateTime.Now;
-            dtp2.Value = DateTime.Now;
-
-            switch (el)
-            {
-                case 1:
-                    textBox.Visible = true;
-                    textBox.Location = cl_location;
-                    comboBox.Visible = false;
-                    dtp1.Visible = false;
-                    dtp2.Visible = false;
-
-                    if (comboBox.Location == cl_location)
-                    {
-                        comboBox.Location = cl_cbLocation;
-                    }
-                    else if (dtp1.Location == cl_location)
-                    {
-                        dtp1.Location = cl_dtp1Location;
-                        dtp2.Location = cl_dtp2Location;
-                    }
-                    break;
-                case 2:
-                    comboBox.Visible = true;
-                    comboBox.Location = cl_location;
-                    textBox.Visible = false;
-                    dtp1.Visible = false;
-                    dtp2.Visible = false;
-
-                    if (textBox.Location == cl_location)
-                    {
-                        textBox.Location = cl_cbLocation;
-                    }
-                    else if (dtp1.Location == cl_location)
-                    {
-                        dtp1.Location = cl_dtp1Location;
-                        dtp2.Location = cl_dtp2Location;
-                    }
-                    break;
-                case 3:
-                    dtp1.Visible = true;
-                    dtp1.Location = cl_location;
-
-                    cl_dtp2Location = new System.Drawing.Point(dtp1.Location.X + dtp2_indent, dtp1.Location.Y);
-                    dtp2.Visible = Параметры_поиска.typeSearchDate;
-                    dtp2.Location = cl_dtp2Location;
-                    comboBox.Visible = false;
-                    textBox.Visible = false;
-
-                    if (comboBox.Location == cl_location)
-                    {
-                        comboBox.Location = cl_cbLocation;
-                    }
-                    else if (textBox.Location == cl_location)
-                    {
-                        textBox.Location = cl_dtp1Location;
-                    }
-                    break;
-                default: break;
-            }
         }
     }
 }

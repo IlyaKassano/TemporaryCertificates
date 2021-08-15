@@ -19,6 +19,8 @@ namespace WindowsFormsApplication5
             InitializeComponent();
         }
 
+        DataTableCollection Tables = PsqlData.ds.Tables;
+
         private void Оформление_сертификата_Load(object sender, EventArgs e)
         {
             Font = Параметры.fontDialog1.Font;
@@ -32,17 +34,17 @@ namespace WindowsFormsApplication5
 
             try
             {
-                textBox1.Text = Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Код"].ToString();
-                if (Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."] != DBNull.Value)
-                    dateTimePicker1.Value = Convert.ToDateTime(Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."]);
+                textBox1.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Код"].ToString();
+                if (Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."] != DBNull.Value)
+                    dateTimePicker1.Value = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."]);
                 else
                     dateTimePicker1.Value = DateTime.Now;
 
-                if (Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."] != DBNull.Value)
+                if (Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."] != DBNull.Value)
                 {
                     try
                     {
-                        dateTimePicker2.Value = Convert.ToDateTime(Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."]);
+                        dateTimePicker2.Value = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."]);
                     }
                     catch (FormatException)
                     {
@@ -55,12 +57,12 @@ namespace WindowsFormsApplication5
                     dateTimePicker2.Value = DateTime.Now.AddDays(30);
                 }
 
-                if (Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Действителен"] != DBNull.Value)
-                    checkBox1.Checked = Convert.ToBoolean(Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Действителен"]);
+                if (Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Действителен"] != DBNull.Value)
+                    checkBox1.Checked = Convert.ToBoolean(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Действителен"]);
                 
-                comboBox1.Text = Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Представитель"].ToString();
-                comboBox2.Text = Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Наименование филиала"].ToString();
-                comboBox3.Text = Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Клиент"].ToString();
+                comboBox1.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Представитель"].ToString();
+                comboBox2.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Наименование филиала"].ToString();
+                comboBox3.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Клиент"].ToString();
             }
             catch (IndexOutOfRangeException)
             {
@@ -76,25 +78,25 @@ namespace WindowsFormsApplication5
         private void Оформление_сертификата_Activated(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
-            for (int i = 0; i < Меню.ds.Tables["Представитель"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Представитель"].Rows.Count; i++)
             {
-                comboBox1.Items.Add(Меню.ds.Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
-                    Меню.ds.Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
-                    Меню.ds.Tables["Представитель"].Rows[i]["middlename"].ToString());
+                comboBox1.Items.Add(Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
+                    Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
+                    Tables["Представитель"].Rows[i]["middlename"].ToString());
             }
 
             comboBox2.Items.Clear();
-            for (int i = 0; i < Меню.ds.Tables["Офис"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Офис"].Rows.Count; i++)
             {
-                comboBox2.Items.Add(Меню.ds.Tables["Офис"].Rows[i]["name"].ToString());
+                comboBox2.Items.Add(Tables["Офис"].Rows[i]["name"].ToString());
             }
 
             comboBox3.Items.Clear();
-            for (int i = 0; i < Меню.ds.Tables["Клиенты"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Клиенты"].Rows.Count; i++)
             {
-                comboBox3.Items.Add(Меню.ds.Tables["Клиенты"].Rows[i]["secondname"].ToString() + " " +
-                    Меню.ds.Tables["Клиенты"].Rows[i]["firstname"].ToString() + " " +
-                    Меню.ds.Tables["Клиенты"].Rows[i]["middlename"].ToString());
+                comboBox3.Items.Add(Tables["Клиенты"].Rows[i]["secondname"].ToString() + " " +
+                    Tables["Клиенты"].Rows[i]["firstname"].ToString() + " " +
+                    Tables["Клиенты"].Rows[i]["middlename"].ToString());
             }
         }
 
@@ -132,44 +134,44 @@ namespace WindowsFormsApplication5
                 return;
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Представитель"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Представитель"].Rows.Count; i++)
             {
                 if (
-                    (Меню.ds.Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
-                    Меню.ds.Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
-                    Меню.ds.Tables["Представитель"].Rows[i]["middlename"].ToString()).Equals(comboBox1.Text)
+                    (Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
+                    Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
+                    Tables["Представитель"].Rows[i]["middlename"].ToString()).Equals(comboBox1.Text)
                 )
                 {
-                    kod_rep = (int)Меню.ds.Tables["Представитель"].Rows[i]["kodrep"];
+                    kod_rep = (int)Tables["Представитель"].Rows[i]["kodrep"];
                 }
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Офис"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Офис"].Rows.Count; i++)
             {
-                if (Меню.ds.Tables["Офис"].Rows[i]["name"].ToString().Equals(comboBox2.Text))
+                if (Tables["Офис"].Rows[i]["name"].ToString().Equals(comboBox2.Text))
                 {
-                    kod_office = (int)Меню.ds.Tables["Офис"].Rows[i]["kodoffice"];
+                    kod_office = (int)Tables["Офис"].Rows[i]["kodoffice"];
                     idx_office = i;
                     break;
                 }
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Клиенты"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Клиенты"].Rows.Count; i++)
             {
-                string fioclient = Меню.ds.Tables["Клиенты"].Rows[i]["secondname"].ToString() + " " +
-                    Меню.ds.Tables["Клиенты"].Rows[i]["firstname"].ToString() + " " +
-                    Меню.ds.Tables["Клиенты"].Rows[i]["middlename"].ToString();
+                string fioclient = Tables["Клиенты"].Rows[i]["secondname"].ToString() + " " +
+                    Tables["Клиенты"].Rows[i]["firstname"].ToString() + " " +
+                    Tables["Клиенты"].Rows[i]["middlename"].ToString();
 
                 if (fioclient.Equals(comboBox3.Text))
                 {
-                    kod_client = Convert.ToInt32(Меню.ds.Tables["Клиенты"].Rows[i]["kodclient"]);
+                    kod_client = Convert.ToInt32(Tables["Клиенты"].Rows[i]["kodclient"]);
                     idx_doc = i;
 
-                    if (Convert.ToInt32(Меню.ds.Tables["Документ"].Rows[i]["koddoc"]) != kod_client)
+                    if (Convert.ToInt32(Tables["Документ"].Rows[i]["koddoc"]) != kod_client)
                     {
-                        for (int k = 0; k < Меню.ds.Tables["Документ"].Rows.Count; k++)
+                        for (int k = 0; k < Tables["Документ"].Rows.Count; k++)
                         {
-                            if (Convert.ToInt32(Меню.ds.Tables["Документ"].Rows[k]["koddoc"]) == kod_client)
+                            if (Convert.ToInt32(Tables["Документ"].Rows[k]["koddoc"]) == kod_client)
                             {
                                 idx_doc = k;
                                 break;
@@ -183,22 +185,22 @@ namespace WindowsFormsApplication5
 
             sql = "UPDATE tempcertificate SET datestart='" + dateTimePicker1.Value + "', dateend= '" + dateTimePicker2.Value.ToString() + "', valid = " +  checkBox1.Checked +
                 ", kodclient=" + kod_client + ", kodrep=" + kod_rep + ", kodoffice=" + kod_office + " WHERE kodtempcert=" + textBox1.Text;
-            Меню.Mod_Execute(sql);
+            PsqlData.Mod_Execute(sql);
 
             //DateTime? date = null;
 
-            Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n].ItemArray = new object[]
-                { textBox1.Text, comboBox3.Text, checkBox1.Checked, dateTimePicker1.Value, dateTimePicker2.Value, Меню.ds.Tables["Документ"].Rows[idx_doc]["gender"], 
-                    Меню.ds.Tables["Документ"].Rows[idx_doc]["datebirth"], Меню.ds.Tables["Документ"].Rows[idx_doc]["typedocument"], Меню.ds.Tables["Документ"].Rows[idx_doc]["serianomer"],
-                    Меню.ds.Tables["Документ"].Rows[idx_doc]["dataissue"], Меню.ds.Tables["Документ"].Rows[idx_doc]["dateend"], Меню.ds.Tables["Документ"].Rows[idx_doc]["issuedby"], Меню.ds.Tables["Документ"].Rows[idx_doc]["placebirth"], 
-                    comboBox1.Text, comboBox2.Text, Меню.ds.Tables["Офис"].Rows[idx_office]["address"], Меню.ds.Tables["Офис"].Rows[idx_office]["telephone"] };
+            Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n].ItemArray = new object[]
+                { textBox1.Text, comboBox3.Text, checkBox1.Checked, dateTimePicker1.Value, dateTimePicker2.Value, Tables["Документ"].Rows[idx_doc]["gender"], 
+                    Tables["Документ"].Rows[idx_doc]["datebirth"], Tables["Документ"].Rows[idx_doc]["typedocument"], Tables["Документ"].Rows[idx_doc]["serianomer"],
+                    Tables["Документ"].Rows[idx_doc]["dataissue"], Tables["Документ"].Rows[idx_doc]["dateend"], Tables["Документ"].Rows[idx_doc]["issuedby"], Tables["Документ"].Rows[idx_doc]["placebirth"], 
+                    comboBox1.Text, comboBox2.Text, Tables["Офис"].Rows[idx_office]["address"], Tables["Офис"].Rows[idx_office]["telephone"] };
 
             // Сортировка таблицы
-            Меню.ds.Tables["Временный сертификат"].DefaultView.Sort = " Код Asc";
+            Tables["Временный сертификат"].DefaultView.Sort = " Код Asc";
             DataSet second = new DataSet();
-            second.Tables.Add(Меню.ds.Tables["Временный сертификат"].DefaultView.ToTable());
-            Меню.ds.Tables.Remove(Меню.ds.Tables["Временный сертификат"]);
-            Меню.ds.Tables.Add(second.Tables["Временный сертификат"].DefaultView.ToTable());
+            second.Tables.Add(Tables["Временный сертификат"].DefaultView.ToTable());
+            Tables.Remove(Tables["Временный сертификат"]);
+            Tables.Add(second.Tables["Временный сертификат"].DefaultView.ToTable());
 
             this.Close();
         }
@@ -268,8 +270,8 @@ namespace WindowsFormsApplication5
 
                 string addressNTel = null;
                 System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("ru-RU");
-                string dateEnd = Convert.ToDateTime(Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."]).ToString("dd MMMMMMMM yy", culture);
-                string dateStart = Convert.ToDateTime(Меню.ds.Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."]).ToString("dd MMMMMMMM yy", culture);
+                string dateEnd = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."]).ToString("dd MMMMMMMM yy", culture);
+                string dateStart = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."]).ToString("dd MMMMMMMM yy", culture);
                 string[] splDateEnd = dateEnd.Split(' ');
                 string[] splDateStart = dateStart.Split(' ');
                 string FIOClient = comboBox3.Text;
@@ -282,44 +284,44 @@ namespace WindowsFormsApplication5
                 string placeBirth = "";
 
 
-                for (int i = 0; i < Меню.ds.Tables["Клиенты"].Rows.Count; i++)
+                for (int i = 0; i < Tables["Клиенты"].Rows.Count; i++)
                 {
-                    string fiocl = Меню.ds.Tables["Клиенты"].Rows[i]["secondname"].ToString() + " " +
-                        Меню.ds.Tables["Клиенты"].Rows[i]["firstname"].ToString() + " " +
-                        Меню.ds.Tables["Клиенты"].Rows[i]["middlename"].ToString();
+                    string fiocl = Tables["Клиенты"].Rows[i]["secondname"].ToString() + " " +
+                        Tables["Клиенты"].Rows[i]["firstname"].ToString() + " " +
+                        Tables["Клиенты"].Rows[i]["middlename"].ToString();
 
                     if (fiocl.Equals(FIOClient))
                     {
-                        int kod_cl = Convert.ToInt32(Меню.ds.Tables["Клиенты"].Rows[i]["kodclient"]);
-                        int idx_doc = Convert.ToInt32(Меню.ds.Tables["Документ"].Rows[i]["koddoc"]);
+                        int kod_cl = Convert.ToInt32(Tables["Клиенты"].Rows[i]["kodclient"]);
+                        int idx_doc = Convert.ToInt32(Tables["Документ"].Rows[i]["koddoc"]);
                         
                         if (idx_doc != kod_cl)
                         {
-                            for (int k = 0; k < Меню.ds.Tables["Документ"].Rows.Count; k++)
+                            for (int k = 0; k < Tables["Документ"].Rows.Count; k++)
                             {
-                                if (Convert.ToInt32(Меню.ds.Tables["Документ"].Rows[k]["koddoc"]) == kod_cl)
+                                if (Convert.ToInt32(Tables["Документ"].Rows[k]["koddoc"]) == kod_cl)
                                 {
                                     idx_doc = k;
                                 }
                             }
                         }
 
-                        info = Меню.ds.Tables["Документ"].Rows[idx_doc]["datebirth"].ToString().Split(' ')[0] + "    " +
-                            Меню.ds.Tables["Документ"].Rows[idx_doc]["typedocument"].ToString() + "    " +
-                            Меню.ds.Tables["Документ"].Rows[idx_doc]["serianomer"].ToString() + "    " +
-                            Меню.ds.Tables["Документ"].Rows[idx_doc]["dataissue"].ToString().Split(' ')[0] + "    " +
-                            Меню.ds.Tables["Документ"].Rows[idx_doc]["issuedby"].ToString();
+                        info = Tables["Документ"].Rows[idx_doc]["datebirth"].ToString().Split(' ')[0] + "    " +
+                            Tables["Документ"].Rows[idx_doc]["typedocument"].ToString() + "    " +
+                            Tables["Документ"].Rows[idx_doc]["serianomer"].ToString() + "    " +
+                            Tables["Документ"].Rows[idx_doc]["dataissue"].ToString().Split(' ')[0] + "    " +
+                            Tables["Документ"].Rows[idx_doc]["issuedby"].ToString();
 
-                        if (Меню.ds.Tables["Документ"].Rows[kod_cl]["gender"].ToString().Equals("Мужской"))
+                        if (Tables["Документ"].Rows[kod_cl]["gender"].ToString().Equals("Мужской"))
                         {
                             genderMale = "V";
                         }
-                        else if (Меню.ds.Tables["Документ"].Rows[kod_cl]["gender"].ToString().Equals("Женский"))
+                        else if (Tables["Документ"].Rows[kod_cl]["gender"].ToString().Equals("Женский"))
                         {
                             genderFemale = "V";
                         }
 
-                        placeBirth = Меню.ds.Tables["Документ"].Rows[idx_doc]["placeBirth"].ToString();
+                        placeBirth = Tables["Документ"].Rows[idx_doc]["placeBirth"].ToString();
 
                         break;
                     }
@@ -330,12 +332,12 @@ namespace WindowsFormsApplication5
                     MessageBox.Show("Не удалось заполнить ФИО клиента.\nПопробуйте еще раз или введите данные вручную", "Ошибка");
                 }
 
-                for (int i = 0; i < Меню.ds.Tables["Офис"].Rows.Count; i++)
+                for (int i = 0; i < Tables["Офис"].Rows.Count; i++)
                 {
-                    if (Меню.ds.Tables["Офис"].Rows[i]["name"].ToString().Equals(comboBox2.Text))
+                    if (Tables["Офис"].Rows[i]["name"].ToString().Equals(comboBox2.Text))
                     {
-                        addressNTel = Меню.ds.Tables["Офис"].Rows[i]["address"].ToString() +
-                            '\t' + Меню.ds.Tables["Офис"].Rows[i]["telephone"].ToString();
+                        addressNTel = Tables["Офис"].Rows[i]["address"].ToString() +
+                            '\t' + Tables["Офис"].Rows[i]["telephone"].ToString();
                     }
                 }
 
@@ -373,15 +375,15 @@ namespace WindowsFormsApplication5
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < Меню.ds.Tables["Представитель"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Представитель"].Rows.Count; i++)
             {
                 if (
-                    (Меню.ds.Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
-                    Меню.ds.Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
-                    Меню.ds.Tables["Представитель"].Rows[i]["middlename"].ToString()).Equals(comboBox1.Text)
+                    (Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
+                    Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
+                    Tables["Представитель"].Rows[i]["middlename"].ToString()).Equals(comboBox1.Text)
                 )
                 {
-                    comboBox2.Text = Меню.ds.Tables["Представитель"].Rows[i]["office"].ToString();
+                    comboBox2.Text = Tables["Представитель"].Rows[i]["office"].ToString();
                     break;
                 }
             }

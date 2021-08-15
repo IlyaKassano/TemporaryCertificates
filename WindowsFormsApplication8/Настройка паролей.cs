@@ -18,6 +18,8 @@ namespace WindowsFormsApplication5
             InitializeComponent();
         }
 
+        DataTableCollection Tables = PsqlData.ds.Tables;
+
         private void Настройка_паролей_Load(object sender, EventArgs e)
         {
             Font = Параметры.fontDialog1.Font;
@@ -25,11 +27,11 @@ namespace WindowsFormsApplication5
             string sql;
 
             sql = "SELECT * FROM users ORDER BY login";
-            Меню.Table_Fill("Авторизация", sql);
+            PsqlData.Table_Fill("Авторизация", sql);
 
-            for (int i = 0; i < Меню.ds.Tables["Авторизация"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Авторизация"].Rows.Count; i++)
             {
-                comboBox1.Items.Add(Меню.ds.Tables["Авторизация"].Rows[i]["login"].ToString());
+                comboBox1.Items.Add(Tables["Авторизация"].Rows[i]["login"].ToString());
             }
 
             textBox1.UseSystemPasswordChar = true;
@@ -48,11 +50,11 @@ namespace WindowsFormsApplication5
                 return;
             }
 
-            for (int i = 0; i < Меню.ds.Tables["Авторизация"].Rows.Count; i++)
+            for (int i = 0; i < Tables["Авторизация"].Rows.Count; i++)
             {
-                if (Меню.ds.Tables["Авторизация"].Rows[i]["login"].ToString().Equals(comboBox1.Text))
+                if (Tables["Авторизация"].Rows[i]["login"].ToString().Equals(comboBox1.Text))
                 {
-                    pass = Меню.ds.Tables["Авторизация"].Rows[i]["password"].ToString();
+                    pass = Tables["Авторизация"].Rows[i]["password"].ToString();
                     break;
                 }
             }
@@ -67,7 +69,7 @@ namespace WindowsFormsApplication5
             {
                 string sql = "UPDATE users SET password = '" + textBox2.Text +
                     "' WHERE login = '" + comboBox1.Text + "'";
-                Меню.Mod_Execute(sql);
+                PsqlData.Mod_Execute(sql);
 
                 Close();
             }

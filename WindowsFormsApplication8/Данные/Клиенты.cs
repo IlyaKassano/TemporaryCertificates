@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.OleDb;
 
 namespace WindowsFormsApplication5
 {
@@ -23,19 +18,12 @@ namespace WindowsFormsApplication5
                     "koddoc, typedocument, serianomer, gender, dataissue, dateend, issuedby, datebirth, placebirth " +
                 "FROM Client LEFT OUTER JOIN Document ON Document.koddoc = Client.kodclient " +
                 "ORDER BY kodclient";
-            Меню.Table_Fill("Client", sql);
+            PsqlData.Table_Fill("Client", sql);
 
             if (kod != -1)
             {
-                for (int i = 0; i < Меню.ds.Tables["Client"].Rows.Count; i++)
-                {
-                    if (Convert.ToInt32(Меню.ds.Tables["Client"].Rows[i]["kodclient"]) == kod)
-                    {
-                        n = i;
-                        FieldsForm_Fill();
-                        break;
-                    }
-                }
+                n = Tables["Client"].Rows.IndexOf(Tables["Client"].Select("kodclient = " + kod).First());
+                FieldsForm_Fill();
             }
         }   
         /// <summary>  
@@ -43,21 +31,18 @@ namespace WindowsFormsApplication5
         /// </summary> 
         int n = 0;
         int maxN = 0;
+        DataTableCollection Tables = PsqlData.ds.Tables;
 
         private void Клиенты_Load(object sender, EventArgs e)
         {
             string sql;
-
             Size size = new Size(201, 20);
             maskedTextBox1.Size = size;
-            
-            sql = "SELECT kodclient FROM Client;";
-            Меню.Table_Fill("KClient", sql);
-
             MaxN();
-            Меню.connection.Close();
 
-            if (Меню.ds.Tables["Client"].Rows.Count > n)
+            PsqlData.connection.Close();
+
+            if (Tables["Client"].Rows.Count > n)
             {
                 FieldsForm_Fill();
             }
@@ -68,26 +53,26 @@ namespace WindowsFormsApplication5
         /// </summary> 
         private void FieldsForm_Fill()
         {
-            textBox1.Text = Меню.ds.Tables["Client"].Rows[n]["kodclient"].ToString();
-            textBox2.Text = Меню.ds.Tables["Client"].Rows[n]["secondname"].ToString();
-            textBox3.Text = Меню.ds.Tables["Client"].Rows[n]["firstname"].ToString();
-            textBox4.Text = Меню.ds.Tables["Client"].Rows[n]["middlename"].ToString();
-            comboBox1.Text = Меню.ds.Tables["Client"].Rows[n]["gender"].ToString();
-            textBox10.Text = Меню.ds.Tables["Client"].Rows[n]["koddoc"].ToString();
-            comboBox2.Text = Меню.ds.Tables["Client"].Rows[n]["typedocument"].ToString();
-            maskedTextBox1.Text = Меню.ds.Tables["Client"].Rows[n]["telephone"].ToString();
-            textBox11.Text = Меню.ds.Tables["Client"].Rows[n]["address"].ToString();
-            textBox8.Text = Меню.ds.Tables["Client"].Rows[n]["snils"].ToString();
-            textBox10.Text = Меню.ds.Tables["Client"].Rows[n]["koddoc"].ToString();
-            maskedTextBox2.Text = Меню.ds.Tables["Client"].Rows[n]["serianomer"].ToString();
-            textBox7.Text = Меню.ds.Tables["Client"].Rows[n]["issuedby"].ToString();
-            textBox6.Text = Меню.ds.Tables["Client"].Rows[n]["placebirth"].ToString();
-            if (Меню.ds.Tables["Client"].Rows[n]["dataissue"] != DBNull.Value)
-                dateTimePicker1.Value = Convert.ToDateTime(Меню.ds.Tables["Client"].Rows[n]["dataissue"]);
-            if (Меню.ds.Tables["Client"].Rows[n]["datebirth"] != DBNull.Value)
-                dateTimePicker2.Value = Convert.ToDateTime(Меню.ds.Tables["Client"].Rows[n]["datebirth"]);
-            if(Меню.ds.Tables["Client"].Rows[n]["dateend"] != DBNull.Value)
-                dateTimePicker3.Value = Convert.ToDateTime(Меню.ds.Tables["Client"].Rows[n]["dateend"]);
+            textBox1.Text = Tables["Client"].Rows[n]["kodclient"].ToString();
+            textBox2.Text = Tables["Client"].Rows[n]["secondname"].ToString();
+            textBox3.Text = Tables["Client"].Rows[n]["firstname"].ToString();
+            textBox4.Text = Tables["Client"].Rows[n]["middlename"].ToString();
+            comboBox1.Text = Tables["Client"].Rows[n]["gender"].ToString();
+            textBox10.Text = Tables["Client"].Rows[n]["koddoc"].ToString();
+            comboBox2.Text = Tables["Client"].Rows[n]["typedocument"].ToString();
+            maskedTextBox1.Text = Tables["Client"].Rows[n]["telephone"].ToString();
+            textBox11.Text = Tables["Client"].Rows[n]["address"].ToString();
+            textBox8.Text = Tables["Client"].Rows[n]["snils"].ToString();
+            textBox10.Text = Tables["Client"].Rows[n]["koddoc"].ToString();
+            maskedTextBox2.Text = Tables["Client"].Rows[n]["serianomer"].ToString();
+            textBox7.Text = Tables["Client"].Rows[n]["issuedby"].ToString();
+            textBox6.Text = Tables["Client"].Rows[n]["placebirth"].ToString();
+            if (Tables["Client"].Rows[n]["dataissue"] != DBNull.Value)
+                dateTimePicker1.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["dataissue"]);
+            if (Tables["Client"].Rows[n]["datebirth"] != DBNull.Value)
+                dateTimePicker2.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["datebirth"]);
+            if(Tables["Client"].Rows[n]["dateend"] != DBNull.Value)
+                dateTimePicker3.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["dateend"]);
 
             textBox1.Enabled = false;
         }
@@ -119,20 +104,14 @@ namespace WindowsFormsApplication5
         }
 
         private void MaxN() {
-            for (int i = 0; i < Меню.ds.Tables["KClient"].Rows.Count; i++)
-            {
-                if (maxN <= Convert.ToInt32(Меню.ds.Tables["KClient"].Rows[i]["kodclient"]))
-                {
-                    maxN = Convert.ToInt32(Меню.ds.Tables["KClient"].Rows[i]["kodclient"]) + 1;
-                }
-            }
+            maxN = Convert.ToInt32(Tables["Client"].Compute("Max(kodclient)", string.Empty)) + 1;
         }
 
         //В начало
         private void button11_Click(object sender, EventArgs e)
         {
             n = 0;
-            if (Меню.ds.Tables["Client"].Rows.Count > n)
+            if (Tables["Client"].Rows.Count > n)
                 FieldsForm_Fill();
         }
 
@@ -149,20 +128,20 @@ namespace WindowsFormsApplication5
         //Вперед
         private void button8_Click(object sender, EventArgs e)
         {
-            if (n < Меню.ds.Tables["Client"].Rows.Count - 1)
+            if (n < Tables["Client"].Rows.Count - 1)
             {
                 n++;
                 FieldsForm_Fill();
             }
-            else if ((n == Меню.ds.Tables["Client"].Rows.Count - 1) && (Авторизация.polzov == "Администратор" || Авторизация.polzov == "Представитель"))
+            else if ((n == Tables["Client"].Rows.Count - 1) && (Авторизация.polzov == "Администратор" || Авторизация.polzov == "Представитель"))
             {
-                n = Меню.ds.Tables["Client"].Rows.Count;
+                n = Tables["Client"].Rows.Count;
                 FieldsForm_Clear();
                 textBox1.Text = maxN.ToString();
             }
-            else if (n != Меню.ds.Tables["Client"].Rows.Count)
+            else if (n != Tables["Client"].Rows.Count)
             {
-                n = Меню.ds.Tables["Client"].Rows.Count - 1;
+                n = Tables["Client"].Rows.Count - 1;
                 FieldsForm_Fill();
             }
         }
@@ -172,13 +151,13 @@ namespace WindowsFormsApplication5
         {
             if (Авторизация.polzov == "Администратор" || Авторизация.polzov == "Представитель")
             {
-                n = Меню.ds.Tables["Client"].Rows.Count;
+                n = Tables["Client"].Rows.Count;
                 FieldsForm_Clear();
                 textBox1.Text = maxN.ToString();
             }
-            else if (n != Меню.ds.Tables["Client"].Rows.Count)
+            else if (n != Tables["Client"].Rows.Count)
             {
-                n = Меню.ds.Tables["Client"].Rows.Count - 1;
+                n = Tables["Client"].Rows.Count - 1;
                 FieldsForm_Fill();
             }
         }
@@ -198,13 +177,13 @@ namespace WindowsFormsApplication5
                 return;
             }
 
-            if (n == Меню.ds.Tables["Client"].Rows.Count)
+            if (n == Tables["Client"].Rows.Count)
             {
                 string sql = "INSERT INTO Client (kodclient, secondname, firstname, middlename, telephone, address, snils) values (" + 
                     textBox1.Text + ", '" + textBox2.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "', '" + maskedTextBox1.Text + 
                     "', '" + textBox11.Text + "', '" + textBox8.Text + "');";
 
-                if (!Меню.Mod_Execute(sql))
+                if (!PsqlData.Mod_Execute(sql))
                 {
                     return;
                 }
@@ -218,19 +197,19 @@ namespace WindowsFormsApplication5
                         textBox10.Text + ", '" + comboBox2.Text + "', '" + maskedTextBox2.Text + "', '" + comboBox1.Text + "', '" + dateTimePicker1.Value + "', '" +
                         dateTimePicker3.Value + "', '" + textBox7.Text + "', '" + dateTimePicker2.Value + "', '" + textBox6.Text + "');";
 
-                if (!Меню.Mod_Execute(sql))
+                if (!PsqlData.Mod_Execute(sql))
                 {
                     sql = "DELETE FROM Client WHERE kodclient = " + textBox1.Text;
-                    Меню.Mod_Execute(sql);
+                    PsqlData.Mod_Execute(sql);
                     return;
                 }
 
                 if (dateTimePicker3.Enabled == false)
-                    Меню.ds.Tables["Client"].Rows.Add(new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
+                    Tables["Client"].Rows.Add(new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
                         maskedTextBox1.Text, textBox11.Text, textBox8.Text, textBox10.Text, comboBox2.Text, maskedTextBox2.Text, comboBox1.Text,
                         dateTimePicker1.Value, DBNull.Value, textBox7.Text, dateTimePicker2.Value, textBox6.Text });
                 else
-                    Меню.ds.Tables["Client"].Rows.Add(new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
+                    Tables["Client"].Rows.Add(new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
                         maskedTextBox1.Text, textBox11.Text, textBox8.Text, textBox10.Text, comboBox2.Text, maskedTextBox2.Text, comboBox1.Text,
                         dateTimePicker1.Value, dateTimePicker3.Value, textBox7.Text, dateTimePicker2.Value, textBox6.Text });
 
@@ -242,7 +221,7 @@ namespace WindowsFormsApplication5
                     "', middlename='" + textBox4.Text + "', snils='" + textBox8.Text + "', telephone='" + maskedTextBox1.Text + 
                     "', address='" + textBox11.Text + "' WHERE kodclient=" + textBox1.Text + ";";
 
-                Меню.Mod_Execute(sql);
+                PsqlData.Mod_Execute(sql);
                 if (dateTimePicker3.Enabled == false)
                     sql = "UPDATE Document SET typedocument = '" + comboBox2.Text + "', serianomer = '" + maskedTextBox2.Text + "', gender = '" + comboBox1.Text + 
                         "', dataissue = '" + dateTimePicker1.Value + "', issuedby = '" + textBox7.Text + "', placebirth = '" + 
@@ -252,14 +231,14 @@ namespace WindowsFormsApplication5
                         "', dataissue = '" + dateTimePicker1.Value + "', dateend = '" + dateTimePicker3.Value + "', issuedby = '" + textBox7.Text + "', placebirth = '" +
                         textBox6.Text + "', datebirth = '" + dateTimePicker2.Value + "' WHERE koddoc = " + textBox10.Text + ";";
 
-                Меню.Mod_Execute(sql);
+                PsqlData.Mod_Execute(sql);
 
                 if(dateTimePicker3.Enabled == false)
-                    Меню.ds.Tables["Client"].Rows[n].ItemArray = new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
+                    Tables["Client"].Rows[n].ItemArray = new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
                         maskedTextBox1.Text, textBox11.Text, textBox8.Text, textBox10.Text, comboBox2.Text, maskedTextBox2.Text, comboBox1.Text,
                         dateTimePicker1.Value, DBNull.Value, textBox7.Text, dateTimePicker2.Value, textBox6.Text };
                 else
-                    Меню.ds.Tables["Client"].Rows[n].ItemArray = new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
+                    Tables["Client"].Rows[n].ItemArray = new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
                         maskedTextBox1.Text, textBox11.Text, textBox8.Text, textBox10.Text, comboBox2.Text, maskedTextBox2.Text, comboBox1.Text,
                         dateTimePicker1.Value, dateTimePicker3.Value, textBox7.Text, dateTimePicker2.Value, textBox6.Text };
 
@@ -278,21 +257,21 @@ namespace WindowsFormsApplication5
             if (rezult == DialogResult.No) { return; }
 
             string sql = "DELETE FROM Document WHERE koddoc = " + textBox10.Text;
-            Меню.Mod_Execute(sql);
+            PsqlData.Mod_Execute(sql);
 
             sql = "DELETE FROM Client WHERE kodclient = " + textBox1.Text;
-            Меню.Mod_Execute(sql);
+            PsqlData.Mod_Execute(sql);
 
             try
             {
-                Меню.ds.Tables["Client"].Rows.RemoveAt(n);
+                Tables["Client"].Rows.RemoveAt(n);
                 MaxN();
             }
             catch (IndexOutOfRangeException)
             {
             }
 
-            if (Меню.ds.Tables["Client"].Rows.Count > n)
+            if (Tables["Client"].Rows.Count > n)
             {
                 FieldsForm_Fill();
             }
