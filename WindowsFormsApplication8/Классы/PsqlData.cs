@@ -18,6 +18,24 @@ namespace WindowsFormsApplication5
         public static DataSet ds = new DataSet();
 
         /// <summary>  
+        ///  Попытка подключиться к базе данных.
+        ///  В случае ошибки выбрасывает исключение.
+        /// </summary>  
+        public static void TryConnectToBD()
+        {
+            try
+            {
+                PsqlData.connection.Open();
+            }
+            catch (Npgsql.NpgsqlException)
+            {
+                MessageBox.Show("Ошибка подключения к базе данных!", "Ошибка");
+                Environment.Exit(0);
+            }
+            PsqlData.connection.Close();
+        }
+
+        /// <summary>  
         ///  Заполнение таблицы БД информацией через запрос
         /// </summary>  
         public static void Table_Fill(string name, string sql)

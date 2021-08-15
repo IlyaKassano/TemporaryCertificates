@@ -20,19 +20,6 @@ namespace WindowsFormsApplication5
 
         DataTableCollection Tables = PsqlData.ds.Tables;
 
-        private void TryConnectToBD()
-        {
-            try
-            {
-                PsqlData.connection.Open();
-            }
-            catch (Npgsql.NpgsqlException)
-            {
-                MessageBox.Show("Ошибка подключения к базе данных!", "Ошибка");
-                Environment.Exit(0);
-            }
-            PsqlData.connection.Close();
-        }
 
         private void Авторизация_Load(object sender, EventArgs e)
         {
@@ -40,7 +27,7 @@ namespace WindowsFormsApplication5
             Параметры.colorDialog1.Color = DefaultBackColor;
             BackColor = Параметры.colorDialog1.Color;
             Font = Параметры.fontDialog1.Font;
-            TryConnectToBD();
+            PsqlData.TryConnectToBD();
 
             sql = "SELECT * FROM users ORDER BY login";
             PsqlData.Table_Fill("Пользователи", sql);
