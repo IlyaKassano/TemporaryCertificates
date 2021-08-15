@@ -92,7 +92,7 @@
 			this.клиентыToolStripMenuItem.BackColor = System.Drawing.Color.White;
 			this.клиентыToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F);
 			this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
-			this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
 			this.клиентыToolStripMenuItem.Text = "Клиенты";
 			this.клиентыToolStripMenuItem.Click += new System.EventHandler(this.клиентыToolStripMenuItem_Click_1);
 			// 
@@ -101,7 +101,7 @@
 			this.представителиToolStripMenuItem.BackColor = System.Drawing.Color.White;
 			this.представителиToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F);
 			this.представителиToolStripMenuItem.Name = "представителиToolStripMenuItem";
-			this.представителиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.представителиToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
 			this.представителиToolStripMenuItem.Text = "Представители";
 			this.представителиToolStripMenuItem.Click += new System.EventHandler(this.представителиToolStripMenuItem_Click);
 			// 
@@ -110,7 +110,7 @@
 			this.оффисToolStripMenuItem.BackColor = System.Drawing.Color.White;
 			this.оффисToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F);
 			this.оффисToolStripMenuItem.Name = "оффисToolStripMenuItem";
-			this.оффисToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.оффисToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
 			this.оффисToolStripMenuItem.Text = "Офисы";
 			this.оффисToolStripMenuItem.Click += new System.EventHandler(this.оффисToolStripMenuItem_Click);
 			// 
@@ -154,7 +154,7 @@
 			// 
 			this.поискToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F);
 			this.поискToolStripMenuItem.Name = "поискToolStripMenuItem";
-			this.поискToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.поискToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
 			this.поискToolStripMenuItem.Text = "Поиск";
 			this.поискToolStripMenuItem.Click += new System.EventHandler(this.поискToolStripMenuItem_Click_1);
 			// 

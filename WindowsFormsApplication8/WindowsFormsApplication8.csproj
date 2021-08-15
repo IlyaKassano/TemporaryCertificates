@@ -81,6 +81,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Классы\Elements.cs" />
+    <Compile Include="Классы\Massives.cs" />
+    <Compile Include="Классы\PsqlData.cs" />
     <Compile Include="Авторизация.cs">
       <SubType>Form</SubType>
     </Compile>
