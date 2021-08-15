@@ -18,6 +18,7 @@ namespace WindowsFormsApplication5
         public static DataSet ds = new DataSet();
 
         /// <summary>  
+<<<<<<< HEAD
         ///  Попытка подключиться к базе данных.
         ///  В случае ошибки выбрасывает исключение.
         /// </summary>  
@@ -36,6 +37,8 @@ namespace WindowsFormsApplication5
         }
 
         /// <summary>  
+=======
+>>>>>>> f6ee1e8b4d1e2401932fc7ce8bdafd629823d2e3
         ///  Заполнение таблицы БД информацией через запрос
         /// </summary>  
         public static void Table_Fill(string name, string sql)

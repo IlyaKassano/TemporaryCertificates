@@ -20,6 +20,22 @@ namespace WindowsFormsApplication5
 
         DataTableCollection Tables = PsqlData.ds.Tables;
 
+<<<<<<< HEAD
+=======
+        private void TryConnectToBD()
+        {
+            try
+            {
+                PsqlData.connection.Open();
+            }
+            catch (Npgsql.NpgsqlException)
+            {
+                MessageBox.Show("Ошибка подключения к базе данных!", "Ошибка");
+                Environment.Exit(0);
+            }
+            PsqlData.connection.Close();
+        }
+>>>>>>> f6ee1e8b4d1e2401932fc7ce8bdafd629823d2e3
 
         private void Авторизация_Load(object sender, EventArgs e)
         {
