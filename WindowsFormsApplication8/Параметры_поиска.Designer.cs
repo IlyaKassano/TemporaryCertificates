@@ -20,11 +20,11 @@
             base.Dispose(disposing);
         }
 
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox ExactFindCheck;
+        private System.Windows.Forms.CheckBox NotExactCheck;
+        private System.Windows.Forms.CheckBox ExactDateCheck;
+        private System.Windows.Forms.CheckBox RangeDateCheck;
+        private System.Windows.Forms.Label TypeValueCheck;
+        private System.Windows.Forms.Label TypeDateLabel;
     }
 }

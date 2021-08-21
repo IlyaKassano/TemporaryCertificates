@@ -35,9 +35,8 @@ namespace WindowsFormsApplication5
 
         private void Клиенты_Load(object sender, EventArgs e)
         {
-            string sql;
             Size size = new Size(201, 20);
-            maskedTextBox1.Size = size;
+            Telephone.Size = size;
             MaxN();
 
             PsqlData.connection.Close();
@@ -53,28 +52,28 @@ namespace WindowsFormsApplication5
         /// </summary> 
         private void FieldsForm_Fill()
         {
-            textBox1.Text = Tables["Client"].Rows[n]["kodclient"].ToString();
-            textBox2.Text = Tables["Client"].Rows[n]["secondname"].ToString();
-            textBox3.Text = Tables["Client"].Rows[n]["firstname"].ToString();
-            textBox4.Text = Tables["Client"].Rows[n]["middlename"].ToString();
-            comboBox1.Text = Tables["Client"].Rows[n]["gender"].ToString();
-            textBox10.Text = Tables["Client"].Rows[n]["koddoc"].ToString();
-            comboBox2.Text = Tables["Client"].Rows[n]["typedocument"].ToString();
-            maskedTextBox1.Text = Tables["Client"].Rows[n]["telephone"].ToString();
-            textBox11.Text = Tables["Client"].Rows[n]["address"].ToString();
-            textBox8.Text = Tables["Client"].Rows[n]["snils"].ToString();
-            textBox10.Text = Tables["Client"].Rows[n]["koddoc"].ToString();
-            maskedTextBox2.Text = Tables["Client"].Rows[n]["serianomer"].ToString();
-            textBox7.Text = Tables["Client"].Rows[n]["issuedby"].ToString();
-            textBox6.Text = Tables["Client"].Rows[n]["placebirth"].ToString();
+            KodClient.Text = Tables["Client"].Rows[n]["kodclient"].ToString();
+            LastName.Text = Tables["Client"].Rows[n]["secondname"].ToString();
+            FirstName.Text = Tables["Client"].Rows[n]["firstname"].ToString();
+            SecondName.Text = Tables["Client"].Rows[n]["middlename"].ToString();
+            Gender.Text = Tables["Client"].Rows[n]["gender"].ToString();
+            KodDoc.Text = Tables["Client"].Rows[n]["koddoc"].ToString();
+            DocName.Text = Tables["Client"].Rows[n]["typedocument"].ToString();
+            Telephone.Text = Tables["Client"].Rows[n]["telephone"].ToString();
+            Address.Text = Tables["Client"].Rows[n]["address"].ToString();
+            Snils.Text = Tables["Client"].Rows[n]["snils"].ToString();
+            KodDoc.Text = Tables["Client"].Rows[n]["koddoc"].ToString();
+            SeriaNomer.Text = Tables["Client"].Rows[n]["serianomer"].ToString();
+            IssuedBy.Text = Tables["Client"].Rows[n]["issuedby"].ToString();
+            PlaceBirth.Text = Tables["Client"].Rows[n]["placebirth"].ToString();
             if (Tables["Client"].Rows[n]["dataissue"] != DBNull.Value)
-                dateTimePicker1.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["dataissue"]);
+                DateIssue.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["dataissue"]);
             if (Tables["Client"].Rows[n]["datebirth"] != DBNull.Value)
-                dateTimePicker2.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["datebirth"]);
+                DateBirth.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["datebirth"]);
             if(Tables["Client"].Rows[n]["dateend"] != DBNull.Value)
-                dateTimePicker3.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["dateend"]);
+                DateEnd.Value = Convert.ToDateTime(Tables["Client"].Rows[n]["dateend"]);
 
-            textBox1.Enabled = false;
+            KodClient.Enabled = false;
         }
 
         /// <summary>  
@@ -82,25 +81,25 @@ namespace WindowsFormsApplication5
         /// </summary> 
         private void FieldsForm_Clear()
         {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            comboBox1.Text = "";
-            maskedTextBox1.Text = "";
-            textBox10.Text = "";
-            maskedTextBox2.Text = "";
-            dateTimePicker1.Value = DateTime.Now;
-            textBox7.Text = "";
-            dateTimePicker2.Value = Convert.ToDateTime("01.01.2000");
-            textBox8.Text = "";
-            dateTimePicker3.Value = DateTime.Now;
-            textBox6.Text = "";
-            textBox11.Text = "";
-            comboBox2.Text = "";
+            KodClient.Text = "";
+            LastName.Text = "";
+            FirstName.Text = "";
+            SecondName.Text = "";
+            Gender.Text = "";
+            Telephone.Text = "";
+            KodDoc.Text = "";
+            SeriaNomer.Text = "";
+            DateIssue.Value = DateTime.Now;
+            IssuedBy.Text = "";
+            DateBirth.Value = Convert.ToDateTime("01.01.2000");
+            Snils.Text = "";
+            DateEnd.Value = DateTime.Now;
+            PlaceBirth.Text = "";
+            Address.Text = "";
+            DocName.Text = "";
 
-            textBox1.Enabled = true;
-            textBox1.Focus();
+            KodClient.Enabled = true;
+            KodClient.Focus();
         }
 
         private void MaxN() {
@@ -137,7 +136,7 @@ namespace WindowsFormsApplication5
             {
                 n = Tables["Client"].Rows.Count;
                 FieldsForm_Clear();
-                textBox1.Text = maxN.ToString();
+                KodClient.Text = maxN.ToString();
             }
             else if (n != Tables["Client"].Rows.Count)
             {
@@ -153,7 +152,7 @@ namespace WindowsFormsApplication5
             {
                 n = Tables["Client"].Rows.Count;
                 FieldsForm_Clear();
-                textBox1.Text = maxN.ToString();
+                KodClient.Text = maxN.ToString();
             }
             else if (n != Tables["Client"].Rows.Count)
             {
@@ -165,13 +164,13 @@ namespace WindowsFormsApplication5
         //Сохранение        
         private void button7_Click(object sender, EventArgs e)
         {
-            if (dateTimePicker1.Value < dateTimePicker2.Value)
+            if (DateIssue.Value < DateBirth.Value)
             {
                 MessageBox.Show("Дата выдачи документа, удостоверяющего личность не может быть меньше даты рождения", "Ошибка");
                 return;
             }
 
-            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox8.Text == "" || comboBox2.Text == "" || maskedTextBox2.Text == "" || textBox7.Text == "" || comboBox1.Text == "" || textBox6.Text == "")
+            if (KodClient.Text == "" || LastName.Text == "" || FirstName.Text == "" || Snils.Text == "" || DocName.Text == "" || SeriaNomer.Text == "" || IssuedBy.Text == "" || Gender.Text == "" || PlaceBirth.Text == "")
             {
                 MessageBox.Show("Все поля должны быть заполнены!", "Ошибка");
                 return;
@@ -180,67 +179,67 @@ namespace WindowsFormsApplication5
             if (n == Tables["Client"].Rows.Count)
             {
                 string sql = "INSERT INTO Client (kodclient, secondname, firstname, middlename, telephone, address, snils) values (" + 
-                    textBox1.Text + ", '" + textBox2.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "', '" + maskedTextBox1.Text + 
-                    "', '" + textBox11.Text + "', '" + textBox8.Text + "');";
+                    KodClient.Text + ", '" + LastName.Text + "', '" + FirstName.Text + "', '" + SecondName.Text + "', '" + Telephone.Text + 
+                    "', '" + Address.Text + "', '" + Snils.Text + "');";
 
                 if (!PsqlData.Mod_Execute(sql))
                 {
                     return;
                 }
 
-                if (dateTimePicker3.Enabled == false)
+                if (DateEnd.Enabled == false)
                     sql = "INSERT INTO Document (koddoc, typedocument, serianomer, gender, dataissue, issuedby, datebirth, placebirth) values (" + 
-                        textBox10.Text + ", '" + comboBox2.Text + "', '" + maskedTextBox2.Text + "', '" + comboBox1.Text + "', '" + dateTimePicker1.Value + "', '" + 
-                        textBox7.Text + "', '" + dateTimePicker2.Value + "', '" + textBox6.Text + "');";
+                        KodDoc.Text + ", '" + DocName.Text + "', '" + SeriaNomer.Text + "', '" + Gender.Text + "', '" + DateIssue.Value + "', '" + 
+                        IssuedBy.Text + "', '" + DateBirth.Value + "', '" + PlaceBirth.Text + "');";
                 else
                     sql = "INSERT INTO Document (koddoc, typedocument, serianomer, gender, dataissue, dateend, issuedby, datebirth, placebirth) values (" +
-                        textBox10.Text + ", '" + comboBox2.Text + "', '" + maskedTextBox2.Text + "', '" + comboBox1.Text + "', '" + dateTimePicker1.Value + "', '" +
-                        dateTimePicker3.Value + "', '" + textBox7.Text + "', '" + dateTimePicker2.Value + "', '" + textBox6.Text + "');";
+                        KodDoc.Text + ", '" + DocName.Text + "', '" + SeriaNomer.Text + "', '" + Gender.Text + "', '" + DateIssue.Value + "', '" +
+                        DateEnd.Value + "', '" + IssuedBy.Text + "', '" + DateBirth.Value + "', '" + PlaceBirth.Text + "');";
 
                 if (!PsqlData.Mod_Execute(sql))
                 {
-                    sql = "DELETE FROM Client WHERE kodclient = " + textBox1.Text;
+                    sql = "DELETE FROM Client WHERE kodclient = " + KodClient.Text;
                     PsqlData.Mod_Execute(sql);
                     return;
                 }
 
-                if (dateTimePicker3.Enabled == false)
-                    Tables["Client"].Rows.Add(new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
-                        maskedTextBox1.Text, textBox11.Text, textBox8.Text, textBox10.Text, comboBox2.Text, maskedTextBox2.Text, comboBox1.Text,
-                        dateTimePicker1.Value, DBNull.Value, textBox7.Text, dateTimePicker2.Value, textBox6.Text });
+                if (DateEnd.Enabled == false)
+                    Tables["Client"].Rows.Add(new object[] { KodClient.Text, FirstName.Text, SecondName.Text, LastName.Text,
+                        Telephone.Text, Address.Text, Snils.Text, KodDoc.Text, DocName.Text, SeriaNomer.Text, Gender.Text,
+                        DateIssue.Value, DBNull.Value, IssuedBy.Text, DateBirth.Value, PlaceBirth.Text });
                 else
-                    Tables["Client"].Rows.Add(new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
-                        maskedTextBox1.Text, textBox11.Text, textBox8.Text, textBox10.Text, comboBox2.Text, maskedTextBox2.Text, comboBox1.Text,
-                        dateTimePicker1.Value, dateTimePicker3.Value, textBox7.Text, dateTimePicker2.Value, textBox6.Text });
+                    Tables["Client"].Rows.Add(new object[] { KodClient.Text, FirstName.Text, SecondName.Text, LastName.Text,
+                        Telephone.Text, Address.Text, Snils.Text, KodDoc.Text, DocName.Text, SeriaNomer.Text, Gender.Text,
+                        DateIssue.Value, DateEnd.Value, IssuedBy.Text, DateBirth.Value, PlaceBirth.Text });
 
                 MaxN();
             }
             else
             {
-                string sql = "UPDATE Client SET secondname='" + textBox2.Text + "', firstname='" + textBox3.Text + 
-                    "', middlename='" + textBox4.Text + "', snils='" + textBox8.Text + "', telephone='" + maskedTextBox1.Text + 
-                    "', address='" + textBox11.Text + "' WHERE kodclient=" + textBox1.Text + ";";
+                string sql = "UPDATE Client SET secondname='" + LastName.Text + "', firstname='" + FirstName.Text + 
+                    "', middlename='" + SecondName.Text + "', snils='" + Snils.Text + "', telephone='" + Telephone.Text + 
+                    "', address='" + Address.Text + "' WHERE kodclient=" + KodClient.Text + ";";
 
                 PsqlData.Mod_Execute(sql);
-                if (dateTimePicker3.Enabled == false)
-                    sql = "UPDATE Document SET typedocument = '" + comboBox2.Text + "', serianomer = '" + maskedTextBox2.Text + "', gender = '" + comboBox1.Text + 
-                        "', dataissue = '" + dateTimePicker1.Value + "', issuedby = '" + textBox7.Text + "', placebirth = '" + 
-                        textBox6.Text + "', datebirth = '" + dateTimePicker2.Value + "' WHERE koddoc = " + textBox10.Text + ";";
+                if (DateEnd.Enabled == false)
+                    sql = "UPDATE Document SET typedocument = '" + DocName.Text + "', serianomer = '" + SeriaNomer.Text + "', gender = '" + Gender.Text + 
+                        "', dataissue = '" + DateIssue.Value + "', issuedby = '" + IssuedBy.Text + "', placebirth = '" + 
+                        PlaceBirth.Text + "', datebirth = '" + DateBirth.Value + "' WHERE koddoc = " + KodDoc.Text + ";";
                 else
-                    sql = "UPDATE Document SET typedocument = '" + comboBox2.Text + "', serianomer = '" + maskedTextBox2.Text + "', gender = '" + comboBox1.Text +
-                        "', dataissue = '" + dateTimePicker1.Value + "', dateend = '" + dateTimePicker3.Value + "', issuedby = '" + textBox7.Text + "', placebirth = '" +
-                        textBox6.Text + "', datebirth = '" + dateTimePicker2.Value + "' WHERE koddoc = " + textBox10.Text + ";";
+                    sql = "UPDATE Document SET typedocument = '" + DocName.Text + "', serianomer = '" + SeriaNomer.Text + "', gender = '" + Gender.Text +
+                        "', dataissue = '" + DateIssue.Value + "', dateend = '" + DateEnd.Value + "', issuedby = '" + IssuedBy.Text + "', placebirth = '" +
+                        PlaceBirth.Text + "', datebirth = '" + DateBirth.Value + "' WHERE koddoc = " + KodDoc.Text + ";";
 
                 PsqlData.Mod_Execute(sql);
 
-                if(dateTimePicker3.Enabled == false)
-                    Tables["Client"].Rows[n].ItemArray = new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
-                        maskedTextBox1.Text, textBox11.Text, textBox8.Text, textBox10.Text, comboBox2.Text, maskedTextBox2.Text, comboBox1.Text,
-                        dateTimePicker1.Value, DBNull.Value, textBox7.Text, dateTimePicker2.Value, textBox6.Text };
+                if(DateEnd.Enabled == false)
+                    Tables["Client"].Rows[n].ItemArray = new object[] { KodClient.Text, FirstName.Text, SecondName.Text, LastName.Text,
+                        Telephone.Text, Address.Text, Snils.Text, KodDoc.Text, DocName.Text, SeriaNomer.Text, Gender.Text,
+                        DateIssue.Value, DBNull.Value, IssuedBy.Text, DateBirth.Value, PlaceBirth.Text };
                 else
-                    Tables["Client"].Rows[n].ItemArray = new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
-                        maskedTextBox1.Text, textBox11.Text, textBox8.Text, textBox10.Text, comboBox2.Text, maskedTextBox2.Text, comboBox1.Text,
-                        dateTimePicker1.Value, dateTimePicker3.Value, textBox7.Text, dateTimePicker2.Value, textBox6.Text };
+                    Tables["Client"].Rows[n].ItemArray = new object[] { KodClient.Text, FirstName.Text, SecondName.Text, LastName.Text,
+                        Telephone.Text, Address.Text, Snils.Text, KodDoc.Text, DocName.Text, SeriaNomer.Text, Gender.Text,
+                        DateIssue.Value, DateEnd.Value, IssuedBy.Text, DateBirth.Value, PlaceBirth.Text };
 
                // "SELECT kodclient, firstname, middlename, secondname, telephone, address, snils, " +
                  //   "koddoc, typedocument, serianomer, gender, dataissue, dateend, issuedby, datebirth, placebirth " +
@@ -250,16 +249,16 @@ namespace WindowsFormsApplication5
         //Удаление
         private void button9_Click(object sender, EventArgs e)
         {
-            string message = "Вы точно хотите удалить из картотеки клиента с кодом " + textBox1.Text + "?";
+            string message = "Вы точно хотите удалить из картотеки клиента с кодом " + KodClient.Text + "?";
             string caption = "Удаление клиента";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult rezult = MessageBox.Show(message, caption, buttons);
             if (rezult == DialogResult.No) { return; }
 
-            string sql = "DELETE FROM Document WHERE koddoc = " + textBox10.Text;
+            string sql = "DELETE FROM Document WHERE koddoc = " + KodDoc.Text;
             PsqlData.Mod_Execute(sql);
 
-            sql = "DELETE FROM Client WHERE kodclient = " + textBox1.Text;
+            sql = "DELETE FROM Client WHERE kodclient = " + KodClient.Text;
             PsqlData.Mod_Execute(sql);
 
             try
@@ -283,23 +282,23 @@ namespace WindowsFormsApplication5
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            textBox10.Text = textBox1.Text;
+            KodDoc.Text = KodClient.Text;
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox2.Text)
+            switch (DocName.Text)
             {
                 case "Паспорт": 
-                    maskedTextBox2.Mask = "00 00 № 000000"; dateTimePicker3.Enabled = false; break;
+                    SeriaNomer.Mask = "00 00 № 000000"; DateEnd.Enabled = false; break;
                 case "Свидетельство о рождении": 
-                    maskedTextBox2.Mask = "L???-L??? № 000000"; dateTimePicker3.Enabled = false; break;
+                    SeriaNomer.Mask = "L???-L??? № 000000"; DateEnd.Enabled = false; break;
                 case "Удостоверение сотрудника Евразийской экономической комиссии":
-                    maskedTextBox2.Mask = "000000"; dateTimePicker3.Enabled = true; break;
+                    SeriaNomer.Mask = "000000"; DateEnd.Enabled = true; break;
                 case "Паспорт гражданина СССР":
-                    maskedTextBox2.Mask = "L???-LL 000000"; dateTimePicker3.Enabled = false; break;
+                    SeriaNomer.Mask = "L???-LL 000000"; DateEnd.Enabled = false; break;
                 default:
-                    maskedTextBox2.Mask = ""; dateTimePicker3.Enabled = true; break;
+                    SeriaNomer.Mask = ""; DateEnd.Enabled = true; break;
             }
         }
     }

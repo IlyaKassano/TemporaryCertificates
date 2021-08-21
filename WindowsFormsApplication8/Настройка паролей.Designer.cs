@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Настройка_паролей));
-			this.button1 = new System.Windows.Forms.Button();
+			this.ChangePassButton = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.NewPass = new System.Windows.Forms.TextBox();
+			this.EqualPass = new System.Windows.Forms.TextBox();
+			this.User = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.CurrentPass = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
-			// button1
+			// ChangePassButton
 			// 
-			this.button1.Location = new System.Drawing.Point(137, 177);
-			this.button1.MaximumSize = new System.Drawing.Size(137, 50);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(137, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Изменить пароль";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.ChangePassButton.Location = new System.Drawing.Point(137, 177);
+			this.ChangePassButton.MaximumSize = new System.Drawing.Size(137, 50);
+			this.ChangePassButton.Name = "ChangePassButton";
+			this.ChangePassButton.Size = new System.Drawing.Size(137, 23);
+			this.ChangePassButton.TabIndex = 0;
+			this.ChangePassButton.Text = "Изменить пароль";
+			this.ChangePassButton.UseVisualStyleBackColor = true;
+			this.ChangePassButton.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// label1
 			// 
@@ -78,27 +78,27 @@
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Подтверждение\r\nпароля:";
 			// 
-			// textBox2
+			// NewPass
 			// 
-			this.textBox2.Location = new System.Drawing.Point(118, 95);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(184, 20);
-			this.textBox2.TabIndex = 5;
+			this.NewPass.Location = new System.Drawing.Point(118, 95);
+			this.NewPass.Name = "NewPass";
+			this.NewPass.Size = new System.Drawing.Size(184, 20);
+			this.NewPass.TabIndex = 5;
 			// 
-			// textBox3
+			// EqualPass
 			// 
-			this.textBox3.Location = new System.Drawing.Point(118, 138);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(184, 20);
-			this.textBox3.TabIndex = 6;
+			this.EqualPass.Location = new System.Drawing.Point(118, 138);
+			this.EqualPass.Name = "EqualPass";
+			this.EqualPass.Size = new System.Drawing.Size(184, 20);
+			this.EqualPass.TabIndex = 6;
 			// 
-			// comboBox1
+			// User
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(118, 9);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(184, 21);
-			this.comboBox1.TabIndex = 7;
+			this.User.FormattingEnabled = true;
+			this.User.Location = new System.Drawing.Point(118, 9);
+			this.User.Name = "User";
+			this.User.Size = new System.Drawing.Size(184, 21);
+			this.User.TabIndex = 7;
 			// 
 			// label4
 			// 
@@ -109,26 +109,26 @@
 			this.label4.TabIndex = 8;
 			this.label4.Text = "Текущий пароль:";
 			// 
-			// textBox1
+			// CurrentPass
 			// 
-			this.textBox1.Location = new System.Drawing.Point(118, 53);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(184, 20);
-			this.textBox1.TabIndex = 9;
+			this.CurrentPass.Location = new System.Drawing.Point(118, 53);
+			this.CurrentPass.Name = "CurrentPass";
+			this.CurrentPass.Size = new System.Drawing.Size(184, 20);
+			this.CurrentPass.TabIndex = 9;
 			// 
 			// Настройка_паролей
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(317, 212);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.CurrentPass);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.comboBox1);
-			this.Controls.Add(this.textBox3);
-			this.Controls.Add(this.textBox2);
+			this.Controls.Add(this.User);
+			this.Controls.Add(this.EqualPass);
+			this.Controls.Add(this.NewPass);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.ChangePassButton);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Настройка_паролей";
 			this.Text = "Настройка паролей";
@@ -140,14 +140,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ChangePassButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox NewPass;
+        private System.Windows.Forms.TextBox EqualPass;
+        private System.Windows.Forms.ComboBox User;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CurrentPass;
     }
 }

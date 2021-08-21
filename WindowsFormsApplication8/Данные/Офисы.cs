@@ -50,12 +50,12 @@ namespace WindowsFormsApplication5
         /// </summary> 
         private void FieldsForm_Fill()
         {
-            textBox1.Text = Tables["Office"].Rows[n]["kodoffice"].ToString();
-            textBox2.Text = Tables["Office"].Rows[n]["address"].ToString();
-            textBox3.Text = Tables["Office"].Rows[n]["name"].ToString();
-            maskedTextBox1.Text = Tables["Office"].Rows[n]["telephone"].ToString();
+            KodOffice.Text = Tables["Office"].Rows[n]["kodoffice"].ToString();
+            Address.Text = Tables["Office"].Rows[n]["address"].ToString();
+            Office.Text = Tables["Office"].Rows[n]["name"].ToString();
+            Telephone.Text = Tables["Office"].Rows[n]["telephone"].ToString();
 
-            textBox1.Enabled = false;
+            KodOffice.Enabled = false;
         }
 
         /// <summary>  
@@ -63,13 +63,13 @@ namespace WindowsFormsApplication5
         /// </summary> 
         private void FieldsForm_Clear()
         {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            maskedTextBox1.Text = "";
+            KodOffice.Text = "";
+            Address.Text = "";
+            Office.Text = "";
+            Telephone.Text = "";
 
-            textBox1.Enabled = true;
-            textBox1.Focus();
+            KodOffice.Enabled = true;
+            KodOffice.Focus();
         }
 
         private void MaxN() {
@@ -106,7 +106,7 @@ namespace WindowsFormsApplication5
             {
                 n = Tables["Office"].Rows.Count;
                 FieldsForm_Clear();
-                textBox1.Text = maxN.ToString();
+                KodOffice.Text = maxN.ToString();
             }
         }
 
@@ -115,13 +115,13 @@ namespace WindowsFormsApplication5
         {
             n = Tables["Office"].Rows.Count;
             FieldsForm_Clear();
-            textBox1.Text = maxN.ToString();
+            KodOffice.Text = maxN.ToString();
         }
 
         //Сохранение        
         private void button7_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || maskedTextBox1.Text == "")
+            if (KodOffice.Text == "" || Address.Text == "" || Office.Text == "" || Telephone.Text == "")
             {
                 MessageBox.Show("Все поля должны быть заполнены!", "Ошибка");
                 return;
@@ -129,33 +129,33 @@ namespace WindowsFormsApplication5
 
             if (n == Tables["Office"].Rows.Count)
             {
-                string sql = "INSERT INTO office (kodoffice, name, address, telephone) values (" + textBox1.Text + ", '" + textBox3.Text + "', '" + textBox2.Text + "', '" + maskedTextBox1.Text + "')";
+                string sql = "INSERT INTO office (kodoffice, name, address, telephone) values (" + KodOffice.Text + ", '" + Office.Text + "', '" + Address.Text + "', '" + Telephone.Text + "')";
                 PsqlData.Mod_Execute(sql);
 
-                textBox1.Enabled = false;
-                Tables["Office"].Rows.Add(new object[] { textBox1.Text, textBox2.Text, maskedTextBox1.Text, textBox3.Text });
+                KodOffice.Enabled = false;
+                Tables["Office"].Rows.Add(new object[] { KodOffice.Text, Address.Text, Telephone.Text, Office.Text });
 
                 MaxN();
             }
             else
             {
-                string sql = "UPDATE office SET name = '" + textBox3.Text + "', address='" + textBox2.Text + "', telephone='" + maskedTextBox1.Text +  "' WHERE kodoffice=" + textBox1.Text;
+                string sql = "UPDATE office SET name = '" + Office.Text + "', address='" + Address.Text + "', telephone='" + Telephone.Text +  "' WHERE kodoffice=" + KodOffice.Text;
                 PsqlData.Mod_Execute(sql);
 
-                Tables["Office"].Rows[n].ItemArray = new object[] { textBox1.Text, textBox2.Text, maskedTextBox1.Text, textBox3.Text };
+                Tables["Office"].Rows[n].ItemArray = new object[] { KodOffice.Text, Address.Text, Telephone.Text, Office.Text };
             }
         }
 
         //Удаление
         private void button9_Click(object sender, EventArgs e)
         {
-            string message = "Вы точно хотите удалить из картотеки офис с кодом " + textBox1.Text + "?";
+            string message = "Вы точно хотите удалить из картотеки офис с кодом " + KodOffice.Text + "?";
             string caption = "Удаление офиса";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult rezult = MessageBox.Show(message, caption, buttons);
             if (rezult == DialogResult.No) { return; }
 
-            string sql = "DELETE FROM office WHERE kodoffice = " + textBox1.Text;
+            string sql = "DELETE FROM office WHERE kodoffice = " + KodOffice.Text;
             PsqlData.Mod_Execute(sql);
 
             try

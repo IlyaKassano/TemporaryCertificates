@@ -27,42 +27,42 @@ namespace WindowsFormsApplication5
             BackColor = Параметры.colorDialog1.Color;
             if (Авторизация.polzov != "Администратор")
             {
-                button2.Visible = false;
-                button3.Visible = false;
-                comboBox2.Enabled = false;
+                CreateRepres.Visible = false;
+                CreateOffice.Visible = false;
+                OfficeCombo.Enabled = false;
             }
 
             try
             {
-                textBox1.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Код"].ToString();
+                KodSert.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Код"].ToString();
                 if (Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."] != DBNull.Value)
-                    dateTimePicker1.Value = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."]);
+                    DateStart.Value = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."]);
                 else
-                    dateTimePicker1.Value = DateTime.Now;
+                    DateStart.Value = DateTime.Now;
 
                 if (Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."] != DBNull.Value)
                 {
                     try
                     {
-                        dateTimePicker2.Value = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."]);
+                        DateEnd.Value = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата окончания дейст. свидет."]);
                     }
                     catch (FormatException)
                     {
                         DateTime date = DateTime.Now.AddDays(30);
-                        dateTimePicker2.Value = date;
+                        DateEnd.Value = date;
                     }
                 }
                 else
                 {
-                    dateTimePicker2.Value = DateTime.Now.AddDays(30);
+                    DateEnd.Value = DateTime.Now.AddDays(30);
                 }
 
                 if (Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Действителен"] != DBNull.Value)
                     checkBox1.Checked = Convert.ToBoolean(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Действителен"]);
                 
-                comboBox1.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Представитель"].ToString();
-                comboBox2.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Наименование филиала"].ToString();
-                comboBox3.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Клиент"].ToString();
+                RepresCombo.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Представитель"].ToString();
+                OfficeCombo.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Наименование филиала"].ToString();
+                ClientCombo.Text = Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Клиент"].ToString();
             }
             catch (IndexOutOfRangeException)
             {
@@ -70,31 +70,31 @@ namespace WindowsFormsApplication5
                 this.Close();
                 return;
             }
-            textBox1.Enabled = false;
+            KodSert.Enabled = false;
         }
 
         public static object kod = null;
 
         private void Оформление_сертификата_Activated(object sender, EventArgs e)
         {
-            comboBox1.Items.Clear();
+            RepresCombo.Items.Clear();
             for (int i = 0; i < Tables["Представитель"].Rows.Count; i++)
             {
-                comboBox1.Items.Add(Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
+                RepresCombo.Items.Add(Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
                     Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
                     Tables["Представитель"].Rows[i]["middlename"].ToString());
             }
 
-            comboBox2.Items.Clear();
+            OfficeCombo.Items.Clear();
             for (int i = 0; i < Tables["Офис"].Rows.Count; i++)
             {
-                comboBox2.Items.Add(Tables["Офис"].Rows[i]["name"].ToString());
+                OfficeCombo.Items.Add(Tables["Офис"].Rows[i]["name"].ToString());
             }
 
-            comboBox3.Items.Clear();
+            ClientCombo.Items.Clear();
             for (int i = 0; i < Tables["Клиенты"].Rows.Count; i++)
             {
-                comboBox3.Items.Add(Tables["Клиенты"].Rows[i]["secondname"].ToString() + " " +
+                ClientCombo.Items.Add(Tables["Клиенты"].Rows[i]["secondname"].ToString() + " " +
                     Tables["Клиенты"].Rows[i]["firstname"].ToString() + " " +
                     Tables["Клиенты"].Rows[i]["middlename"].ToString());
             }
@@ -110,25 +110,25 @@ namespace WindowsFormsApplication5
             int idx_office = 0;
             string sql;
 
-            if (dateTimePicker2.Value <= dateTimePicker1.Value)
+            if (DateEnd.Value <= DateStart.Value)
             {
                 MessageBox.Show("Дата окончания действия не может быть меньше или равна дате начала!", "Ошибка");
                 return;
             }
 
-            if (comboBox3.Text == "")
+            if (ClientCombo.Text == "")
             {
                 MessageBox.Show("Вы не выбрали клиента!", "Ошибка");
                 return;
             }
 
-            if (comboBox1.Text == "")
+            if (RepresCombo.Text == "")
             {
                 MessageBox.Show("Вы не выбрали представителя!", "Ошибка");
                 return;
             }
 
-            if (comboBox2.Text == "")
+            if (OfficeCombo.Text == "")
             {
                 MessageBox.Show("Офис не заполнен. Откройте представителей и назначте ему офис!", "Ошибка");
                 return;
@@ -139,7 +139,7 @@ namespace WindowsFormsApplication5
                 if (
                     (Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
                     Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
-                    Tables["Представитель"].Rows[i]["middlename"].ToString()).Equals(comboBox1.Text)
+                    Tables["Представитель"].Rows[i]["middlename"].ToString()).Equals(RepresCombo.Text)
                 )
                 {
                     kod_rep = (int)Tables["Представитель"].Rows[i]["kodrep"];
@@ -148,7 +148,7 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Офис"].Rows.Count; i++)
             {
-                if (Tables["Офис"].Rows[i]["name"].ToString().Equals(comboBox2.Text))
+                if (Tables["Офис"].Rows[i]["name"].ToString().Equals(OfficeCombo.Text))
                 {
                     kod_office = (int)Tables["Офис"].Rows[i]["kodoffice"];
                     idx_office = i;
@@ -162,7 +162,7 @@ namespace WindowsFormsApplication5
                     Tables["Клиенты"].Rows[i]["firstname"].ToString() + " " +
                     Tables["Клиенты"].Rows[i]["middlename"].ToString();
 
-                if (fioclient.Equals(comboBox3.Text))
+                if (fioclient.Equals(ClientCombo.Text))
                 {
                     kod_client = Convert.ToInt32(Tables["Клиенты"].Rows[i]["kodclient"]);
                     idx_doc = i;
@@ -183,17 +183,17 @@ namespace WindowsFormsApplication5
                 kod_doc = kod_client;
             }
 
-            sql = "UPDATE tempcertificate SET datestart='" + dateTimePicker1.Value + "', dateend= '" + dateTimePicker2.Value.ToString() + "', valid = " +  checkBox1.Checked +
-                ", kodclient=" + kod_client + ", kodrep=" + kod_rep + ", kodoffice=" + kod_office + " WHERE kodtempcert=" + textBox1.Text;
+            sql = "UPDATE tempcertificate SET datestart='" + DateStart.Value + "', dateend= '" + DateEnd.Value.ToString() + "', valid = " +  checkBox1.Checked +
+                ", kodclient=" + kod_client + ", kodrep=" + kod_rep + ", kodoffice=" + kod_office + " WHERE kodtempcert=" + KodSert.Text;
             PsqlData.Mod_Execute(sql);
 
             //DateTime? date = null;
 
             Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n].ItemArray = new object[]
-                { textBox1.Text, comboBox3.Text, checkBox1.Checked, dateTimePicker1.Value, dateTimePicker2.Value, Tables["Документ"].Rows[idx_doc]["gender"], 
+                { KodSert.Text, ClientCombo.Text, checkBox1.Checked, DateStart.Value, DateEnd.Value, Tables["Документ"].Rows[idx_doc]["gender"], 
                     Tables["Документ"].Rows[idx_doc]["datebirth"], Tables["Документ"].Rows[idx_doc]["typedocument"], Tables["Документ"].Rows[idx_doc]["serianomer"],
                     Tables["Документ"].Rows[idx_doc]["dataissue"], Tables["Документ"].Rows[idx_doc]["dateend"], Tables["Документ"].Rows[idx_doc]["issuedby"], Tables["Документ"].Rows[idx_doc]["placebirth"], 
-                    comboBox1.Text, comboBox2.Text, Tables["Офис"].Rows[idx_office]["address"], Tables["Офис"].Rows[idx_office]["telephone"] };
+                    RepresCombo.Text, OfficeCombo.Text, Tables["Офис"].Rows[idx_office]["address"], Tables["Офис"].Rows[idx_office]["telephone"] };
 
             // Сортировка таблицы
             Tables["Временный сертификат"].DefaultView.Sort = " Код Asc";
@@ -242,7 +242,7 @@ namespace WindowsFormsApplication5
                     return;
             }
 
-            string name = "TepmCert" + textBox1.Text + ".doc";
+            string name = "TepmCert" + KodSert.Text + ".doc";
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + name;
             DialogResult resPrint = MessageBox.Show("Сохранить файл \"" + name + "\" на рабочем столе?", "Подтверждение", MessageBoxButtons.YesNo);
 
@@ -274,12 +274,12 @@ namespace WindowsFormsApplication5
                 string dateStart = Convert.ToDateTime(Tables["Временный сертификат"].Rows[Журнал_временного_сертификата.n]["Дата начала дейст. свидет."]).ToString("dd MMMMMMMM yy", culture);
                 string[] splDateEnd = dateEnd.Split(' ');
                 string[] splDateStart = dateStart.Split(' ');
-                string FIOClient = comboBox3.Text;
-                string FIORepresentative = comboBox1.Text;
+                string FIOClient = ClientCombo.Text;
+                string FIORepresentative = RepresCombo.Text;
                 string genderFemale = "";
                 string genderMale = "";
                 string info = "";
-                string kodTempCert = textBox1.Text;
+                string kodTempCert = KodSert.Text;
                 string nameOrg = "АО \"МАКС-М\"";
                 string placeBirth = "";
 
@@ -334,7 +334,7 @@ namespace WindowsFormsApplication5
 
                 for (int i = 0; i < Tables["Офис"].Rows.Count; i++)
                 {
-                    if (Tables["Офис"].Rows[i]["name"].ToString().Equals(comboBox2.Text))
+                    if (Tables["Офис"].Rows[i]["name"].ToString().Equals(OfficeCombo.Text))
                     {
                         addressNTel = Tables["Офис"].Rows[i]["address"].ToString() +
                             '\t' + Tables["Офис"].Rows[i]["telephone"].ToString();
@@ -380,10 +380,10 @@ namespace WindowsFormsApplication5
                 if (
                     (Tables["Представитель"].Rows[i]["secondname"].ToString() + " " +
                     Tables["Представитель"].Rows[i]["firstname"].ToString() + " " +
-                    Tables["Представитель"].Rows[i]["middlename"].ToString()).Equals(comboBox1.Text)
+                    Tables["Представитель"].Rows[i]["middlename"].ToString()).Equals(RepresCombo.Text)
                 )
                 {
-                    comboBox2.Text = Tables["Представитель"].Rows[i]["office"].ToString();
+                    OfficeCombo.Text = Tables["Представитель"].Rows[i]["office"].ToString();
                     break;
                 }
             }

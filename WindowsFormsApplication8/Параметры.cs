@@ -22,23 +22,23 @@ namespace WindowsFormsApplication5
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Параметры));
-			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.SettingsList = new System.Windows.Forms.ListBox();
 			this.SuspendLayout();
 			// 
-			// listBox1
+			// SettingsList
 			// 
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.Location = new System.Drawing.Point(12, 12);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(120, 95);
-			this.listBox1.TabIndex = 6;
-			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+			this.SettingsList.FormattingEnabled = true;
+			this.SettingsList.Location = new System.Drawing.Point(12, 12);
+			this.SettingsList.Name = "SettingsList";
+			this.SettingsList.Size = new System.Drawing.Size(120, 95);
+			this.SettingsList.TabIndex = 6;
+			this.SettingsList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
 			// Параметры
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(357, 261);
-			this.Controls.Add(this.listBox1);
+			this.Controls.Add(this.SettingsList);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Параметры";
 			this.Text = "Параметры";
@@ -56,7 +56,7 @@ namespace WindowsFormsApplication5
 				""
 			};
 
-			listBox1.Items.AddRange(items);
+			SettingsList.Items.AddRange(items);
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace WindowsFormsApplication5
 
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			switch (listBox1.SelectedItem.ToString())
+			switch (SettingsList.SelectedItem.ToString())
 			{
 				case "Шрифт": fontDialog1.ShowDialog(); break;
 				case "Цвет фонов": colorDialog1.ShowDialog(); break;

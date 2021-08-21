@@ -38,8 +38,8 @@ namespace WindowsFormsApplication5
 
             if (Авторизация.polzov != "Администратор")
             {
-                представителиToolStripMenuItem.Visible = false;
-                оффисToolStripMenuItem.Visible = false;
+                DataRepres.Visible = false;
+                DataOffice.Visible = false;
             }
         }
 
@@ -51,7 +51,7 @@ namespace WindowsFormsApplication5
 
         private void просмотрСправкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, "Spravka.chm");
+            System.Windows.Forms.Help.ShowHelp(this, "Spravka.chm");
         }
 
         private void оффисToolStripMenuItem_Click(object sender, EventArgs e)
@@ -105,7 +105,7 @@ namespace WindowsFormsApplication5
 
         private void просмотрСправкиToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, "Spravka.chm");
+            System.Windows.Forms.Help.ShowHelp(this, "Spravka.chm");
         }
 
         private void ToolStripMenuItem_DropDownOpened(object sender, EventArgs e)

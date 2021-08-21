@@ -46,19 +46,19 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Пользователи"].Rows.Count; i++)
             {
-                comboBox1.Items.Add(Tables["Пользователи"].Rows[i]["login"].ToString());
+                User.Items.Add(Tables["Пользователи"].Rows[i]["login"].ToString());
             }
 
-            textBox1.UseSystemPasswordChar = true;
+            Password.UseSystemPasswordChar = true;
 
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-                textBox1.UseSystemPasswordChar = false;
+            if (ShowPassword.Checked)
+                Password.UseSystemPasswordChar = false;
             else
-                textBox1.UseSystemPasswordChar = true;
+                Password.UseSystemPasswordChar = true;
         }
 
         public static string polzov = "";
@@ -67,30 +67,30 @@ namespace WindowsFormsApplication5
         {
             string sql;
 
-            if (textBox1.Text == "")
+            if (Password.Text == "")
             {
                 MessageBox.Show("Не указан (неверный) логин пользователя!", "Ошибка");
                 return;
             }
 
 
-            Tables["Пользователи"].DefaultView.RowFilter = "login = '" + comboBox1.Text + "'";
+            Tables["Пользователи"].DefaultView.RowFilter = "login = '" + User.Text + "'";
             if (Tables["Пользователи"].DefaultView.Count == 0)
             {
                 MessageBox.Show("Не такого пользователя!", "Ошибка");
                 return;
             }
 
-            if (!Tables["Пользователи"].DefaultView[0].Row.ItemArray[1].ToString().Equals(comboBox1.Text))
+            if (!Tables["Пользователи"].DefaultView[0].Row.ItemArray[1].ToString().Equals(User.Text))
             {
                 MessageBox.Show("Пользователь с таким логином не найден!", "Ошибка");
                 return;
             }
 
-            if (textBox1.Text == Tables["Пользователи"].DefaultView[0].Row.ItemArray[2].ToString())
+            if (Password.Text == Tables["Пользователи"].DefaultView[0].Row.ItemArray[2].ToString())
             {                
                 Hide();
-                polzov = comboBox1.Text;
+                polzov = User.Text;
 
                 Меню меню = new Меню();
                 меню.ShowDialog();
@@ -110,7 +110,7 @@ namespace WindowsFormsApplication5
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox1.Focus();
+            Password.Focus();
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)

@@ -33,45 +33,45 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.button6 = new System.Windows.Forms.Button();
-			this.button8 = new System.Windows.Forms.Button();
-			this.button10 = new System.Windows.Forms.Button();
-			this.button11 = new System.Windows.Forms.Button();
-			this.textBox10 = new System.Windows.Forms.TextBox();
-			this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.textBox11 = new System.Windows.Forms.TextBox();
-			this.textBox8 = new System.Windows.Forms.TextBox();
-			this.button7 = new System.Windows.Forms.Button();
-			this.button9 = new System.Windows.Forms.Button();
+			this.LastRecord = new System.Windows.Forms.Button();
+			this.NextRecord = new System.Windows.Forms.Button();
+			this.PrevRecord = new System.Windows.Forms.Button();
+			this.FirstRecord = new System.Windows.Forms.Button();
+			this.KodDoc = new System.Windows.Forms.TextBox();
+			this.SeriaNomer = new System.Windows.Forms.MaskedTextBox();
+			this.SecondName = new System.Windows.Forms.TextBox();
+			this.Address = new System.Windows.Forms.TextBox();
+			this.Snils = new System.Windows.Forms.TextBox();
+			this.SaveRecord = new System.Windows.Forms.Button();
+			this.DeleteRecord = new System.Windows.Forms.Button();
 			this.label5 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.Gender = new System.Windows.Forms.ComboBox();
 			this.label12 = new System.Windows.Forms.Label();
-			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+			this.DateBirth = new System.Windows.Forms.DateTimePicker();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.DateIssue = new System.Windows.Forms.DateTimePicker();
 			this.label7 = new System.Windows.Forms.Label();
-			this.textBox7 = new System.Windows.Forms.TextBox();
+			this.IssuedBy = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+			this.DateEnd = new System.Windows.Forms.DateTimePicker();
 			this.label16 = new System.Windows.Forms.Label();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.DocName = new System.Windows.Forms.ComboBox();
+			this.PlaceBirth = new System.Windows.Forms.TextBox();
+			this.LastName = new System.Windows.Forms.TextBox();
+			this.FirstName = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.KodClient = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+			this.Telephone = new System.Windows.Forms.MaskedTextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.statusStrip1.SuspendLayout();
@@ -96,126 +96,126 @@
 			this.toolStripStatusLabel1.Size = new System.Drawing.Size(295, 17);
 			this.toolStripStatusLabel1.Text = "Для добавления записи пролистайте в самый конец";
 			// 
-			// button6
+			// LastRecord
 			// 
-			this.button6.AutoSize = true;
-			this.button6.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.button6.Location = new System.Drawing.Point(379, 502);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(29, 23);
-			this.button6.TabIndex = 79;
-			this.button6.Text = ">>";
-			this.toolTip1.SetToolTip(this.button6, "В конец");
-			this.button6.UseVisualStyleBackColor = false;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
+			this.LastRecord.AutoSize = true;
+			this.LastRecord.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.LastRecord.Location = new System.Drawing.Point(379, 502);
+			this.LastRecord.Name = "LastRecord";
+			this.LastRecord.Size = new System.Drawing.Size(29, 23);
+			this.LastRecord.TabIndex = 79;
+			this.LastRecord.Text = ">>";
+			this.toolTip1.SetToolTip(this.LastRecord, "В конец");
+			this.LastRecord.UseVisualStyleBackColor = false;
+			this.LastRecord.Click += new System.EventHandler(this.button6_Click);
 			// 
-			// button8
+			// NextRecord
 			// 
-			this.button8.AutoSize = true;
-			this.button8.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.button8.Location = new System.Drawing.Point(348, 502);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(23, 23);
-			this.button8.TabIndex = 78;
-			this.button8.Text = ">";
-			this.toolTip1.SetToolTip(this.button8, "Вперед");
-			this.button8.UseVisualStyleBackColor = false;
-			this.button8.Click += new System.EventHandler(this.button8_Click);
+			this.NextRecord.AutoSize = true;
+			this.NextRecord.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.NextRecord.Location = new System.Drawing.Point(348, 502);
+			this.NextRecord.Name = "NextRecord";
+			this.NextRecord.Size = new System.Drawing.Size(23, 23);
+			this.NextRecord.TabIndex = 78;
+			this.NextRecord.Text = ">";
+			this.toolTip1.SetToolTip(this.NextRecord, "Вперед");
+			this.NextRecord.UseVisualStyleBackColor = false;
+			this.NextRecord.Click += new System.EventHandler(this.button8_Click);
 			// 
-			// button10
+			// PrevRecord
 			// 
-			this.button10.AutoSize = true;
-			this.button10.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.button10.Location = new System.Drawing.Point(317, 502);
-			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(23, 23);
-			this.button10.TabIndex = 76;
-			this.button10.Text = "<";
-			this.toolTip1.SetToolTip(this.button10, "Назад");
-			this.button10.UseVisualStyleBackColor = false;
-			this.button10.Click += new System.EventHandler(this.button10_Click);
+			this.PrevRecord.AutoSize = true;
+			this.PrevRecord.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.PrevRecord.Location = new System.Drawing.Point(317, 502);
+			this.PrevRecord.Name = "PrevRecord";
+			this.PrevRecord.Size = new System.Drawing.Size(23, 23);
+			this.PrevRecord.TabIndex = 76;
+			this.PrevRecord.Text = "<";
+			this.toolTip1.SetToolTip(this.PrevRecord, "Назад");
+			this.PrevRecord.UseVisualStyleBackColor = false;
+			this.PrevRecord.Click += new System.EventHandler(this.button10_Click);
 			// 
-			// button11
+			// FirstRecord
 			// 
-			this.button11.AutoSize = true;
-			this.button11.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.button11.Location = new System.Drawing.Point(282, 502);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(29, 23);
-			this.button11.TabIndex = 75;
-			this.button11.Text = "<<";
-			this.toolTip1.SetToolTip(this.button11, "В начало");
-			this.button11.UseVisualStyleBackColor = false;
-			this.button11.Click += new System.EventHandler(this.button11_Click);
+			this.FirstRecord.AutoSize = true;
+			this.FirstRecord.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.FirstRecord.Location = new System.Drawing.Point(282, 502);
+			this.FirstRecord.Name = "FirstRecord";
+			this.FirstRecord.Size = new System.Drawing.Size(29, 23);
+			this.FirstRecord.TabIndex = 75;
+			this.FirstRecord.Text = "<<";
+			this.toolTip1.SetToolTip(this.FirstRecord, "В начало");
+			this.FirstRecord.UseVisualStyleBackColor = false;
+			this.FirstRecord.Click += new System.EventHandler(this.button11_Click);
 			// 
-			// textBox10
+			// KodDoc
 			// 
-			this.textBox10.Location = new System.Drawing.Point(155, 34);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.ReadOnly = true;
-			this.textBox10.Size = new System.Drawing.Size(52, 20);
-			this.textBox10.TabIndex = 146;
-			this.toolTip1.SetToolTip(this.textBox10, "Заполняется автоматически");
+			this.KodDoc.Location = new System.Drawing.Point(155, 34);
+			this.KodDoc.Name = "KodDoc";
+			this.KodDoc.ReadOnly = true;
+			this.KodDoc.Size = new System.Drawing.Size(52, 20);
+			this.KodDoc.TabIndex = 146;
+			this.toolTip1.SetToolTip(this.KodDoc, "Заполняется автоматически");
 			// 
-			// maskedTextBox2
+			// SeriaNomer
 			// 
-			this.maskedTextBox2.Location = new System.Drawing.Point(155, 106);
-			this.maskedTextBox2.Mask = "00 00 № 00000";
-			this.maskedTextBox2.Name = "maskedTextBox2";
-			this.maskedTextBox2.Size = new System.Drawing.Size(144, 20);
-			this.maskedTextBox2.TabIndex = 119;
-			this.toolTip1.SetToolTip(this.maskedTextBox2, "Документы имеют разный тип серии и номера");
+			this.SeriaNomer.Location = new System.Drawing.Point(155, 106);
+			this.SeriaNomer.Mask = "00 00 № 00000";
+			this.SeriaNomer.Name = "SeriaNomer";
+			this.SeriaNomer.Size = new System.Drawing.Size(144, 20);
+			this.SeriaNomer.TabIndex = 119;
+			this.toolTip1.SetToolTip(this.SeriaNomer, "Документы имеют разный тип серии и номера");
 			// 
-			// textBox4
+			// SecondName
 			// 
-			this.textBox4.Location = new System.Drawing.Point(136, 131);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(248, 20);
-			this.textBox4.TabIndex = 110;
-			this.toolTip1.SetToolTip(this.textBox4, "Отчество может отсутствовать");
+			this.SecondName.Location = new System.Drawing.Point(136, 131);
+			this.SecondName.Name = "SecondName";
+			this.SecondName.Size = new System.Drawing.Size(248, 20);
+			this.SecondName.TabIndex = 110;
+			this.toolTip1.SetToolTip(this.SecondName, "Отчество может отсутствовать");
 			// 
-			// textBox11
+			// Address
 			// 
-			this.textBox11.Location = new System.Drawing.Point(469, 169);
-			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(201, 20);
-			this.textBox11.TabIndex = 115;
-			this.toolTip1.SetToolTip(this.textBox11, "Адрес проживания");
+			this.Address.Location = new System.Drawing.Point(469, 169);
+			this.Address.Name = "Address";
+			this.Address.Size = new System.Drawing.Size(201, 20);
+			this.Address.TabIndex = 115;
+			this.toolTip1.SetToolTip(this.Address, "Адрес проживания");
 			// 
-			// textBox8
+			// Snils
 			// 
-			this.textBox8.Location = new System.Drawing.Point(137, 169);
-			this.textBox8.MaxLength = 11;
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(247, 20);
-			this.textBox8.TabIndex = 117;
-			this.toolTip1.SetToolTip(this.textBox8, "Страховой номер индивидуального лицевого счёта");
+			this.Snils.Location = new System.Drawing.Point(137, 169);
+			this.Snils.MaxLength = 11;
+			this.Snils.Name = "Snils";
+			this.Snils.Size = new System.Drawing.Size(247, 20);
+			this.Snils.TabIndex = 117;
+			this.toolTip1.SetToolTip(this.Snils, "Страховой номер индивидуального лицевого счёта");
 			// 
-			// button7
+			// SaveRecord
 			// 
-			this.button7.AutoSize = true;
-			this.button7.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.button7.Location = new System.Drawing.Point(186, 540);
-			this.button7.MaximumSize = new System.Drawing.Size(154, 50);
-			this.button7.Name = "button7";
-			this.button7.Size = new System.Drawing.Size(154, 23);
-			this.button7.TabIndex = 80;
-			this.button7.Text = "Сохранить данные";
-			this.button7.UseVisualStyleBackColor = false;
-			this.button7.Click += new System.EventHandler(this.button7_Click);
+			this.SaveRecord.AutoSize = true;
+			this.SaveRecord.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.SaveRecord.Location = new System.Drawing.Point(186, 540);
+			this.SaveRecord.MaximumSize = new System.Drawing.Size(154, 50);
+			this.SaveRecord.Name = "SaveRecord";
+			this.SaveRecord.Size = new System.Drawing.Size(154, 23);
+			this.SaveRecord.TabIndex = 80;
+			this.SaveRecord.Text = "Сохранить данные";
+			this.SaveRecord.UseVisualStyleBackColor = false;
+			this.SaveRecord.Click += new System.EventHandler(this.button7_Click);
 			// 
-			// button9
+			// DeleteRecord
 			// 
-			this.button9.AutoSize = true;
-			this.button9.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.button9.Location = new System.Drawing.Point(346, 540);
-			this.button9.MaximumSize = new System.Drawing.Size(154, 50);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(154, 23);
-			this.button9.TabIndex = 77;
-			this.button9.Text = "Удалить данные";
-			this.button9.UseVisualStyleBackColor = false;
-			this.button9.Click += new System.EventHandler(this.button9_Click);
+			this.DeleteRecord.AutoSize = true;
+			this.DeleteRecord.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.DeleteRecord.Location = new System.Drawing.Point(346, 540);
+			this.DeleteRecord.MaximumSize = new System.Drawing.Size(154, 50);
+			this.DeleteRecord.Name = "DeleteRecord";
+			this.DeleteRecord.Size = new System.Drawing.Size(154, 23);
+			this.DeleteRecord.TabIndex = 77;
+			this.DeleteRecord.Text = "Удалить данные";
+			this.DeleteRecord.UseVisualStyleBackColor = false;
+			this.DeleteRecord.Click += new System.EventHandler(this.button9_Click);
 			// 
 			// label5
 			// 
@@ -227,16 +227,16 @@
 			this.label5.TabIndex = 86;
 			this.label5.Text = "Пол:";
 			// 
-			// comboBox1
+			// Gender
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Items.AddRange(new object[] {
+			this.Gender.FormattingEnabled = true;
+			this.Gender.Items.AddRange(new object[] {
             "Мужской",
             "Женский"});
-			this.comboBox1.Location = new System.Drawing.Point(556, 33);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(114, 21);
-			this.comboBox1.TabIndex = 111;
+			this.Gender.Location = new System.Drawing.Point(556, 33);
+			this.Gender.Name = "Gender";
+			this.Gender.Size = new System.Drawing.Size(114, 21);
+			this.Gender.TabIndex = 111;
 			// 
 			// label12
 			// 
@@ -248,14 +248,14 @@
 			this.label12.TabIndex = 133;
 			this.label12.Text = "Дата выдачи:";
 			// 
-			// dateTimePicker2
+			// DateBirth
 			// 
-			this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dateTimePicker2.Location = new System.Drawing.Point(155, 142);
-			this.dateTimePicker2.Name = "dateTimePicker2";
-			this.dateTimePicker2.Size = new System.Drawing.Size(144, 20);
-			this.dateTimePicker2.TabIndex = 134;
-			this.dateTimePicker2.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+			this.DateBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.DateBirth.Location = new System.Drawing.Point(155, 142);
+			this.DateBirth.Name = "DateBirth";
+			this.DateBirth.Size = new System.Drawing.Size(144, 20);
+			this.DateBirth.TabIndex = 134;
+			this.DateBirth.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
 			// 
 			// label11
 			// 
@@ -287,14 +287,14 @@
 			this.label8.TabIndex = 139;
 			this.label8.Text = "Дата рождения:";
 			// 
-			// dateTimePicker1
+			// DateIssue
 			// 
-			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dateTimePicker1.Location = new System.Drawing.Point(556, 108);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(114, 20);
-			this.dateTimePicker1.TabIndex = 140;
-			this.dateTimePicker1.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+			this.DateIssue.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.DateIssue.Location = new System.Drawing.Point(556, 108);
+			this.DateIssue.Name = "DateIssue";
+			this.DateIssue.Size = new System.Drawing.Size(114, 20);
+			this.DateIssue.TabIndex = 140;
+			this.DateIssue.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
 			// 
 			// label7
 			// 
@@ -306,12 +306,12 @@
 			this.label7.TabIndex = 141;
 			this.label7.Text = "Место рождения:";
 			// 
-			// textBox7
+			// IssuedBy
 			// 
-			this.textBox7.Location = new System.Drawing.Point(155, 176);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(515, 20);
-			this.textBox7.TabIndex = 143;
+			this.IssuedBy.Location = new System.Drawing.Point(155, 176);
+			this.IssuedBy.Name = "IssuedBy";
+			this.IssuedBy.Size = new System.Drawing.Size(515, 20);
+			this.IssuedBy.TabIndex = 143;
 			// 
 			// label13
 			// 
@@ -335,23 +335,23 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.maskedTextBox2);
-			this.groupBox2.Controls.Add(this.dateTimePicker3);
+			this.groupBox2.Controls.Add(this.SeriaNomer);
+			this.groupBox2.Controls.Add(this.DateEnd);
 			this.groupBox2.Controls.Add(this.label16);
-			this.groupBox2.Controls.Add(this.comboBox2);
+			this.groupBox2.Controls.Add(this.DocName);
 			this.groupBox2.Controls.Add(this.label14);
-			this.groupBox2.Controls.Add(this.textBox10);
+			this.groupBox2.Controls.Add(this.KodDoc);
 			this.groupBox2.Controls.Add(this.label13);
-			this.groupBox2.Controls.Add(this.textBox6);
-			this.groupBox2.Controls.Add(this.textBox7);
+			this.groupBox2.Controls.Add(this.PlaceBirth);
+			this.groupBox2.Controls.Add(this.IssuedBy);
 			this.groupBox2.Controls.Add(this.label7);
-			this.groupBox2.Controls.Add(this.dateTimePicker1);
+			this.groupBox2.Controls.Add(this.DateIssue);
 			this.groupBox2.Controls.Add(this.label8);
-			this.groupBox2.Controls.Add(this.comboBox1);
+			this.groupBox2.Controls.Add(this.Gender);
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Controls.Add(this.label11);
-			this.groupBox2.Controls.Add(this.dateTimePicker2);
+			this.groupBox2.Controls.Add(this.DateBirth);
 			this.groupBox2.Controls.Add(this.label12);
 			this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(87)))), ((int)(((byte)(255)))));
 			this.groupBox2.Location = new System.Drawing.Point(12, 242);
@@ -361,15 +361,15 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Документ, удостоверяющий личность";
 			// 
-			// dateTimePicker3
+			// DateEnd
 			// 
-			this.dateTimePicker3.Enabled = false;
-			this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dateTimePicker3.Location = new System.Drawing.Point(556, 143);
-			this.dateTimePicker3.Name = "dateTimePicker3";
-			this.dateTimePicker3.Size = new System.Drawing.Size(114, 20);
-			this.dateTimePicker3.TabIndex = 149;
-			this.dateTimePicker3.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+			this.DateEnd.Enabled = false;
+			this.DateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.DateEnd.Location = new System.Drawing.Point(556, 143);
+			this.DateEnd.Name = "DateEnd";
+			this.DateEnd.Size = new System.Drawing.Size(114, 20);
+			this.DateEnd.TabIndex = 149;
+			this.DateEnd.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
 			// 
 			// label16
 			// 
@@ -381,10 +381,10 @@
 			this.label16.TabIndex = 148;
 			this.label16.Text = "Дата оконч. дейст.:";
 			// 
-			// comboBox2
+			// DocName
 			// 
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Items.AddRange(new object[] {
+			this.DocName.FormattingEnabled = true;
+			this.DocName.Items.AddRange(new object[] {
             "Паспорт",
             "Свидетельство о рождении",
             "Паспорт гражданина СССР",
@@ -398,32 +398,32 @@
             "Вид на жительство",
             "Документ лица без гражданства",
             "Удостоверение сотрудника Евразийской экономической комиссии"});
-			this.comboBox2.Location = new System.Drawing.Point(155, 70);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(515, 21);
-			this.comboBox2.TabIndex = 114;
-			this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+			this.DocName.Location = new System.Drawing.Point(155, 70);
+			this.DocName.Name = "DocName";
+			this.DocName.Size = new System.Drawing.Size(515, 21);
+			this.DocName.TabIndex = 114;
+			this.DocName.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
 			// 
-			// textBox6
+			// PlaceBirth
 			// 
-			this.textBox6.Location = new System.Drawing.Point(155, 213);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(515, 20);
-			this.textBox6.TabIndex = 144;
+			this.PlaceBirth.Location = new System.Drawing.Point(155, 213);
+			this.PlaceBirth.Name = "PlaceBirth";
+			this.PlaceBirth.Size = new System.Drawing.Size(515, 20);
+			this.PlaceBirth.TabIndex = 144;
 			// 
-			// textBox2
+			// LastName
 			// 
-			this.textBox2.Location = new System.Drawing.Point(136, 54);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(248, 20);
-			this.textBox2.TabIndex = 108;
+			this.LastName.Location = new System.Drawing.Point(136, 54);
+			this.LastName.Name = "LastName";
+			this.LastName.Size = new System.Drawing.Size(248, 20);
+			this.LastName.TabIndex = 108;
 			// 
-			// textBox3
+			// FirstName
 			// 
-			this.textBox3.Location = new System.Drawing.Point(136, 94);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(248, 20);
-			this.textBox3.TabIndex = 109;
+			this.FirstName.Location = new System.Drawing.Point(136, 94);
+			this.FirstName.Name = "FirstName";
+			this.FirstName.Size = new System.Drawing.Size(248, 20);
+			this.FirstName.TabIndex = 109;
 			// 
 			// label4
 			// 
@@ -435,13 +435,13 @@
 			this.label4.TabIndex = 84;
 			this.label4.Text = "Отчество:";
 			// 
-			// textBox1
+			// KodClient
 			// 
-			this.textBox1.Location = new System.Drawing.Point(137, 18);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 20);
-			this.textBox1.TabIndex = 83;
-			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+			this.KodClient.Location = new System.Drawing.Point(137, 18);
+			this.KodClient.Name = "KodClient";
+			this.KodClient.Size = new System.Drawing.Size(100, 20);
+			this.KodClient.TabIndex = 83;
+			this.KodClient.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// label3
 			// 
@@ -503,31 +503,31 @@
 			this.label10.TabIndex = 116;
 			this.label10.Text = "СНИЛС:";
 			// 
-			// maskedTextBox1
+			// Telephone
 			// 
-			this.maskedTextBox1.Location = new System.Drawing.Point(469, 131);
-			this.maskedTextBox1.Mask = "+7 (000) 000-00-00";
-			this.maskedTextBox1.Name = "maskedTextBox1";
-			this.maskedTextBox1.Size = new System.Drawing.Size(201, 20);
-			this.maskedTextBox1.TabIndex = 118;
+			this.Telephone.Location = new System.Drawing.Point(469, 131);
+			this.Telephone.Mask = "+7 (000) 000-00-00";
+			this.Telephone.Name = "Telephone";
+			this.Telephone.Size = new System.Drawing.Size(201, 20);
+			this.Telephone.TabIndex = 118;
 			// 
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.pictureBox1);
-			this.groupBox1.Controls.Add(this.maskedTextBox1);
-			this.groupBox1.Controls.Add(this.textBox8);
+			this.groupBox1.Controls.Add(this.Telephone);
+			this.groupBox1.Controls.Add(this.Snils);
 			this.groupBox1.Controls.Add(this.label10);
-			this.groupBox1.Controls.Add(this.textBox11);
+			this.groupBox1.Controls.Add(this.Address);
 			this.groupBox1.Controls.Add(this.label15);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.textBox1);
-			this.groupBox1.Controls.Add(this.textBox4);
+			this.groupBox1.Controls.Add(this.KodClient);
+			this.groupBox1.Controls.Add(this.SecondName);
 			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.textBox3);
-			this.groupBox1.Controls.Add(this.textBox2);
+			this.groupBox1.Controls.Add(this.FirstName);
+			this.groupBox1.Controls.Add(this.LastName);
 			this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(87)))), ((int)(((byte)(255)))));
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
@@ -552,12 +552,12 @@
 			this.ClientSize = new System.Drawing.Size(714, 598);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.button7);
-			this.Controls.Add(this.button6);
-			this.Controls.Add(this.button8);
-			this.Controls.Add(this.button9);
-			this.Controls.Add(this.button10);
-			this.Controls.Add(this.button11);
+			this.Controls.Add(this.SaveRecord);
+			this.Controls.Add(this.LastRecord);
+			this.Controls.Add(this.NextRecord);
+			this.Controls.Add(this.DeleteRecord);
+			this.Controls.Add(this.PrevRecord);
+			this.Controls.Add(this.FirstRecord);
 			this.Controls.Add(this.statusStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Клиенты";
@@ -579,45 +579,45 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolTip toolTip1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-		private System.Windows.Forms.Button button7;
-		private System.Windows.Forms.Button button6;
-		private System.Windows.Forms.Button button8;
-		private System.Windows.Forms.Button button9;
-		private System.Windows.Forms.Button button10;
-		private System.Windows.Forms.Button button11;
+		private System.Windows.Forms.Button SaveRecord;
+		private System.Windows.Forms.Button LastRecord;
+		private System.Windows.Forms.Button NextRecord;
+		private System.Windows.Forms.Button DeleteRecord;
+		private System.Windows.Forms.Button PrevRecord;
+		private System.Windows.Forms.Button FirstRecord;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox Gender;
 		private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.DateTimePicker dateTimePicker2;
+		private System.Windows.Forms.DateTimePicker DateBirth;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.DateTimePicker dateTimePicker1;
+		private System.Windows.Forms.DateTimePicker DateIssue;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox textBox7;
+		private System.Windows.Forms.TextBox IssuedBy;
 		private System.Windows.Forms.Label label13;
-		private System.Windows.Forms.TextBox textBox10;
+		private System.Windows.Forms.TextBox KodDoc;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.ComboBox comboBox2;
-		private System.Windows.Forms.TextBox textBox6;
-		private System.Windows.Forms.DateTimePicker dateTimePicker3;
+		private System.Windows.Forms.ComboBox DocName;
+		private System.Windows.Forms.TextBox PlaceBirth;
+		private System.Windows.Forms.DateTimePicker DateEnd;
 		private System.Windows.Forms.Label label16;
-		private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.MaskedTextBox SeriaNomer;
+		private System.Windows.Forms.TextBox LastName;
+		private System.Windows.Forms.TextBox FirstName;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox SecondName;
+		private System.Windows.Forms.TextBox KodClient;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label15;
-		private System.Windows.Forms.TextBox textBox11;
+		private System.Windows.Forms.TextBox Address;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.TextBox textBox8;
-		private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+		private System.Windows.Forms.TextBox Snils;
+		private System.Windows.Forms.MaskedTextBox Telephone;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.PictureBox pictureBox1;
 	}

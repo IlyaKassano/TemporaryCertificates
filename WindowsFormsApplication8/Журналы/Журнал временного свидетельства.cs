@@ -48,7 +48,7 @@ namespace WindowsFormsApplication5
             n = Tables["Временный сертификат"].Rows.Count;
             Tables["Временный сертификат"].Rows.InsertAt(row, n);
             Tables["Временный сертификат"].Rows[n]["Код"] = Convert.ToString(kod);
-            dataGridView1.CurrentCell = null;
+            DataRecords.CurrentCell = null;
 
 
 
@@ -64,9 +64,9 @@ namespace WindowsFormsApplication5
 
         private void Журнал_временного_сертификата_Activated(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Tables["Временный сертификат"];
-            dataGridView1.AutoResizeColumns();
-            dataGridView1.CurrentCell = null;
+            DataRecords.DataSource = Tables["Временный сертификат"];
+            DataRecords.AutoResizeColumns();
+            DataRecords.CurrentCell = null;
         }
 
         private void Журнал_временного_сертификата_Load(object sender, EventArgs e)
@@ -100,13 +100,13 @@ namespace WindowsFormsApplication5
             PsqlData.Table_Fill("Временный сертификат", sql);
 
 
-            dataGridView1.DataSource = Tables["Временный сертификат"];
-            radioButton7_CheckedChanged(radioButton7, e);
+            DataRecords.DataSource = Tables["Временный сертификат"];
+            radioButton7_CheckedChanged(AllRecords, e);
             //dataGridView1.Sort(dataGridView1.Columns["Код"], ListSortDirection.Ascending);
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.RowHeadersVisible = false;
+            DataRecords.AllowUserToAddRows = false;
+            DataRecords.BackgroundColor = SystemColors.Control;
+            DataRecords.BorderStyle = BorderStyle.None;
+            DataRecords.RowHeadersVisible = false;
 
             sql = "SELECT * FROM Client ORDER BY secondname";
             PsqlData.Table_Fill("Клиенты", sql);
@@ -125,27 +125,27 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Клиенты"].Rows.Count; i++)
             {
-                comboBox1.Items.Add(Tables["Клиенты"].Rows[i]["secondname"].ToString() + ' ' +
+                ClientCombo.Items.Add(Tables["Клиенты"].Rows[i]["secondname"].ToString() + ' ' +
                     Tables["Клиенты"].Rows[i]["firstname"].ToString() + ' ' +
                     Tables["Клиенты"].Rows[i]["middlename"].ToString());
             }
 
             for (int i = 0; i < Tables["Представитель"].Rows.Count; i++)
             {
-                comboBox2.Items.Add(Tables["Представитель"].Rows[i]["secondname"].ToString() + ' ' +
+                RepresCombo.Items.Add(Tables["Представитель"].Rows[i]["secondname"].ToString() + ' ' +
                     Tables["Представитель"].Rows[i]["firstname"].ToString() + ' ' +
                     Tables["Представитель"].Rows[i]["middlename"].ToString());
             }
 
             for (int i = 0; i < Tables["Офис"].Rows.Count; i++)
             {
-                comboBox4.Items.Add(Tables["Офис"].Rows[i]["name"].ToString());
+                OfficeCombo.Items.Add(Tables["Офис"].Rows[i]["name"].ToString());
             }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            n = dataGridView1.CurrentRow.Index;
+            n = DataRecords.CurrentRow.Index;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -155,7 +155,7 @@ namespace WindowsFormsApplication5
 
             try
             {
-                message = "Вы точно хотите удалить временное свидетельство с номером " + dataGridView1.Rows[n].Cells["Код"].Value + "?";
+                message = "Вы точно хотите удалить временное свидетельство с номером " + DataRecords.Rows[n].Cells["Код"].Value + "?";
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -168,11 +168,11 @@ namespace WindowsFormsApplication5
             if (rezult == DialogResult.No)
                 return;
 
-            sql = "DELETE FROM tempcertificate WHERE kodtempcert=" + dataGridView1.Rows[n].Cells["Код"].Value;
+            sql = "DELETE FROM tempcertificate WHERE kodtempcert=" + DataRecords.Rows[n].Cells["Код"].Value;
             PsqlData.Mod_Execute(sql);
             Tables["Временный сертификат"].Rows.RemoveAt(n);
-            dataGridView1.AutoResizeColumns();
-            dataGridView1.CurrentCell = null;
+            DataRecords.AutoResizeColumns();
+            DataRecords.CurrentCell = null;
 
             n = -1;
         }
@@ -195,20 +195,20 @@ namespace WindowsFormsApplication5
                 int i, j;
                 object output;
 
-                for (j = 0; j < dataGridView1.Columns.Count; j++)
+                for (j = 0; j < DataRecords.Columns.Count; j++)
                 {
-                    Sheet_.Cells[1, j + 1].Value = dataGridView1.Columns[j].HeaderText;
+                    Sheet_.Cells[1, j + 1].Value = DataRecords.Columns[j].HeaderText;
                 }
 
-                for (i = 0; i < dataGridView1.Rows.Count; i++)
+                for (i = 0; i < DataRecords.Rows.Count; i++)
                 {
-                    for (j = 0; j < dataGridView1.Columns.Count; j++)
+                    for (j = 0; j < DataRecords.Columns.Count; j++)
                     {
-                        output = dataGridView1.Rows[i].Cells[j].Value;
-                        if (dataGridView1.Rows[i].Cells[j].Value.Equals(true))
+                        output = DataRecords.Rows[i].Cells[j].Value;
+                        if (DataRecords.Rows[i].Cells[j].Value.Equals(true))
                             output = "Да";
 
-                        if (dataGridView1.Rows[i].Cells[j].Value.Equals(false))
+                        if (DataRecords.Rows[i].Cells[j].Value.Equals(false))
                             output = "Нет";
 
                         Sheet_.Cells[i + 2, j + 1].Value = output;
@@ -244,66 +244,66 @@ namespace WindowsFormsApplication5
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            Tables["Временный сертификат"].DefaultView.RowFilter = "Клиент = '" + comboBox1.Text + "'";
-            radioButton5.Checked = true;
+            Tables["Временный сертификат"].DefaultView.RowFilter = "Клиент = '" + ClientCombo.Text + "'";
+            ClientRadio.Checked = true;
         }
 
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
-            Tables["Временный сертификат"].DefaultView.RowFilter = "Представитель = '" + comboBox2.Text + "'";
-            radioButton6.Checked = true;
+            Tables["Временный сертификат"].DefaultView.RowFilter = "Представитель = '" + RepresCombo.Text + "'";
+            RepresRadio.Checked = true;
         }
 
         private void radioButton8_CheckedChanged(object sender, EventArgs e)
         {
-            Tables["Временный сертификат"].DefaultView.RowFilter = "[Наименование филиала] = '" + comboBox4.Text + "'";
-            radioButton8.Checked = true;
+            Tables["Временный сертификат"].DefaultView.RowFilter = "[Наименование филиала] = '" + OfficeCombo.Text + "'";
+            OfficeRadio.Checked = true;
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            if (comboBox3.SelectedIndex == 1)
-                Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата окончания дейст. свидет.] >= '" + dateTimePicker1.Value.Date + "' AND [Дата окончания дейст. свидет.] <= '" + dateTimePicker2.Value.Date + "'";
+            if (DateTypeCombo.SelectedIndex == 1)
+                Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата окончания дейст. свидет.] >= '" + DatePickerFirst.Value.Date + "' AND [Дата окончания дейст. свидет.] <= '" + DatePickerSecond.Value.Date + "'";
             else
-                Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата начала дейст. свидет.] >= '" + dateTimePicker1.Value.Date + "' AND [Дата начала дейст. свидет.] <= '" + dateTimePicker2.Value.Date + "'";
-            radioButton4.Checked = true;
+                Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата начала дейст. свидет.] >= '" + DatePickerFirst.Value.Date + "' AND [Дата начала дейст. свидет.] <= '" + DatePickerSecond.Value.Date + "'";
+            RangeDateRadio.Checked = true;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if (comboBox3.SelectedIndex == 1)
-                Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата окончания дейст. свидет.] = '" + dateTimePicker1.Value.Date + "'";
+            if (DateTypeCombo.SelectedIndex == 1)
+                Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата окончания дейст. свидет.] = '" + DatePickerFirst.Value.Date + "'";
             else
-                Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата начала дейст. свидет.] = '" + dateTimePicker1.Value.Date + "'";
-            radioButton3.Checked = true;
+                Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата начала дейст. свидет.] = '" + DatePickerFirst.Value.Date + "'";
+            ExactDateRadio.Checked = true;
         }
 
         private void radioButton3_CheckedChangedEvent(object sender, EventArgs e)
         {
-            if (radioButton4.Checked == false)
+            if (RangeDateRadio.Checked == false)
             {
-                if (comboBox3.SelectedIndex == 1)
-                    Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата окончания дейст. свидет.] = '" + dateTimePicker1.Value.Date + "'";
+                if (DateTypeCombo.SelectedIndex == 1)
+                    Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата окончания дейст. свидет.] = '" + DatePickerFirst.Value.Date + "'";
                 else
-                    Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата начала дейст. свидет.] = '" + dateTimePicker1.Value.Date + "'";
-                radioButton3.Checked = true;
+                    Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата начала дейст. свидет.] = '" + DatePickerFirst.Value.Date + "'";
+                ExactDateRadio.Checked = true;
             }
             else
             {
-                radioButton4.PerformClick();
+                RangeDateRadio.PerformClick();
             }
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (radioButton3.Checked == true)
+            if (ExactDateRadio.Checked == true)
             {
-                radioButton3.PerformClick();
+                ExactDateRadio.PerformClick();
             }
 
-            if (radioButton4.Checked == true)
+            if (RangeDateRadio.Checked == true)
             {
-                radioButton4.PerformClick();
+                RangeDateRadio.PerformClick();
             }
         }
     }

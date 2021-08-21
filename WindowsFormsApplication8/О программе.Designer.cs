@@ -29,13 +29,13 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox1));
 			this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+			this.logoPictureBox = new System.Windows.Forms.PictureBox();
 			this.labelProductName = new System.Windows.Forms.Label();
 			this.labelVersion = new System.Windows.Forms.Label();
 			this.labelCopyright = new System.Windows.Forms.Label();
 			this.labelCompanyName = new System.Windows.Forms.Label();
 			this.okButton = new System.Windows.Forms.Button();
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
-			this.logoPictureBox = new System.Windows.Forms.PictureBox();
 			this.tableLayoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
 			this.SuspendLayout();
@@ -65,6 +65,16 @@
 			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel.Size = new System.Drawing.Size(417, 265);
 			this.tableLayoutPanel.TabIndex = 0;
+			// 
+			// logoPictureBox
+			// 
+			this.logoPictureBox.Image = global::WindowsFormsApplication5.Properties.Resources.abstraktsiia_geometriia_fon_belyi_abstract_background1;
+			this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
+			this.logoPictureBox.Name = "logoPictureBox";
+			this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
+			this.logoPictureBox.Size = new System.Drawing.Size(131, 259);
+			this.logoPictureBox.TabIndex = 12;
+			this.logoPictureBox.TabStop = false;
 			// 
 			// labelProductName
 			// 
@@ -141,16 +151,6 @@
 			this.textBoxDescription.TabStop = false;
 			this.textBoxDescription.Text = "Основные функции: занесение и чтение информации о клиентах, представителях, офиса" +
     "х и временных свидетельствах.\r\nВыходные документы: временные свидетельства";
-			// 
-			// logoPictureBox
-			// 
-			this.logoPictureBox.Image = global::WindowsFormsApplication5.Properties.Resources.abstraktsiia_geometriia_fon_belyi_abstract_background1;
-			this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
-			this.logoPictureBox.Name = "logoPictureBox";
-			this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
-			this.logoPictureBox.Size = new System.Drawing.Size(131, 259);
-			this.logoPictureBox.TabIndex = 12;
-			this.logoPictureBox.TabStop = false;
 			// 
 			// AboutBox1
 			// 

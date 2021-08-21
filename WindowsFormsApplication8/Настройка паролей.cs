@@ -31,12 +31,12 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Авторизация"].Rows.Count; i++)
             {
-                comboBox1.Items.Add(Tables["Авторизация"].Rows[i]["login"].ToString());
+                User.Items.Add(Tables["Авторизация"].Rows[i]["login"].ToString());
             }
 
-            textBox1.UseSystemPasswordChar = true;
-            textBox2.UseSystemPasswordChar = true;
-            textBox3.UseSystemPasswordChar = true;
+            CurrentPass.UseSystemPasswordChar = true;
+            NewPass.UseSystemPasswordChar = true;
+            EqualPass.UseSystemPasswordChar = true;
         }
         
 
@@ -44,7 +44,7 @@ namespace WindowsFormsApplication5
         {
             string pass = "";
 
-            if (comboBox1.Text == "")
+            if (User.Text == "")
             {
                 MessageBox.Show("Не указан логин пользователя!", "Ошибка");
                 return;
@@ -52,23 +52,23 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Авторизация"].Rows.Count; i++)
             {
-                if (Tables["Авторизация"].Rows[i]["login"].ToString().Equals(comboBox1.Text))
+                if (Tables["Авторизация"].Rows[i]["login"].ToString().Equals(User.Text))
                 {
                     pass = Tables["Авторизация"].Rows[i]["password"].ToString();
                     break;
                 }
             }
 
-            if (textBox1.Text != pass)
+            if (CurrentPass.Text != pass)
             {
                 MessageBox.Show("Введенный вами пароль от данного пользователя не соответствует текущему!", "Ошибка");
                 return;
             }
 
-            if (textBox2.Text == textBox3.Text)
+            if (NewPass.Text == EqualPass.Text)
             {
-                string sql = "UPDATE users SET password = '" + textBox2.Text +
-                    "' WHERE login = '" + comboBox1.Text + "'";
+                string sql = "UPDATE users SET password = '" + NewPass.Text +
+                    "' WHERE login = '" + User.Text + "'";
                 PsqlData.Mod_Execute(sql);
 
                 Close();

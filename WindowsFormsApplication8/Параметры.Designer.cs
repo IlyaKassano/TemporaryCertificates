@@ -21,6 +21,6 @@
         }
         public static System.Windows.Forms.ColorDialog colorDialog1 = new System.Windows.Forms.ColorDialog();
         public static System.Windows.Forms.FontDialog fontDialog1 = new System.Windows.Forms.FontDialog();
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox SettingsList;
     }
 }

@@ -48,7 +48,7 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Offices"].Rows.Count; i++)
             {
-                comboBox2.Items.Add(Tables["Offices"].Rows[i]["name"].ToString());
+                Office.Items.Add(Tables["Offices"].Rows[i]["name"].ToString());
             }
 
             MaxN();
@@ -66,16 +66,16 @@ namespace WindowsFormsApplication5
         /// </summary> 
         private void FieldsForm_Fill()
         {
-            textBox1.Text = Tables["Representative"].Rows[n]["kodrep"].ToString();
-            textBox2.Text = Tables["Representative"].Rows[n]["secondname"].ToString();
-            textBox3.Text = Tables["Representative"].Rows[n]["firstname"].ToString();
-            textBox4.Text = Tables["Representative"].Rows[n]["middlename"].ToString();
-            comboBox1.Text = Tables["Representative"].Rows[n]["gender"].ToString();
-            maskedTextBox1.Text = Tables["Representative"].Rows[n]["telephone"].ToString();
-            textBox11.Text = Tables["Representative"].Rows[n]["address"].ToString();
-            comboBox2.Text = Tables["Representative"].Rows[n]["name"].ToString();
+            KodRep.Text = Tables["Representative"].Rows[n]["kodrep"].ToString();
+            LastName.Text = Tables["Representative"].Rows[n]["secondname"].ToString();
+            FirstName.Text = Tables["Representative"].Rows[n]["firstname"].ToString();
+            SecondName.Text = Tables["Representative"].Rows[n]["middlename"].ToString();
+            Gener.Text = Tables["Representative"].Rows[n]["gender"].ToString();
+            Telephone.Text = Tables["Representative"].Rows[n]["telephone"].ToString();
+            Address.Text = Tables["Representative"].Rows[n]["address"].ToString();
+            Office.Text = Tables["Representative"].Rows[n]["name"].ToString();
 
-            textBox1.Enabled = false;
+            KodRep.Enabled = false;
         }
 
         /// <summary>  
@@ -83,16 +83,16 @@ namespace WindowsFormsApplication5
         /// </summary> 
         private void FieldsForm_Clear()
         {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            comboBox1.Text = "";
-            maskedTextBox1.Text = "";
-            textBox11.Text = "";
-            comboBox2.Text = "";
-            textBox1.Enabled = true;
-            textBox1.Focus();
+            KodRep.Text = "";
+            LastName.Text = "";
+            FirstName.Text = "";
+            SecondName.Text = "";
+            Gener.Text = "";
+            Telephone.Text = "";
+            Address.Text = "";
+            Office.Text = "";
+            KodRep.Enabled = true;
+            KodRep.Focus();
         }
 
         private void MaxN()
@@ -130,7 +130,7 @@ namespace WindowsFormsApplication5
             {
                 n = Tables["Representative"].Rows.Count;
                 FieldsForm_Clear();
-                textBox1.Text = maxN.ToString();
+                KodRep.Text = maxN.ToString();
             }
         }
 
@@ -139,13 +139,13 @@ namespace WindowsFormsApplication5
         {
             n = Tables["Representative"].Rows.Count;
             FieldsForm_Clear();
-            textBox1.Text = maxN.ToString();
+            KodRep.Text = maxN.ToString();
         }
 
         //Сохранение        
         private void button7_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || comboBox1.Text == "" || comboBox2.Text == "")
+            if (KodRep.Text == "" || LastName.Text == "" || FirstName.Text == "" || Gener.Text == "" || Office.Text == "")
             {
                 MessageBox.Show("Все поля должны быть заполнены!", "Ошибка");
                 return;
@@ -154,7 +154,7 @@ namespace WindowsFormsApplication5
             int kod_off = -1;
             for (int i = 0; i < Tables["Offices"].Rows.Count; i++)
             {
-                if (comboBox2.Text == Tables["Offices"].Rows[i]["name"].ToString())
+                if (Office.Text == Tables["Offices"].Rows[i]["name"].ToString())
                 {
                     kod_off = Convert.ToInt32(Tables["Offices"].Rows[i]["kodoffice"]);
                     break;
@@ -170,37 +170,37 @@ namespace WindowsFormsApplication5
             if (n == Tables["Representative"].Rows.Count)
             {
                 string sql = "INSERT INTO Representative (kodrep, secondname, firstname, middlename, gender, telephone, address, office) values (" + 
-                    textBox1.Text + ", '" + textBox2.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "', '" + comboBox1.Text + "', '" + maskedTextBox1.Text + 
-                    "', '" + textBox11.Text + "', " + kod_off + ");";
+                    KodRep.Text + ", '" + LastName.Text + "', '" + FirstName.Text + "', '" + SecondName.Text + "', '" + Gener.Text + "', '" + Telephone.Text + 
+                    "', '" + Address.Text + "', " + kod_off + ");";
 
                 PsqlData.Mod_Execute(sql);
-                textBox1.Enabled = false;
-                Tables["Representative"].Rows.Add(new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
-                    comboBox1.Text, maskedTextBox1.Text, textBox11.Text, comboBox2.Text });
+                KodRep.Enabled = false;
+                Tables["Representative"].Rows.Add(new object[] { KodRep.Text, FirstName.Text, SecondName.Text, LastName.Text,
+                    Gener.Text, Telephone.Text, Address.Text, Office.Text });
 
             }
             else
             {
-                string sql = "UPDATE Representative SET secondname='" + textBox2.Text + "', firstname='" + textBox3.Text + 
-                    "', middlename='" + textBox4.Text + "', gender='" + comboBox1.Text + "', telephone='" + maskedTextBox1.Text + 
-                    "', address='" + textBox11.Text + "', office = " + kod_off + " WHERE kodrep=" + textBox1.Text + ";";
+                string sql = "UPDATE Representative SET secondname='" + LastName.Text + "', firstname='" + FirstName.Text + 
+                    "', middlename='" + SecondName.Text + "', gender='" + Gener.Text + "', telephone='" + Telephone.Text + 
+                    "', address='" + Address.Text + "', office = " + kod_off + " WHERE kodrep=" + KodRep.Text + ";";
 
                 PsqlData.Mod_Execute(sql);
-                Tables["Representative"].Rows[n].ItemArray = new object[] { textBox1.Text, textBox3.Text, textBox4.Text, textBox2.Text,
-                    comboBox1.Text, maskedTextBox1.Text, textBox11.Text, comboBox2.Text };
+                Tables["Representative"].Rows[n].ItemArray = new object[] { KodRep.Text, FirstName.Text, SecondName.Text, LastName.Text,
+                    Gener.Text, Telephone.Text, Address.Text, Office.Text };
             }
         }
 
         //Удаление
         private void button9_Click(object sender, EventArgs e)
         {
-            string message = "Вы точно хотите удалить из картотеки представителя с кодом " + textBox1.Text + "?";
+            string message = "Вы точно хотите удалить из картотеки представителя с кодом " + KodRep.Text + "?";
             string caption = "Удаление представителя";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult rezult = MessageBox.Show(message, caption, buttons);
             if (rezult == DialogResult.No) { return; }
 
-            string sql = "DELETE FROM Representative WHERE kodrep = " + textBox1.Text;
+            string sql = "DELETE FROM Representative WHERE kodrep = " + KodRep.Text;
             PsqlData.Mod_Execute(sql);
 
             try
