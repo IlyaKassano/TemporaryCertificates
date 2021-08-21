@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Клиенты : Form
     {
@@ -106,16 +106,19 @@ namespace WindowsFormsApplication5
             maxN = Convert.ToInt32(Tables["Client"].Compute("Max(kodclient)", string.Empty)) + 1;
         }
 
-        //В начало
-        private void button11_Click(object sender, EventArgs e)
+        private void KodClient_TextChanged(object sender, EventArgs e)
+        {
+            KodDoc.Text = KodClient.Text;
+        }
+
+        private void FirstRecord_Click(object sender, EventArgs e)
         {
             n = 0;
             if (Tables["Client"].Rows.Count > n)
                 FieldsForm_Fill();
         }
 
-        //Назад
-        private void button10_Click(object sender, EventArgs e)
+        private void PrevRecord_Click(object sender, EventArgs e)
         {
             if (n > 0)
             {
@@ -124,8 +127,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-        //Вперед
-        private void button8_Click(object sender, EventArgs e)
+        private void NextRecord_Click(object sender, EventArgs e)
         {
             if (n < Tables["Client"].Rows.Count - 1)
             {
@@ -145,8 +147,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-        //В конец
-        private void button6_Click(object sender, EventArgs e)
+        private void LastRecord_Click(object sender, EventArgs e)
         {
             if (Авторизация.polzov == "Администратор" || Авторизация.polzov == "Представитель")
             {
@@ -161,8 +162,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-        //Сохранение        
-        private void button7_Click(object sender, EventArgs e)
+        private void SaveRecord_Click(object sender, EventArgs e)
         {
             if (DateIssue.Value < DateBirth.Value)
             {
@@ -178,8 +178,8 @@ namespace WindowsFormsApplication5
 
             if (n == Tables["Client"].Rows.Count)
             {
-                string sql = "INSERT INTO Client (kodclient, secondname, firstname, middlename, telephone, address, snils) values (" + 
-                    KodClient.Text + ", '" + LastName.Text + "', '" + FirstName.Text + "', '" + SecondName.Text + "', '" + Telephone.Text + 
+                string sql = "INSERT INTO Client (kodclient, secondname, firstname, middlename, telephone, address, snils) values (" +
+                    KodClient.Text + ", '" + LastName.Text + "', '" + FirstName.Text + "', '" + SecondName.Text + "', '" + Telephone.Text +
                     "', '" + Address.Text + "', '" + Snils.Text + "');";
 
                 if (!PsqlData.Mod_Execute(sql))
@@ -188,8 +188,8 @@ namespace WindowsFormsApplication5
                 }
 
                 if (DateEnd.Enabled == false)
-                    sql = "INSERT INTO Document (koddoc, typedocument, serianomer, gender, dataissue, issuedby, datebirth, placebirth) values (" + 
-                        KodDoc.Text + ", '" + DocName.Text + "', '" + SeriaNomer.Text + "', '" + Gender.Text + "', '" + DateIssue.Value + "', '" + 
+                    sql = "INSERT INTO Document (koddoc, typedocument, serianomer, gender, dataissue, issuedby, datebirth, placebirth) values (" +
+                        KodDoc.Text + ", '" + DocName.Text + "', '" + SeriaNomer.Text + "', '" + Gender.Text + "', '" + DateIssue.Value + "', '" +
                         IssuedBy.Text + "', '" + DateBirth.Value + "', '" + PlaceBirth.Text + "');";
                 else
                     sql = "INSERT INTO Document (koddoc, typedocument, serianomer, gender, dataissue, dateend, issuedby, datebirth, placebirth) values (" +
@@ -216,14 +216,14 @@ namespace WindowsFormsApplication5
             }
             else
             {
-                string sql = "UPDATE Client SET secondname='" + LastName.Text + "', firstname='" + FirstName.Text + 
-                    "', middlename='" + SecondName.Text + "', snils='" + Snils.Text + "', telephone='" + Telephone.Text + 
+                string sql = "UPDATE Client SET secondname='" + LastName.Text + "', firstname='" + FirstName.Text +
+                    "', middlename='" + SecondName.Text + "', snils='" + Snils.Text + "', telephone='" + Telephone.Text +
                     "', address='" + Address.Text + "' WHERE kodclient=" + KodClient.Text + ";";
 
                 PsqlData.Mod_Execute(sql);
                 if (DateEnd.Enabled == false)
-                    sql = "UPDATE Document SET typedocument = '" + DocName.Text + "', serianomer = '" + SeriaNomer.Text + "', gender = '" + Gender.Text + 
-                        "', dataissue = '" + DateIssue.Value + "', issuedby = '" + IssuedBy.Text + "', placebirth = '" + 
+                    sql = "UPDATE Document SET typedocument = '" + DocName.Text + "', serianomer = '" + SeriaNomer.Text + "', gender = '" + Gender.Text +
+                        "', dataissue = '" + DateIssue.Value + "', issuedby = '" + IssuedBy.Text + "', placebirth = '" +
                         PlaceBirth.Text + "', datebirth = '" + DateBirth.Value + "' WHERE koddoc = " + KodDoc.Text + ";";
                 else
                     sql = "UPDATE Document SET typedocument = '" + DocName.Text + "', serianomer = '" + SeriaNomer.Text + "', gender = '" + Gender.Text +
@@ -232,7 +232,7 @@ namespace WindowsFormsApplication5
 
                 PsqlData.Mod_Execute(sql);
 
-                if(DateEnd.Enabled == false)
+                if (DateEnd.Enabled == false)
                     Tables["Client"].Rows[n].ItemArray = new object[] { KodClient.Text, FirstName.Text, SecondName.Text, LastName.Text,
                         Telephone.Text, Address.Text, Snils.Text, KodDoc.Text, DocName.Text, SeriaNomer.Text, Gender.Text,
                         DateIssue.Value, DBNull.Value, IssuedBy.Text, DateBirth.Value, PlaceBirth.Text };
@@ -241,13 +241,12 @@ namespace WindowsFormsApplication5
                         Telephone.Text, Address.Text, Snils.Text, KodDoc.Text, DocName.Text, SeriaNomer.Text, Gender.Text,
                         DateIssue.Value, DateEnd.Value, IssuedBy.Text, DateBirth.Value, PlaceBirth.Text };
 
-               // "SELECT kodclient, firstname, middlename, secondname, telephone, address, snils, " +
-                 //   "koddoc, typedocument, serianomer, gender, dataissue, dateend, issuedby, datebirth, placebirth " +
+                // "SELECT kodclient, firstname, middlename, secondname, telephone, address, snils, " +
+                //   "koddoc, typedocument, serianomer, gender, dataissue, dateend, issuedby, datebirth, placebirth " +
             }
         }
 
-        //Удаление
-        private void button9_Click(object sender, EventArgs e)
+        private void Delete_Click(object sender, EventArgs e)
         {
             string message = "Вы точно хотите удалить из картотеки клиента с кодом " + KodClient.Text + "?";
             string caption = "Удаление клиента";
@@ -280,18 +279,13 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            KodDoc.Text = KodClient.Text;
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void DocName_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (DocName.Text)
             {
-                case "Паспорт": 
+                case "Паспорт":
                     SeriaNomer.Mask = "00 00 № 000000"; DateEnd.Enabled = false; break;
-                case "Свидетельство о рождении": 
+                case "Свидетельство о рождении":
                     SeriaNomer.Mask = "L???-L??? № 000000"; DateEnd.Enabled = false; break;
                 case "Удостоверение сотрудника Евразийской экономической комиссии":
                     SeriaNomer.Mask = "000000"; DateEnd.Enabled = true; break;

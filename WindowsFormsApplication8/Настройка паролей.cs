@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Настройка_паролей : Form
     {
@@ -40,7 +40,7 @@ namespace WindowsFormsApplication5
         }
         
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ChangePassword_Click(object sender, EventArgs e)
         {
             string pass = "";
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Авторизация : Form
     {
@@ -53,7 +53,7 @@ namespace WindowsFormsApplication5
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void ShowPassword_CheckedChanged(object sender, EventArgs e)
         {
             if (ShowPassword.Checked)
                 Password.UseSystemPasswordChar = false;
@@ -63,10 +63,8 @@ namespace WindowsFormsApplication5
 
         public static string polzov = "";
 
-        private void button1_Click(object sender, EventArgs e)
+        private void EnterButton_Click(object sender, EventArgs e)
         {
-            string sql;
-
             if (Password.Text == "")
             {
                 MessageBox.Show("Не указан (неверный) логин пользователя!", "Ошибка");
@@ -103,21 +101,21 @@ namespace WindowsFormsApplication5
             PsqlData.connection.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void User_SelectedIndexChanged(object sender, EventArgs e)
         {
             Password.Focus();
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        private void Enter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                button1_Click(null, null);
+                EnterButton_Click(null, null);
             }
         }
     }

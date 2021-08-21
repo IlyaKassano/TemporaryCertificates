@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Представители : Form
     {
@@ -101,7 +101,7 @@ namespace WindowsFormsApplication5
         }
 
         //В начало
-        private void button11_Click(object sender, EventArgs e)
+        private void FirstRecord_Click(object sender, EventArgs e)
         {
             n = 0;
             if (Tables["Representative"].Rows.Count > n)
@@ -109,7 +109,7 @@ namespace WindowsFormsApplication5
         }
 
         //Назад
-        private void button10_Click(object sender, EventArgs e)
+        private void PrevRecord_Click(object sender, EventArgs e)
         {
             if (n > 0)
             {
@@ -119,7 +119,7 @@ namespace WindowsFormsApplication5
         }
 
         //Вперед
-        private void button8_Click(object sender, EventArgs e)
+        private void NextRecord_Click(object sender, EventArgs e)
         {
             if (n < Tables["Representative"].Rows.Count - 1)
             {
@@ -135,7 +135,7 @@ namespace WindowsFormsApplication5
         }
 
         //В конец
-        private void button6_Click(object sender, EventArgs e)
+        private void LastRecord_Click(object sender, EventArgs e)
         {
             n = Tables["Representative"].Rows.Count;
             FieldsForm_Clear();
@@ -143,7 +143,7 @@ namespace WindowsFormsApplication5
         }
 
         //Сохранение        
-        private void button7_Click(object sender, EventArgs e)
+        private void SaveRecord_Click(object sender, EventArgs e)
         {
             if (KodRep.Text == "" || LastName.Text == "" || FirstName.Text == "" || Gener.Text == "" || Office.Text == "")
             {
@@ -192,7 +192,7 @@ namespace WindowsFormsApplication5
         }
 
         //Удаление
-        private void button9_Click(object sender, EventArgs e)
+        private void DeleteRecord_Click(object sender, EventArgs e)
         {
             string message = "Вы точно хотите удалить из картотеки представителя с кодом " + KodRep.Text + "?";
             string caption = "Удаление представителя";

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
     partial class Авторизация
     {
@@ -76,7 +76,7 @@
 			this.User.Name = "User";
 			this.User.Size = new System.Drawing.Size(174, 21);
 			this.User.TabIndex = 6;
-			this.User.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+			this.User.SelectedIndexChanged += new System.EventHandler(this.User_SelectedIndexChanged);
 			// 
 			// Password
 			// 
@@ -84,7 +84,7 @@
 			this.Password.Name = "Password";
 			this.Password.Size = new System.Drawing.Size(174, 20);
 			this.Password.TabIndex = 7;
-			this.Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+			this.Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
 			// 
 			// ShowPassword
 			// 
@@ -95,7 +95,7 @@
 			this.ShowPassword.TabIndex = 8;
 			this.ShowPassword.Text = "Отображать пароль";
 			this.ShowPassword.UseVisualStyleBackColor = true;
-			this.ShowPassword.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			this.ShowPassword.CheckedChanged += new System.EventHandler(this.ShowPassword_CheckedChanged);
 			// 
 			// EnterButton
 			// 
@@ -106,7 +106,7 @@
 			this.EnterButton.TabIndex = 4;
 			this.EnterButton.Text = "Вход";
 			this.EnterButton.UseVisualStyleBackColor = true;
-			this.EnterButton.Click += new System.EventHandler(this.button1_Click);
+			this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
 			// 
 			// CloseButton
 			// 
@@ -117,7 +117,7 @@
 			this.CloseButton.TabIndex = 5;
 			this.CloseButton.Text = "Закрыть";
 			this.CloseButton.UseVisualStyleBackColor = true;
-			this.CloseButton.Click += new System.EventHandler(this.button2_Click);
+			this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
 			// 
 			// Авторизация
 			// 

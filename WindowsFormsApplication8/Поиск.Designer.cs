@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
     partial class Поиск
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Поиск));
-			this.DataRecords = new System.Windows.Forms.DataGridView();
+			this.DataGridView = new System.Windows.Forms.DataGridView();
 			this.Print = new System.Windows.Forms.Button();
 			this.AllClientRadio = new System.Windows.Forms.RadioButton();
 			this.AllOfficeRadio = new System.Windows.Forms.RadioButton();
@@ -58,26 +58,26 @@
 			this.ClientValue = new System.Windows.Forms.TextBox();
 			this.ClientValueCombo = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.DataRecords)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// DataRecords
+			// DataGridView
 			// 
-			this.DataRecords.AllowUserToAddRows = false;
-			this.DataRecords.AllowUserToDeleteRows = false;
-			this.DataRecords.AllowUserToResizeColumns = false;
-			this.DataRecords.AllowUserToResizeRows = false;
-			this.DataRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.DataRecords.Location = new System.Drawing.Point(12, 237);
-			this.DataRecords.Name = "DataRecords";
-			this.DataRecords.ReadOnly = true;
-			this.DataRecords.RowHeadersWidth = 62;
-			this.DataRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.DataRecords.Size = new System.Drawing.Size(832, 275);
-			this.DataRecords.TabIndex = 0;
-			this.DataRecords.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+			this.DataGridView.AllowUserToAddRows = false;
+			this.DataGridView.AllowUserToDeleteRows = false;
+			this.DataGridView.AllowUserToResizeColumns = false;
+			this.DataGridView.AllowUserToResizeRows = false;
+			this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.DataGridView.Location = new System.Drawing.Point(12, 237);
+			this.DataGridView.Name = "DataGridView";
+			this.DataGridView.ReadOnly = true;
+			this.DataGridView.RowHeadersWidth = 62;
+			this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.DataGridView.Size = new System.Drawing.Size(832, 275);
+			this.DataGridView.TabIndex = 0;
+			this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
 			// 
 			// Print
 			// 
@@ -88,7 +88,7 @@
 			this.Print.TabIndex = 15;
 			this.Print.Text = "Печать";
 			this.Print.UseVisualStyleBackColor = true;
-			this.Print.Click += new System.EventHandler(this.button1_Click);
+			this.Print.Click += new System.EventHandler(this.Print_Click);
 			// 
 			// AllClientRadio
 			// 
@@ -102,7 +102,7 @@
 			this.AllClientRadio.TabStop = true;
 			this.AllClientRadio.Text = "Все клиенты";
 			this.AllClientRadio.UseVisualStyleBackColor = true;
-			this.AllClientRadio.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
+			this.AllClientRadio.CheckedChanged += new System.EventHandler(this.AllClientRadio_CheckedChanged);
 			// 
 			// AllOfficeRadio
 			// 
@@ -114,7 +114,7 @@
 			this.AllOfficeRadio.TabIndex = 26;
 			this.AllOfficeRadio.Text = "Все офисы";
 			this.AllOfficeRadio.UseVisualStyleBackColor = true;
-			this.AllOfficeRadio.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
+			this.AllOfficeRadio.CheckedChanged += new System.EventHandler(this.AllOfficeRadio_CheckedChanged);
 			// 
 			// AllRepRadio
 			// 
@@ -126,7 +126,7 @@
 			this.AllRepRadio.TabIndex = 27;
 			this.AllRepRadio.Text = "Все представители";
 			this.AllRepRadio.UseVisualStyleBackColor = true;
-			this.AllRepRadio.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
+			this.AllRepRadio.CheckedChanged += new System.EventHandler(this.AllRepRadio_CheckedChanged);
 			// 
 			// FindClientRadio
 			// 
@@ -139,7 +139,7 @@
 			this.FindClientRadio.TabStop = true;
 			this.FindClientRadio.Text = "            Поиск клиентов по";
 			this.FindClientRadio.UseVisualStyleBackColor = true;
-			this.FindClientRadio.Click += new System.EventHandler(this.radioButton1_CheckedChanged_1);
+			this.FindClientRadio.Click += new System.EventHandler(this.FindClientRadio_CheckedChanged);
 			// 
 			// ClientField
 			// 
@@ -148,7 +148,7 @@
 			this.ClientField.Name = "ClientField";
 			this.ClientField.Size = new System.Drawing.Size(133, 21);
 			this.ClientField.TabIndex = 29;
-			this.ClientField.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+			this.ClientField.SelectedIndexChanged += new System.EventHandler(this.ClientField_SelectedIndexChanged);
 			// 
 			// label1
 			// 
@@ -207,7 +207,7 @@
 			this.SettingFind.TabIndex = 124;
 			this.SettingFind.Text = "Параметры поиска";
 			this.SettingFind.UseVisualStyleBackColor = true;
-			this.SettingFind.Click += new System.EventHandler(this.button3_Click);
+			this.SettingFind.Click += new System.EventHandler(this.SettingFind_Click);
 			// 
 			// EditRecord
 			// 
@@ -218,13 +218,13 @@
 			this.EditRecord.TabIndex = 121;
 			this.EditRecord.Text = "Редактировать";
 			this.EditRecord.UseVisualStyleBackColor = true;
-			this.EditRecord.Click += new System.EventHandler(this.button2_Click);
+			this.EditRecord.Click += new System.EventHandler(this.EditField_Click);
 			// 
 			// pictureBox1
 			// 
 			this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
 			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.pictureBox1.Image = global::WindowsFormsApplication5.Properties.Resources.Makc_m;
+			this.pictureBox1.Image = global::TemporaryCertificates.Properties.Resources.Makc_m;
 			this.pictureBox1.Location = new System.Drawing.Point(706, 15);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(120, 70);
@@ -239,7 +239,7 @@
 			this.OfficeDateFirst.Size = new System.Drawing.Size(133, 20);
 			this.OfficeDateFirst.TabIndex = 48;
 			this.OfficeDateFirst.Visible = false;
-			this.OfficeDateFirst.CloseUp += new System.EventHandler(this.radioButton3_Click);
+			this.OfficeDateFirst.CloseUp += new System.EventHandler(this.FindOfficeRadio_Click);
 			// 
 			// OfficeDateLast
 			// 
@@ -248,7 +248,7 @@
 			this.OfficeDateLast.Size = new System.Drawing.Size(133, 20);
 			this.OfficeDateLast.TabIndex = 47;
 			this.OfficeDateLast.Visible = false;
-			this.OfficeDateLast.CloseUp += new System.EventHandler(this.radioButton3_Click);
+			this.OfficeDateLast.CloseUp += new System.EventHandler(this.FindOfficeRadio_Click);
 			// 
 			// OfficeValue
 			// 
@@ -256,7 +256,7 @@
 			this.OfficeValue.Name = "OfficeValue";
 			this.OfficeValue.Size = new System.Drawing.Size(260, 20);
 			this.OfficeValue.TabIndex = 46;
-			this.OfficeValue.TextChanged += new System.EventHandler(this.radioButton3_Click);
+			this.OfficeValue.TextChanged += new System.EventHandler(this.FindOfficeRadio_Click);
 			// 
 			// OfficeValueCombo
 			// 
@@ -266,7 +266,7 @@
 			this.OfficeValueCombo.Size = new System.Drawing.Size(260, 21);
 			this.OfficeValueCombo.TabIndex = 45;
 			this.OfficeValueCombo.Visible = false;
-			this.OfficeValueCombo.SelectedIndexChanged += new System.EventHandler(this.radioButton3_Click);
+			this.OfficeValueCombo.SelectedIndexChanged += new System.EventHandler(this.FindOfficeRadio_Click);
 			// 
 			// OfficeField
 			// 
@@ -275,7 +275,7 @@
 			this.OfficeField.Name = "OfficeField";
 			this.OfficeField.Size = new System.Drawing.Size(133, 21);
 			this.OfficeField.TabIndex = 44;
-			this.OfficeField.SelectedIndexChanged += new System.EventHandler(this.comboBox7_SelectedIndexChanged);
+			this.OfficeField.SelectedIndexChanged += new System.EventHandler(this.OfficeField_SelectedIndexChanged);
 			// 
 			// FindOfficeRadio
 			// 
@@ -288,7 +288,7 @@
 			this.FindOfficeRadio.TabStop = true;
 			this.FindOfficeRadio.Text = "              Поиск офисов по";
 			this.FindOfficeRadio.UseVisualStyleBackColor = true;
-			this.FindOfficeRadio.Click += new System.EventHandler(this.radioButton3_Click);
+			this.FindOfficeRadio.Click += new System.EventHandler(this.FindOfficeRadio_Click);
 			// 
 			// RepresDateFirst
 			// 
@@ -297,7 +297,7 @@
 			this.RepresDateFirst.Size = new System.Drawing.Size(133, 20);
 			this.RepresDateFirst.TabIndex = 42;
 			this.RepresDateFirst.Visible = false;
-			this.RepresDateFirst.CloseUp += new System.EventHandler(this.radioButton2_Click);
+			this.RepresDateFirst.CloseUp += new System.EventHandler(this.FindRepRadio_Click);
 			// 
 			// RepresDateLast
 			// 
@@ -306,7 +306,7 @@
 			this.RepresDateLast.Size = new System.Drawing.Size(133, 20);
 			this.RepresDateLast.TabIndex = 41;
 			this.RepresDateLast.Visible = false;
-			this.RepresDateLast.CloseUp += new System.EventHandler(this.radioButton2_Click);
+			this.RepresDateLast.CloseUp += new System.EventHandler(this.FindRepRadio_Click);
 			// 
 			// RepresValue
 			// 
@@ -314,7 +314,7 @@
 			this.RepresValue.Name = "RepresValue";
 			this.RepresValue.Size = new System.Drawing.Size(260, 20);
 			this.RepresValue.TabIndex = 40;
-			this.RepresValue.TextChanged += new System.EventHandler(this.radioButton2_Click);
+			this.RepresValue.TextChanged += new System.EventHandler(this.FindRepRadio_Click);
 			// 
 			// RepresValueCombo
 			// 
@@ -324,7 +324,7 @@
 			this.RepresValueCombo.Size = new System.Drawing.Size(260, 21);
 			this.RepresValueCombo.TabIndex = 39;
 			this.RepresValueCombo.Visible = false;
-			this.RepresValueCombo.SelectedIndexChanged += new System.EventHandler(this.radioButton2_Click);
+			this.RepresValueCombo.SelectedIndexChanged += new System.EventHandler(this.FindRepRadio_Click);
 			// 
 			// RepresField
 			// 
@@ -333,7 +333,7 @@
 			this.RepresField.Name = "RepresField";
 			this.RepresField.Size = new System.Drawing.Size(133, 21);
 			this.RepresField.TabIndex = 38;
-			this.RepresField.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+			this.RepresField.SelectedIndexChanged += new System.EventHandler(this.RepresField_SelectedIndexChanged);
 			// 
 			// FindRepRadio
 			// 
@@ -346,7 +346,7 @@
 			this.FindRepRadio.TabStop = true;
 			this.FindRepRadio.Text = "Поиск представителей по";
 			this.FindRepRadio.UseVisualStyleBackColor = true;
-			this.FindRepRadio.Click += new System.EventHandler(this.radioButton2_Click);
+			this.FindRepRadio.Click += new System.EventHandler(this.FindRepRadio_Click);
 			// 
 			// DateClientLast
 			// 
@@ -355,7 +355,7 @@
 			this.DateClientLast.Size = new System.Drawing.Size(133, 20);
 			this.DateClientLast.TabIndex = 35;
 			this.DateClientLast.Visible = false;
-			this.DateClientLast.CloseUp += new System.EventHandler(this.radioButton1_CheckedChanged_1);
+			this.DateClientLast.CloseUp += new System.EventHandler(this.FindClientRadio_CheckedChanged);
 			// 
 			// DateClientFirst
 			// 
@@ -364,7 +364,7 @@
 			this.DateClientFirst.Size = new System.Drawing.Size(133, 20);
 			this.DateClientFirst.TabIndex = 34;
 			this.DateClientFirst.Visible = false;
-			this.DateClientFirst.CloseUp += new System.EventHandler(this.radioButton1_CheckedChanged_1);
+			this.DateClientFirst.CloseUp += new System.EventHandler(this.FindClientRadio_CheckedChanged);
 			// 
 			// ClientValue
 			// 
@@ -372,7 +372,7 @@
 			this.ClientValue.Name = "ClientValue";
 			this.ClientValue.Size = new System.Drawing.Size(260, 20);
 			this.ClientValue.TabIndex = 33;
-			this.ClientValue.TextChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
+			this.ClientValue.TextChanged += new System.EventHandler(this.FindClientRadio_CheckedChanged);
 			// 
 			// ClientValueCombo
 			// 
@@ -382,7 +382,7 @@
 			this.ClientValueCombo.Size = new System.Drawing.Size(260, 21);
 			this.ClientValueCombo.TabIndex = 32;
 			this.ClientValueCombo.Visible = false;
-			this.ClientValueCombo.SelectedIndexChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
+			this.ClientValueCombo.SelectedIndexChanged += new System.EventHandler(this.FindClientRadio_CheckedChanged);
 			// 
 			// label2
 			// 
@@ -400,7 +400,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(856, 527);
 			this.Controls.Add(this.groupBox1);
-			this.Controls.Add(this.DataRecords);
+			this.Controls.Add(this.DataGridView);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximumSize = new System.Drawing.Size(872, 720);
 			this.Name = "Поиск";
@@ -409,7 +409,7 @@
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Поиск_FormClosed);
 			this.Load += new System.EventHandler(this.Поиск_Load);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Поиск_MouseUp);
-			((System.ComponentModel.ISupportInitialize)(this.DataRecords)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -419,7 +419,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView DataRecords;
+        private System.Windows.Forms.DataGridView DataGridView;
 		private System.Windows.Forms.Button Print;
 		private System.Windows.Forms.RadioButton AllClientRadio;
 		private System.Windows.Forms.RadioButton AllOfficeRadio;

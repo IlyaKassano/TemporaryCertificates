@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Параметры_поиска : Form
     {
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication5
 			this.ExactFindCheck.TabIndex = 0;
 			this.ExactFindCheck.Text = "Точный поиск";
 			this.ExactFindCheck.UseVisualStyleBackColor = true;
-			this.ExactFindCheck.Click += new System.EventHandler(this.checkBox1_Click);
+			this.ExactFindCheck.Click += new System.EventHandler(this.ExactFindCheck_Click);
 			// 
 			// NotExactCheck
 			// 
@@ -61,7 +61,7 @@ namespace WindowsFormsApplication5
 			this.NotExactCheck.TabIndex = 1;
 			this.NotExactCheck.Text = "Неточный поиск";
 			this.NotExactCheck.UseVisualStyleBackColor = true;
-			this.NotExactCheck.Click += new System.EventHandler(this.checkBox2_Click);
+			this.NotExactCheck.Click += new System.EventHandler(this.NotExactFindCheck_Click);
 			// 
 			// ExactDateCheck
 			// 
@@ -72,7 +72,7 @@ namespace WindowsFormsApplication5
 			this.ExactDateCheck.TabIndex = 2;
 			this.ExactDateCheck.Text = "Поиск по конкретной дате";
 			this.ExactDateCheck.UseVisualStyleBackColor = true;
-			this.ExactDateCheck.Click += new System.EventHandler(this.checkBox3_Click);
+			this.ExactDateCheck.Click += new System.EventHandler(this.ExactDateCheck_Click);
 			// 
 			// RangeDateCheck
 			// 
@@ -83,7 +83,7 @@ namespace WindowsFormsApplication5
 			this.RangeDateCheck.TabIndex = 3;
 			this.RangeDateCheck.Text = "Поиск по диапазону дат";
 			this.RangeDateCheck.UseVisualStyleBackColor = true;
-			this.RangeDateCheck.Click += new System.EventHandler(this.checkBox4_Click);
+			this.RangeDateCheck.Click += new System.EventHandler(this.RangeDateCheck_Click);
 			// 
 			// TypeValueCheck
 			// 
@@ -139,25 +139,25 @@ namespace WindowsFormsApplication5
 				RangeDateCheck.Checked = true;
 		}
 
-		private void checkBox1_Click(object sender, EventArgs e)
+		private void ExactFindCheck_Click(object sender, EventArgs e)
 		{
 			NotExactCheck.Checked = false;
 			typeSearchString = false;
 		}
 
-		private void checkBox2_Click(object sender, EventArgs e)
+		private void NotExactFindCheck_Click(object sender, EventArgs e)
 		{
 			ExactFindCheck.Checked = false;
 			typeSearchString = true;
 		}
 
-		private void checkBox3_Click(object sender, EventArgs e)
+		private void ExactDateCheck_Click(object sender, EventArgs e)
 		{
 			RangeDateCheck.Checked = false;
 			typeSearchDate = false;
 		}
 
-		private void checkBox4_Click(object sender, EventArgs e)
+		private void RangeDateCheck_Click(object sender, EventArgs e)
 		{
 			ExactDateCheck.Checked = false;
 			typeSearchDate = true;

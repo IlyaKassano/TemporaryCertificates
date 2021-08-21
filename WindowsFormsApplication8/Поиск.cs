@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Поиск : Form
     {
@@ -18,14 +18,14 @@ namespace WindowsFormsApplication5
 
         private void resize()
         {
-            DataRecords.AutoResizeColumns();
-            DataRecords.CurrentCell = null;
+            DataGridView.AutoResizeColumns();
+            DataGridView.CurrentCell = null;
             int width = this.Size.Width;
-            int height = groupBox1.Size.Height + DataRecords.PreferredSize.Height + 71;
+            int height = groupBox1.Size.Height + DataGridView.PreferredSize.Height + 71;
             System.Drawing.Size form_size = new System.Drawing.Size(width, height);
-            System.Drawing.Size dg_size = new System.Drawing.Size(DataRecords.Size.Width, DataRecords.PreferredSize.Height);
+            System.Drawing.Size dg_size = new System.Drawing.Size(DataGridView.Size.Width, DataGridView.PreferredSize.Height);
 
-            DataRecords.Size = dg_size;
+            DataGridView.Size = dg_size;
             this.Size = form_size;
         }
 
@@ -56,14 +56,14 @@ namespace WindowsFormsApplication5
 
             PsqlData.Table_Fill("Поиск_клиент", sql);
 
-            DataRecords.DataSource = Tables["Поиск_клиент"];
+            DataGridView.DataSource = Tables["Поиск_клиент"];
             Tables["Поиск_клиент"].DefaultView.RowFilter = "";
             //dataGridView1.Columns[0].Visible = false;
-            DataRecords.BackgroundColor = SystemColors.Control;
-            DataRecords.BorderStyle = BorderStyle.None;
-            DataRecords.RowHeadersVisible = false;
-            DataRecords.AllowUserToAddRows = false;
-            DataRecords.Enabled = true;
+            DataGridView.BackgroundColor = SystemColors.Control;
+            DataGridView.BorderStyle = BorderStyle.None;
+            DataGridView.RowHeadersVisible = false;
+            DataGridView.AllowUserToAddRows = false;
+            DataGridView.Enabled = true;
 
             resize();
 
@@ -104,11 +104,11 @@ namespace WindowsFormsApplication5
             else if (OfficeDateFirst.Visible)
                 OfficeDateLast.Visible = Параметры_поиска.typeSearchDate;
 
-            DataRecords.AutoResizeColumns();
-            DataRecords.CurrentCell = null;
+            DataGridView.AutoResizeColumns();
+            DataGridView.CurrentCell = null;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Print_Click(object sender, EventArgs e)
         {
             Excel.Application Excel_ = new Excel.Application();
             Excel_.Visible = true;
@@ -118,14 +118,14 @@ namespace WindowsFormsApplication5
 
             int i, j;
 
-            for (j = 0; j < DataRecords.Columns.Count; j++)
+            for (j = 0; j < DataGridView.Columns.Count; j++)
             {
-                Sheet_.Cells[1, j + 1].Value = DataRecords.Columns[j].HeaderText;
+                Sheet_.Cells[1, j + 1].Value = DataGridView.Columns[j].HeaderText;
             }
 
-            for (i = 0; i < DataRecords.Rows.Count; i++)
-                for (j = 0; j < DataRecords.Columns.Count; j++)
-                    Sheet_.Cells[i + 2, j + 1].Value = DataRecords.Rows[i].Cells[j].Value;
+            for (i = 0; i < DataGridView.Rows.Count; i++)
+                for (j = 0; j < DataGridView.Columns.Count; j++)
+                    Sheet_.Cells[i + 2, j + 1].Value = DataGridView.Rows[i].Cells[j].Value;
 
             Sheet_.Range[Sheet_.Cells[1, 1], Sheet_.Cells[i + 1, j]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
             Sheet_.Cells.Columns.EntireColumn.AutoFit();
@@ -137,39 +137,39 @@ namespace WindowsFormsApplication5
         {
         }
 
-        private void radioButton8_CheckedChanged(object sender, EventArgs e)
+        private void AllClientRadio_CheckedChanged(object sender, EventArgs e)
         {
             //dataGridView1.Columns.Clear();
-            DataRecords.DataSource = Tables["Поиск_клиент"];
+            DataGridView.DataSource = Tables["Поиск_клиент"];
             Tables["Поиск_клиент"].DefaultView.RowFilter = "";
             resize();
         }
 
-        private void radioButton10_CheckedChanged(object sender, EventArgs e)
+        private void AllRepRadio_CheckedChanged(object sender, EventArgs e)
         {
             //dataGridView1.Columns.Clear();
-            DataRecords.DataSource = Tables["Поиск_представитель"];
+            DataGridView.DataSource = Tables["Поиск_представитель"];
             Tables["Поиск_представитель"].DefaultView.RowFilter = "";
             resize();
         }
 
-        private void radioButton9_CheckedChanged(object sender, EventArgs e)
+        private void AllOfficeRadio_CheckedChanged(object sender, EventArgs e)
         {
             //dataGridView1.Columns.Clear();
-            DataRecords.DataSource = Tables["Поиск_офис"];
+            DataGridView.DataSource = Tables["Поиск_офис"];
             Tables["Поиск_офис"].DefaultView.RowFilter = "";
             resize();
         }
 
-        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
+        private void FindClientRadio_CheckedChanged(object sender, EventArgs e)
         {
-            Elements el_values = new Elements(ClientValue, ClientValueCombo, DateClientFirst, DateClientLast, ClientField);
+            ElementsChoose el_values = new ElementsChoose(ClientValue, ClientValueCombo, DateClientFirst, DateClientLast, ClientField);
             FindClientRadio.Checked = true;
 
             if (ClientValue.Text == "" && ClientValue.Visible)
                 return;
 
-            if (el_values.comboBoxSel_el.Text == "")
+            if (el_values.OfficeField.Text == "")
             {
                 MessageBox.Show("Вы не выбрали поле для поиска клиента!", "Ошибка");
                 return;
@@ -177,7 +177,7 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Поиск_клиент"].Columns.Count; i++)
             {
-                if (Tables["Поиск_клиент"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
+                if (Tables["Поиск_клиент"].Columns[i].ColumnName == el_values.OfficeField.Text)
                     break;
 
                 if (i == Tables["Поиск_клиент"].Columns.Count - 1)
@@ -187,61 +187,61 @@ namespace WindowsFormsApplication5
                 }
             }
 
-            DataRecords.DataSource = Tables["Поиск_клиент"];
-            el_values.search(el_values, 0, FindClientRadio);
+            DataGridView.DataSource = Tables["Поиск_клиент"];
+            el_values.Search(FindClientRadio);
             resize();
         }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void ClientField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Elements elements = new Elements(ClientValue, ClientValueCombo, DateClientFirst, DateClientLast, ClientField);
-            string[] items = new Massives().items;
+            ElementsChoose elements = new ElementsChoose(ClientValue, ClientValueCombo, DateClientFirst, DateClientLast, ClientField);
+            string[] items = new Massives().docItems;
 
-            switch (elements.comboBoxSel_el.SelectedItem)
+            switch (elements.OfficeField.SelectedItem)
             {
                 case "Код клиента":
-                    elements.choose_element(1, 1);
+                    elements.Choose_element(1, 1);
                     break;
                 case "Клиент":
-                    elements.choose_element(2, 1);
+                    elements.Choose_element(2, 1);
                     for (int i = 0; i < Tables["Поиск_клиент"].Rows.Count; i++)
                     {
-                        elements.comboBox_el.Items.Add(Tables["Поиск_клиент"].Rows[i]["Клиент"].ToString());
+                        elements.OfficeValueCombo.Items.Add(Tables["Поиск_клиент"].Rows[i]["Клиент"].ToString());
                     }
                     break;
                 case "Пол":
-                    elements.choose_element(2, 1);
-                    elements.comboBox_el.Items.Add("Мужской");
-                    elements.comboBox_el.Items.Add("Женский");
+                    elements.Choose_element(2, 1);
+                    elements.OfficeValueCombo.Items.Add("Мужской");
+                    elements.OfficeValueCombo.Items.Add("Женский");
                     break;
                 case "Телефон":
-                    elements.choose_element(1, 1);
-                    elements.textBox_el.Text = "+7 (777) 777-77-77";
+                    elements.Choose_element(1, 1);
+                    elements.OfficeValue.Text = "+7 (777) 777-77-77";
                     break;
                 case "Адрес":
-                    elements.choose_element(1, 1);
+                    elements.Choose_element(1, 1);
                     break;
                 case "СНИЛС":
-                    elements.choose_element(1, 1);
+                    elements.Choose_element(1, 1);
                     break;
                 case "Тип документа удост. личн.":
-                    elements.choose_element(2, 1);
-                    elements.comboBox_el.Items.AddRange(items);
+                    elements.Choose_element(2, 1);
+                    elements.OfficeValueCombo.Items.AddRange(items);
                     break;
                 case "Серия и номер":
-                    elements.choose_element(1, 1);
+                    elements.Choose_element(1, 1);
                     break;
                 case "Дата рождения":
-                    elements.choose_element(3, 1);
+                    elements.Choose_element(3, 1);
                     break;
                 case "Место рождения":
-                    elements.choose_element(1, 1);
+                    elements.Choose_element(1, 1);
                     break;
                 case "Дата выдачи":
-                    elements.choose_element(3, 1);
+                    elements.Choose_element(3, 1);
                     break;
                 case "Дата окончания дейст.":
-                    elements.choose_element(3, 1);
+                    elements.Choose_element(3, 1);
                     break;
                 case "Выдан":
                     break;
@@ -249,15 +249,15 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void radioButton2_Click(object sender, EventArgs e)
+        private void FindRepRadio_Click(object sender, EventArgs e)
         {
-            Elements el_values = new Elements(RepresValue, RepresValueCombo, RepresDateFirst, RepresDateLast, RepresField);
+            ElementsChoose el_values = new ElementsChoose(RepresValue, RepresValueCombo, RepresDateFirst, RepresDateLast, RepresField);
             FindRepRadio.Checked = true;
 
             if (RepresValue.Text == "" && RepresValue.Visible)
                 return;
 
-            if (el_values.comboBoxSel_el.Text == "")
+            if (el_values.OfficeField.Text == "")
             {
                 MessageBox.Show("Вы не выбрали поле для поиска представителя!", "Ошибка");
                 return;
@@ -265,7 +265,7 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Поиск_представитель"].Columns.Count; i++)
             {
-                if (Tables["Поиск_представитель"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
+                if (Tables["Поиск_представитель"].Columns[i].ColumnName == el_values.OfficeField.Text)
                     break;
 
                 if (i == Tables["Поиск_представитель"].Columns.Count - 1)
@@ -275,20 +275,20 @@ namespace WindowsFormsApplication5
                 }
             }
 
-            DataRecords.DataSource = Tables["Поиск_представитель"];
-            el_values.search(el_values, 1, FindRepRadio);
+            DataGridView.DataSource = Tables["Поиск_представитель"];
+            el_values.Search(FindRepRadio);
             resize();
         }
 
-        private void radioButton3_Click(object sender, EventArgs e)
+        private void FindOfficeRadio_Click(object sender, EventArgs e)
         {
-            Elements el_values = new Elements(OfficeValue, OfficeValueCombo, OfficeDateFirst, OfficeDateLast, OfficeField);
+            ElementsChoose el_values = new ElementsChoose(OfficeValue, OfficeValueCombo, OfficeDateFirst, OfficeDateLast, OfficeField);
             FindOfficeRadio.Checked = true;
 
             if (OfficeValue.Text == "" && OfficeValue.Visible)
                 return;
 
-            if (el_values.comboBoxSel_el.Text == "")
+            if (el_values.OfficeField.Text == "")
             {
                 MessageBox.Show("Вы не выбрали поле для поиска офиса!", "Ошибка");
                 return;
@@ -296,7 +296,7 @@ namespace WindowsFormsApplication5
 
             for (int i = 0; i < Tables["Поиск_офис"].Columns.Count; i++)
             {
-                if (Tables["Поиск_офис"].Columns[i].ColumnName == el_values.comboBoxSel_el.Text)
+                if (Tables["Поиск_офис"].Columns[i].ColumnName == el_values.OfficeField.Text)
                     break;
 
                 if (i == Tables["Поиск_офис"].Columns.Count - 1)
@@ -306,82 +306,82 @@ namespace WindowsFormsApplication5
                 }
             }
 
-            DataRecords.DataSource = Tables["Поиск_офис"];
-            el_values.search(el_values, 2, FindOfficeRadio);
+            DataGridView.DataSource = Tables["Поиск_офис"];
+            el_values.Search(FindOfficeRadio);
             resize();
         }
 
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        private void RepresField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Elements elements = new Elements(RepresValue, RepresValueCombo, RepresDateFirst, RepresDateLast, RepresField);
+            ElementsChoose elements = new ElementsChoose(RepresValue, RepresValueCombo, RepresDateFirst, RepresDateLast, RepresField);
 
-            switch (elements.comboBoxSel_el.SelectedItem)
+            switch (elements.OfficeField.SelectedItem)
             {
                 case "Код представителя":
-                    elements.choose_element(1, 2);
+                    elements.Choose_element(1, 2);
                     break;
                 case "Представитель":
-                    elements.choose_element(2, 2);
+                    elements.Choose_element(2, 2);
                     for (int i = 0; i < Tables["Поиск_представитель"].Rows.Count; i++)
                     {
-                        elements.comboBox_el.Items.Add(Tables["Поиск_представитель"].Rows[i]["Представитель"].ToString());
+                        elements.OfficeValueCombo.Items.Add(Tables["Поиск_представитель"].Rows[i]["Представитель"].ToString());
                     }
                     break;
                 case "Пол":
-                    elements.choose_element(2, 2);
-                    elements.comboBox_el.Items.Add("Мужской");
-                    elements.comboBox_el.Items.Add("Женский");
+                    elements.Choose_element(2, 2);
+                    elements.OfficeValueCombo.Items.Add("Мужской");
+                    elements.OfficeValueCombo.Items.Add("Женский");
                     break;
                 case "Телефон":
-                    elements.choose_element(1, 2);
-                    elements.textBox_el.Text = "+7 (777) 777-77-77";
+                    elements.Choose_element(1, 2);
+                    elements.OfficeValue.Text = "+7 (777) 777-77-77";
                     break;
                 case "Адрес":
-                    elements.choose_element(1, 2);
+                    elements.Choose_element(1, 2);
                     break;
                 case "Офис":
-                    elements.choose_element(2, 2);
+                    elements.Choose_element(2, 2);
                     for (int i = 0; i < Tables["Поиск_офис"].Rows.Count; i++)
                     {
-                        elements.comboBox_el.Items.Add(Tables["Поиск_офис"].Rows[i]["Наименование"]);
+                        elements.OfficeValueCombo.Items.Add(Tables["Поиск_офис"].Rows[i]["Наименование"]);
                     }
                     break;
                 default: break;
             }
         }
 
-        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        private void OfficeField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Elements elements = new Elements(OfficeValue, OfficeValueCombo, OfficeDateFirst, OfficeDateLast, OfficeField);
+            ElementsChoose elements = new ElementsChoose(OfficeValue, OfficeValueCombo, OfficeDateFirst, OfficeDateLast, OfficeField);
 
-            switch (elements.comboBoxSel_el.SelectedItem)
+            switch (elements.OfficeField.SelectedItem)
             {
                 case "Код офиса":
-                    elements.choose_element(1, 3);
+                    elements.Choose_element(1, 3);
                     break;
                 case "Наименование":
-                    elements.choose_element(2, 3);
+                    elements.Choose_element(2, 3);
                     for (int i = 0; i < Tables["Поиск_офис"].Rows.Count; i++)
                     {
-                        elements.comboBox_el.Items.Add(Tables["Поиск_офис"].Rows[i]["Наименование"]);
+                        elements.OfficeValueCombo.Items.Add(Tables["Поиск_офис"].Rows[i]["Наименование"]);
                     }
                     break;
                 case "Телефон":
-                    elements.choose_element(1, 3);
-                    elements.textBox_el.Text = "+7 (777) 777-77-77";
+                    elements.Choose_element(1, 3);
+                    elements.OfficeValue.Text = "+7 (777) 777-77-77";
                     break;
                 case "Адрес":
-                    elements.choose_element(1, 3);
+                    elements.Choose_element(1, 3);
                     break;
                 default: break;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void EditField_Click(object sender, EventArgs e)
         {
-            int kod = Convert.ToInt32(DataRecords.Rows[n].Cells[0].Value); 
+            int kod = Convert.ToInt32(DataGridView.Rows[n].Cells[0].Value); 
 
-            switch (DataRecords.Columns[0].HeaderText)
+            switch (DataGridView.Columns[0].HeaderText)
             {
                 case "Код клиента":
                     Клиенты клиенты = new Клиенты(kod);
@@ -399,9 +399,9 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            n = DataRecords.CurrentRow.Index;
+            n = DataGridView.CurrentRow.Index;
         }
 
         private void Поиск_FormClosed(object sender, FormClosedEventArgs e)
@@ -409,7 +409,7 @@ namespace WindowsFormsApplication5
             n = -1;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void SettingFind_Click(object sender, EventArgs e)
         {
             Параметры_поиска параметры = new Параметры_поиска();
             параметры.Show();

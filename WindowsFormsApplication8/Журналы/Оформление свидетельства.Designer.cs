@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
     partial class Оформление_сертификата
     {
@@ -32,19 +32,19 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Оформление_сертификата));
 			this.label3 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.Save = new System.Windows.Forms.Button();
+			this.SaveButton = new System.Windows.Forms.Button();
 			this.DateStart = new System.Windows.Forms.DateTimePicker();
 			this.DateEnd = new System.Windows.Forms.DateTimePicker();
 			this.label2 = new System.Windows.Forms.Label();
 			this.KodSert = new System.Windows.Forms.TextBox();
-			this.CreateRepres = new System.Windows.Forms.Button();
+			this.AddRepres = new System.Windows.Forms.Button();
 			this.label10 = new System.Windows.Forms.Label();
 			this.RepresCombo = new System.Windows.Forms.ComboBox();
 			this.OfficeCombo = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.CreateOffice = new System.Windows.Forms.Button();
+			this.AddOffice = new System.Windows.Forms.Button();
 			this.ClientCombo = new System.Windows.Forms.ComboBox();
-			this.CreateClient = new System.Windows.Forms.Button();
+			this.AddClient = new System.Windows.Forms.Button();
 			this.label7 = new System.Windows.Forms.Label();
 			this.Print = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
@@ -70,16 +70,16 @@
 			this.label1.TabIndex = 61;
 			this.label1.Text = "Представитель:";
 			// 
-			// Save
+			// SaveButton
 			// 
-			this.Save.Location = new System.Drawing.Point(220, 285);
-			this.Save.Name = "Save";
-			this.Save.Size = new System.Drawing.Size(168, 40);
-			this.Save.TabIndex = 74;
-			this.Save.Text = "Сохранить оформление ВС";
-			this.toolTip1.SetToolTip(this.Save, "Сохранить оформление временного свидетельства");
-			this.Save.UseVisualStyleBackColor = true;
-			this.Save.Click += new System.EventHandler(this.button1_Click);
+			this.SaveButton.Location = new System.Drawing.Point(220, 285);
+			this.SaveButton.Name = "SaveButton";
+			this.SaveButton.Size = new System.Drawing.Size(168, 40);
+			this.SaveButton.TabIndex = 74;
+			this.SaveButton.Text = "Сохранить оформление ВС";
+			this.toolTip1.SetToolTip(this.SaveButton, "Сохранить оформление временного свидетельства");
+			this.SaveButton.UseVisualStyleBackColor = true;
+			this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
 			// 
 			// DateStart
 			// 
@@ -115,16 +115,16 @@
 			this.KodSert.Size = new System.Drawing.Size(129, 20);
 			this.KodSert.TabIndex = 83;
 			// 
-			// CreateRepres
+			// AddRepres
 			// 
-			this.CreateRepres.Location = new System.Drawing.Point(448, 192);
-			this.CreateRepres.MaximumSize = new System.Drawing.Size(152, 50);
-			this.CreateRepres.Name = "CreateRepres";
-			this.CreateRepres.Size = new System.Drawing.Size(152, 23);
-			this.CreateRepres.TabIndex = 112;
-			this.CreateRepres.Text = "Добавить представителя";
-			this.CreateRepres.UseVisualStyleBackColor = true;
-			this.CreateRepres.Click += new System.EventHandler(this.button2_Click_1);
+			this.AddRepres.Location = new System.Drawing.Point(448, 192);
+			this.AddRepres.MaximumSize = new System.Drawing.Size(152, 50);
+			this.AddRepres.Name = "AddRepres";
+			this.AddRepres.Size = new System.Drawing.Size(152, 23);
+			this.AddRepres.TabIndex = 112;
+			this.AddRepres.Text = "Добавить представителя";
+			this.AddRepres.UseVisualStyleBackColor = true;
+			this.AddRepres.Click += new System.EventHandler(this.AddRepres_Click);
 			// 
 			// label10
 			// 
@@ -142,7 +142,7 @@
 			this.RepresCombo.Name = "RepresCombo";
 			this.RepresCombo.Size = new System.Drawing.Size(273, 21);
 			this.RepresCombo.TabIndex = 113;
-			this.RepresCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+			this.RepresCombo.SelectedIndexChanged += new System.EventHandler(this.RepresCombo_SelectedIndexChanged);
 			// 
 			// OfficeCombo
 			// 
@@ -162,16 +162,16 @@
 			this.label6.TabIndex = 118;
 			this.label6.Text = "Номер свидетельства:";
 			// 
-			// CreateOffice
+			// AddOffice
 			// 
-			this.CreateOffice.Location = new System.Drawing.Point(448, 234);
-			this.CreateOffice.MaximumSize = new System.Drawing.Size(152, 50);
-			this.CreateOffice.Name = "CreateOffice";
-			this.CreateOffice.Size = new System.Drawing.Size(152, 23);
-			this.CreateOffice.TabIndex = 120;
-			this.CreateOffice.Text = "Добавить офис";
-			this.CreateOffice.UseVisualStyleBackColor = true;
-			this.CreateOffice.Click += new System.EventHandler(this.button3_Click);
+			this.AddOffice.Location = new System.Drawing.Point(448, 234);
+			this.AddOffice.MaximumSize = new System.Drawing.Size(152, 50);
+			this.AddOffice.Name = "AddOffice";
+			this.AddOffice.Size = new System.Drawing.Size(152, 23);
+			this.AddOffice.TabIndex = 120;
+			this.AddOffice.Text = "Добавить офис";
+			this.AddOffice.UseVisualStyleBackColor = true;
+			this.AddOffice.Click += new System.EventHandler(this.AddOffice_Click);
 			// 
 			// ClientCombo
 			// 
@@ -181,16 +181,16 @@
 			this.ClientCombo.Size = new System.Drawing.Size(273, 21);
 			this.ClientCombo.TabIndex = 123;
 			// 
-			// CreateClient
+			// AddClient
 			// 
-			this.CreateClient.Location = new System.Drawing.Point(448, 151);
-			this.CreateClient.MaximumSize = new System.Drawing.Size(152, 50);
-			this.CreateClient.Name = "CreateClient";
-			this.CreateClient.Size = new System.Drawing.Size(152, 23);
-			this.CreateClient.TabIndex = 122;
-			this.CreateClient.Text = "Добавить клиента";
-			this.CreateClient.UseVisualStyleBackColor = true;
-			this.CreateClient.Click += new System.EventHandler(this.button4_Click);
+			this.AddClient.Location = new System.Drawing.Point(448, 151);
+			this.AddClient.MaximumSize = new System.Drawing.Size(152, 50);
+			this.AddClient.Name = "AddClient";
+			this.AddClient.Size = new System.Drawing.Size(152, 23);
+			this.AddClient.TabIndex = 122;
+			this.AddClient.Text = "Добавить клиента";
+			this.AddClient.UseVisualStyleBackColor = true;
+			this.AddClient.Click += new System.EventHandler(this.AddClient_Click);
 			// 
 			// label7
 			// 
@@ -209,7 +209,7 @@
 			this.Print.TabIndex = 124;
 			this.Print.Text = "Печать";
 			this.Print.UseVisualStyleBackColor = true;
-			this.Print.Click += new System.EventHandler(this.button5_Click);
+			this.Print.Click += new System.EventHandler(this.Print_Click);
 			// 
 			// label4
 			// 
@@ -240,19 +240,19 @@
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.Print);
 			this.Controls.Add(this.ClientCombo);
-			this.Controls.Add(this.CreateClient);
+			this.Controls.Add(this.AddClient);
 			this.Controls.Add(this.label7);
-			this.Controls.Add(this.CreateOffice);
+			this.Controls.Add(this.AddOffice);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.OfficeCombo);
 			this.Controls.Add(this.RepresCombo);
-			this.Controls.Add(this.CreateRepres);
+			this.Controls.Add(this.AddRepres);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.KodSert);
 			this.Controls.Add(this.DateEnd);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.DateStart);
-			this.Controls.Add(this.Save);
+			this.Controls.Add(this.SaveButton);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -269,19 +269,19 @@
         #endregion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.DateTimePicker DateStart;
         private System.Windows.Forms.DateTimePicker DateEnd;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox KodSert;
-        private System.Windows.Forms.Button CreateRepres;
+        private System.Windows.Forms.Button AddRepres;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox RepresCombo;
         private System.Windows.Forms.ComboBox OfficeCombo;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button CreateOffice;
+        private System.Windows.Forms.Button AddOffice;
 		private System.Windows.Forms.ComboBox ClientCombo;
-		private System.Windows.Forms.Button CreateClient;
+		private System.Windows.Forms.Button AddClient;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Button Print;
 		private System.Windows.Forms.Label label4;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
 	static class PsqlData
 	{

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
     partial class Настройка_паролей
     {
@@ -49,7 +49,7 @@
 			this.ChangePassButton.TabIndex = 0;
 			this.ChangePassButton.Text = "Изменить пароль";
 			this.ChangePassButton.UseVisualStyleBackColor = true;
-			this.ChangePassButton.Click += new System.EventHandler(this.button1_Click);
+			this.ChangePassButton.Click += new System.EventHandler(this.ChangePassword_Click);
 			// 
 			// label1
 			// 

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
 	partial class Представители
 	{
@@ -97,7 +97,7 @@
 			this.LastRecord.Text = ">>";
 			this.toolTip1.SetToolTip(this.LastRecord, "В конец");
 			this.LastRecord.UseVisualStyleBackColor = false;
-			this.LastRecord.Click += new System.EventHandler(this.button6_Click);
+			this.LastRecord.Click += new System.EventHandler(this.LastRecord_Click);
 			// 
 			// NextRecord
 			// 
@@ -110,7 +110,7 @@
 			this.NextRecord.Text = ">";
 			this.toolTip1.SetToolTip(this.NextRecord, "Вперед");
 			this.NextRecord.UseVisualStyleBackColor = false;
-			this.NextRecord.Click += new System.EventHandler(this.button8_Click);
+			this.NextRecord.Click += new System.EventHandler(this.NextRecord_Click);
 			// 
 			// PrevRecord
 			// 
@@ -123,7 +123,7 @@
 			this.PrevRecord.Text = "<";
 			this.toolTip1.SetToolTip(this.PrevRecord, "Назад");
 			this.PrevRecord.UseVisualStyleBackColor = false;
-			this.PrevRecord.Click += new System.EventHandler(this.button10_Click);
+			this.PrevRecord.Click += new System.EventHandler(this.PrevRecord_Click);
 			// 
 			// FirstRecord
 			// 
@@ -136,7 +136,7 @@
 			this.FirstRecord.Text = "<<";
 			this.toolTip1.SetToolTip(this.FirstRecord, "В начало");
 			this.FirstRecord.UseVisualStyleBackColor = false;
-			this.FirstRecord.Click += new System.EventHandler(this.button11_Click);
+			this.FirstRecord.Click += new System.EventHandler(this.FirstRecord_Click);
 			// 
 			// SecondName
 			// 
@@ -193,7 +193,7 @@
 			this.SaveRecord.TabIndex = 80;
 			this.SaveRecord.Text = "Сохранить данные";
 			this.SaveRecord.UseVisualStyleBackColor = false;
-			this.SaveRecord.Click += new System.EventHandler(this.button7_Click);
+			this.SaveRecord.Click += new System.EventHandler(this.SaveRecord_Click);
 			// 
 			// DeleteRecord
 			// 
@@ -206,7 +206,7 @@
 			this.DeleteRecord.TabIndex = 77;
 			this.DeleteRecord.Text = "Удалить данные";
 			this.DeleteRecord.UseVisualStyleBackColor = false;
-			this.DeleteRecord.Click += new System.EventHandler(this.button9_Click);
+			this.DeleteRecord.Click += new System.EventHandler(this.DeleteRecord_Click);
 			// 
 			// label4
 			// 
@@ -292,7 +292,7 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = global::WindowsFormsApplication5.Properties.Resources.Makc_m;
+			this.pictureBox1.Image = global::TemporaryCertificates.Properties.Resources.Makc_m;
 			this.pictureBox1.Location = new System.Drawing.Point(269, 12);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(110, 50);

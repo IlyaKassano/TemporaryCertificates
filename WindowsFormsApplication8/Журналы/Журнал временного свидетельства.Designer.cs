@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
     partial class Журнал_временного_сертификата
     {
@@ -32,7 +32,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Журнал_временного_сертификата));
 			this.DeleteButton = new System.Windows.Forms.Button();
 			this.CreateButton = new System.Windows.Forms.Button();
-			this.DataRecords = new System.Windows.Forms.DataGridView();
+			this.DataGridView = new System.Windows.Forms.DataGridView();
 			this.EditButton = new System.Windows.Forms.Button();
 			this.PrintButton = new System.Windows.Forms.Button();
 			this.ValidRadio = new System.Windows.Forms.RadioButton();
@@ -50,7 +50,7 @@
 			this.OfficeCombo = new System.Windows.Forms.ComboBox();
 			this.OfficeRadio = new System.Windows.Forms.RadioButton();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			((System.ComponentModel.ISupportInitialize)(this.DataRecords)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// DeleteButton
@@ -62,7 +62,7 @@
 			this.DeleteButton.TabIndex = 7;
 			this.DeleteButton.Text = "Удалить свидетельство";
 			this.DeleteButton.UseVisualStyleBackColor = true;
-			this.DeleteButton.Click += new System.EventHandler(this.button3_Click);
+			this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
 			// 
 			// CreateButton
 			// 
@@ -73,18 +73,18 @@
 			this.CreateButton.TabIndex = 5;
 			this.CreateButton.Text = "Оформить новое свидетельство";
 			this.CreateButton.UseVisualStyleBackColor = true;
-			this.CreateButton.Click += new System.EventHandler(this.button1_Click);
+			this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
 			// 
-			// DataRecords
+			// DataGridView
 			// 
-			this.DataRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.DataRecords.Location = new System.Drawing.Point(11, 91);
-			this.DataRecords.Name = "DataRecords";
-			this.DataRecords.ReadOnly = true;
-			this.DataRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.DataRecords.Size = new System.Drawing.Size(846, 218);
-			this.DataRecords.TabIndex = 4;
-			this.DataRecords.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+			this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.DataGridView.Location = new System.Drawing.Point(11, 91);
+			this.DataGridView.Name = "DataGridView";
+			this.DataGridView.ReadOnly = true;
+			this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.DataGridView.Size = new System.Drawing.Size(846, 218);
+			this.DataGridView.TabIndex = 4;
+			this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
 			// 
 			// EditButton
 			// 
@@ -95,7 +95,7 @@
 			this.EditButton.TabIndex = 9;
 			this.EditButton.Text = "Редактировать свидетельство";
 			this.EditButton.UseVisualStyleBackColor = true;
-			this.EditButton.Click += new System.EventHandler(this.button2_Click_1);
+			this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
 			// 
 			// PrintButton
 			// 
@@ -106,7 +106,7 @@
 			this.PrintButton.TabIndex = 10;
 			this.PrintButton.Text = "Печать";
 			this.PrintButton.UseVisualStyleBackColor = true;
-			this.PrintButton.Click += new System.EventHandler(this.button4_Click);
+			this.PrintButton.Click += new System.EventHandler(this.PrintButton_Click);
 			// 
 			// ValidRadio
 			// 
@@ -118,7 +118,7 @@
 			this.ValidRadio.Text = "Действительные ВС";
 			this.toolTip1.SetToolTip(this.ValidRadio, "Действительные временные свидетельства");
 			this.ValidRadio.UseVisualStyleBackColor = true;
-			this.ValidRadio.Click += new System.EventHandler(this.radioButton1_CheckedChanged);
+			this.ValidRadio.Click += new System.EventHandler(this.ValidRadio_CheckedChanged);
 			// 
 			// NotValidRadio
 			// 
@@ -130,7 +130,7 @@
 			this.NotValidRadio.Text = "Недействительные ВС";
 			this.toolTip1.SetToolTip(this.NotValidRadio, "Недействительные временные свидетельства");
 			this.NotValidRadio.UseVisualStyleBackColor = true;
-			this.NotValidRadio.Click += new System.EventHandler(this.radioButton2_CheckedChanged);
+			this.NotValidRadio.Click += new System.EventHandler(this.NotValidRadio_CheckedChanged);
 			// 
 			// ExactDateRadio
 			// 
@@ -142,7 +142,7 @@
 			this.ExactDateRadio.Text = "По конкрет. дате:";
 			this.toolTip1.SetToolTip(this.ExactDateRadio, "По конкретной дате");
 			this.ExactDateRadio.UseVisualStyleBackColor = true;
-			this.ExactDateRadio.Click += new System.EventHandler(this.radioButton3_CheckedChanged);
+			this.ExactDateRadio.Click += new System.EventHandler(this.ExactDateRadio_CheckedChanged);
 			// 
 			// RangeDateRadio
 			// 
@@ -153,7 +153,7 @@
 			this.RangeDateRadio.TabIndex = 14;
 			this.RangeDateRadio.Text = "По диапазону дат:";
 			this.RangeDateRadio.UseVisualStyleBackColor = true;
-			this.RangeDateRadio.Click += new System.EventHandler(this.radioButton4_CheckedChanged);
+			this.RangeDateRadio.Click += new System.EventHandler(this.DatePickerSecond_CheckedChanged);
 			// 
 			// ClientRadio
 			// 
@@ -164,7 +164,7 @@
 			this.ClientRadio.TabIndex = 15;
 			this.ClientRadio.Text = "По клиенту:";
 			this.ClientRadio.UseVisualStyleBackColor = true;
-			this.ClientRadio.Click += new System.EventHandler(this.radioButton5_CheckedChanged);
+			this.ClientRadio.Click += new System.EventHandler(this.ClientRadio_CheckedChanged);
 			// 
 			// RepresRadio
 			// 
@@ -175,7 +175,7 @@
 			this.RepresRadio.TabIndex = 16;
 			this.RepresRadio.Text = "По представителю:";
 			this.RepresRadio.UseVisualStyleBackColor = true;
-			this.RepresRadio.Click += new System.EventHandler(this.radioButton6_CheckedChanged);
+			this.RepresRadio.Click += new System.EventHandler(this.RepresRadio_CheckedChanged);
 			// 
 			// DatePickerFirst
 			// 
@@ -185,7 +185,7 @@
 			this.DatePickerFirst.Name = "DatePickerFirst";
 			this.DatePickerFirst.Size = new System.Drawing.Size(200, 20);
 			this.DatePickerFirst.TabIndex = 17;
-			this.DatePickerFirst.ValueChanged += new System.EventHandler(this.radioButton3_CheckedChangedEvent);
+			this.DatePickerFirst.ValueChanged += new System.EventHandler(this.DatePickerFirst_CheckedChangedEvent);
 			// 
 			// DatePickerSecond
 			// 
@@ -194,7 +194,7 @@
 			this.DatePickerSecond.Name = "DatePickerSecond";
 			this.DatePickerSecond.Size = new System.Drawing.Size(200, 20);
 			this.DatePickerSecond.TabIndex = 18;
-			this.DatePickerSecond.ValueChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+			this.DatePickerSecond.ValueChanged += new System.EventHandler(this.DatePickerSecond_CheckedChanged);
 			// 
 			// ClientCombo
 			// 
@@ -203,7 +203,7 @@
 			this.ClientCombo.Name = "ClientCombo";
 			this.ClientCombo.Size = new System.Drawing.Size(222, 21);
 			this.ClientCombo.TabIndex = 19;
-			this.ClientCombo.SelectedIndexChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+			this.ClientCombo.SelectedIndexChanged += new System.EventHandler(this.ClientRadio_CheckedChanged);
 			// 
 			// RepresCombo
 			// 
@@ -212,7 +212,7 @@
 			this.RepresCombo.Name = "RepresCombo";
 			this.RepresCombo.Size = new System.Drawing.Size(222, 21);
 			this.RepresCombo.TabIndex = 20;
-			this.RepresCombo.SelectedIndexChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+			this.RepresCombo.SelectedIndexChanged += new System.EventHandler(this.RepresRadio_CheckedChanged);
 			// 
 			// AllRecords
 			// 
@@ -225,7 +225,7 @@
 			this.AllRecords.TabStop = true;
 			this.AllRecords.Text = "Все временные свидетельства";
 			this.AllRecords.UseVisualStyleBackColor = true;
-			this.AllRecords.Click += new System.EventHandler(this.radioButton7_CheckedChanged);
+			this.AllRecords.Click += new System.EventHandler(this.AllRecords_CheckedChanged);
 			// 
 			// DateTypeCombo
 			// 
@@ -238,7 +238,7 @@
 			this.DateTypeCombo.Size = new System.Drawing.Size(200, 21);
 			this.DateTypeCombo.TabIndex = 22;
 			this.DateTypeCombo.Text = "По дате начала действия";
-			this.DateTypeCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+			this.DateTypeCombo.SelectedIndexChanged += new System.EventHandler(this.DateTypeCombo_SelectedIndexChanged);
 			// 
 			// OfficeCombo
 			// 
@@ -247,7 +247,7 @@
 			this.OfficeCombo.Name = "OfficeCombo";
 			this.OfficeCombo.Size = new System.Drawing.Size(222, 21);
 			this.OfficeCombo.TabIndex = 24;
-			this.OfficeCombo.SelectedIndexChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
+			this.OfficeCombo.SelectedIndexChanged += new System.EventHandler(this.OfficeRadio_CheckedChanged);
 			// 
 			// OfficeRadio
 			// 
@@ -258,7 +258,7 @@
 			this.OfficeRadio.TabIndex = 23;
 			this.OfficeRadio.Text = "По офису:";
 			this.OfficeRadio.UseVisualStyleBackColor = true;
-			this.OfficeRadio.Click += new System.EventHandler(this.radioButton8_CheckedChanged);
+			this.OfficeRadio.Click += new System.EventHandler(this.OfficeRadio_CheckedChanged);
 			// 
 			// Журнал_временного_сертификата
 			// 
@@ -282,14 +282,14 @@
 			this.Controls.Add(this.EditButton);
 			this.Controls.Add(this.DeleteButton);
 			this.Controls.Add(this.CreateButton);
-			this.Controls.Add(this.DataRecords);
+			this.Controls.Add(this.DataGridView);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Журнал_временного_сертификата";
 			this.Text = "Журнал временного свидетельства";
 			this.Activated += new System.EventHandler(this.Журнал_временного_сертификата_Activated);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Журнал_временного_сертификата_FormClosed);
 			this.Load += new System.EventHandler(this.Журнал_временного_сертификата_Load);
-			((System.ComponentModel.ISupportInitialize)(this.DataRecords)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -299,7 +299,7 @@
 
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button CreateButton;
-        private System.Windows.Forms.DataGridView DataRecords;
+        private System.Windows.Forms.DataGridView DataGridView;
         private System.Windows.Forms.Button EditButton;
         private System.Windows.Forms.Button PrintButton;
 		private System.Windows.Forms.RadioButton ValidRadio;

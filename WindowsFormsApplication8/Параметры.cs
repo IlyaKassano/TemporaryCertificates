@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Параметры : Form
     {

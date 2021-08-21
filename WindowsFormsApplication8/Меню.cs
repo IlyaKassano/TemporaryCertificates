@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Меню : Form
     {
@@ -18,7 +18,7 @@ namespace WindowsFormsApplication5
             InitializeComponent();
         }
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutProgram_Click(object sender, EventArgs e)
         {
             AboutBox1 О_программе = new AboutBox1();
             О_программе.Show();
@@ -43,7 +43,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void представителиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DataRepres_Click(object sender, EventArgs e)
         {
             Представители представители = new Представители();
             представители.Show();
@@ -54,7 +54,7 @@ namespace WindowsFormsApplication5
             System.Windows.Forms.Help.ShowHelp(this, "Spravka.chm");
         }
 
-        private void оффисToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DataOffice_Click(object sender, EventArgs e)
         {
             Офисы офис = new Офисы();
             офис.Show();
@@ -65,7 +65,7 @@ namespace WindowsFormsApplication5
             Поиск поиск = new Поиск();
             поиск.Show();
         }
-        private void toolStripMenuItem_Click(object sender, EventArgs e)
+        private void ChangeUser_Click(object sender, EventArgs e)
         {
             Hide();
             Авторизация.polzov = "";
@@ -74,36 +74,36 @@ namespace WindowsFormsApplication5
             Close();
         }
 
-        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void клиентыToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void DataClient_Click(object sender, EventArgs e)
         {
             Клиенты Клиенты = new Клиенты();
             Клиенты.Show();
         }
 
-        private void настройкаПаролейToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ChangePassword_Click(object sender, EventArgs e)
         {
             Настройка_паролей пароль = new Настройка_паролей();
             пароль.Show();
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void JournalTempCert_Click(object sender, EventArgs e)
         {
             Журнал_временного_сертификата временный_сертификат = new Журнал_временного_сертификата();
             временный_сертификат.Show();
         }
 
-        private void поискToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void RequestFind_Click(object sender, EventArgs e)
         {
             Поиск поиск = new Поиск();
             поиск.Show();
         }
 
-        private void просмотрСправкиToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void Help_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Help.ShowHelp(this, "Spravka.chm");
         }
@@ -118,7 +118,7 @@ namespace WindowsFormsApplication5
             ((ToolStripMenuItem)sender).ForeColor = Color.FromArgb(255, 255, 170);
         }
 
-        private void параметрыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Settings_Click(object sender, EventArgs e)
         {
             Параметры параметры = new Параметры();
             параметры.Show();

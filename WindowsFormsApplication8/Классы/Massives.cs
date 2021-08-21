@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     class Massives
     {
-        public string[] items = {
+        public string[] docItems = {
                         "Паспорт",
                         "Свидетельство о рождении",
                         "Паспорт гражданина СССР",

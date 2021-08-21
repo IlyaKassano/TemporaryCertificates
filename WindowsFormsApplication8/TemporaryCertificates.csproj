@@ -7,7 +7,7 @@
     <ProjectGuid>{739CB755-9B19-4651-8572-3DA501F95DC6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication5</RootNamespace>
+    <RootNamespace>TemporaryCertificates</RootNamespace>
     <AssemblyName>Временные свидетельства</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -81,7 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Классы\Elements.cs" />
+    <Compile Include="Классы\ElementsChoose.cs" />
     <Compile Include="Классы\Massives.cs" />
     <Compile Include="Классы\PsqlData.cs" />
     <Compile Include="Авторизация.cs">

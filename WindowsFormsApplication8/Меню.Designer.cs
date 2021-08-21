@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
     partial class Меню
     {
@@ -94,7 +94,7 @@
 			this.DataClient.Name = "DataClient";
 			this.DataClient.Size = new System.Drawing.Size(180, 22);
 			this.DataClient.Text = "Клиенты";
-			this.DataClient.Click += new System.EventHandler(this.клиентыToolStripMenuItem_Click_1);
+			this.DataClient.Click += new System.EventHandler(this.DataClient_Click);
 			// 
 			// DataRepres
 			// 
@@ -103,7 +103,7 @@
 			this.DataRepres.Name = "DataRepres";
 			this.DataRepres.Size = new System.Drawing.Size(180, 22);
 			this.DataRepres.Text = "Представители";
-			this.DataRepres.Click += new System.EventHandler(this.представителиToolStripMenuItem_Click);
+			this.DataRepres.Click += new System.EventHandler(this.DataRepres_Click);
 			// 
 			// DataOffice
 			// 
@@ -112,7 +112,7 @@
 			this.DataOffice.Name = "DataOffice";
 			this.DataOffice.Size = new System.Drawing.Size(180, 22);
 			this.DataOffice.Text = "Офисы";
-			this.DataOffice.Click += new System.EventHandler(this.оффисToolStripMenuItem_Click);
+			this.DataOffice.Click += new System.EventHandler(this.DataOffice_Click);
 			// 
 			// TabJournal
 			// 
@@ -134,7 +134,7 @@
 			this.JournalTempSert.Name = "JournalTempSert";
 			this.JournalTempSert.Size = new System.Drawing.Size(233, 22);
 			this.JournalTempSert.Text = "Временные свидетельства";
-			this.JournalTempSert.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+			this.JournalTempSert.Click += new System.EventHandler(this.JournalTempCert_Click);
 			// 
 			// TabRequest
 			// 
@@ -156,7 +156,7 @@
 			this.RequestFind.Name = "RequestFind";
 			this.RequestFind.Size = new System.Drawing.Size(180, 22);
 			this.RequestFind.Text = "Поиск";
-			this.RequestFind.Click += new System.EventHandler(this.поискToolStripMenuItem_Click_1);
+			this.RequestFind.Click += new System.EventHandler(this.RequestFind_Click);
 			// 
 			// TabReference
 			// 
@@ -179,7 +179,7 @@
 			this.Help.Name = "Help";
 			this.Help.Size = new System.Drawing.Size(189, 22);
 			this.Help.Text = "Просмотр справки";
-			this.Help.Click += new System.EventHandler(this.просмотрСправкиToolStripMenuItem_Click_1);
+			this.Help.Click += new System.EventHandler(this.Help_Click);
 			// 
 			// AboutProgram
 			// 
@@ -187,7 +187,7 @@
 			this.AboutProgram.Name = "AboutProgram";
 			this.AboutProgram.Size = new System.Drawing.Size(189, 22);
 			this.AboutProgram.Text = "О программе";
-			this.AboutProgram.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+			this.AboutProgram.Click += new System.EventHandler(this.AboutProgram_Click);
 			// 
 			// TabOther
 			// 
@@ -212,7 +212,7 @@
 			this.ChangeUser.Name = "ChangeUser";
 			this.ChangeUser.Size = new System.Drawing.Size(213, 22);
 			this.ChangeUser.Text = "Сменить пользователя";
-			this.ChangeUser.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+			this.ChangeUser.Click += new System.EventHandler(this.ChangeUser_Click);
 			// 
 			// Settings
 			// 
@@ -220,7 +220,7 @@
 			this.Settings.Name = "Settings";
 			this.Settings.Size = new System.Drawing.Size(213, 22);
 			this.Settings.Text = "Настройки";
-			this.Settings.Click += new System.EventHandler(this.параметрыToolStripMenuItem_Click);
+			this.Settings.Click += new System.EventHandler(this.Settings_Click);
 			// 
 			// ChangePassword
 			// 
@@ -228,7 +228,7 @@
 			this.ChangePassword.Name = "ChangePassword";
 			this.ChangePassword.Size = new System.Drawing.Size(213, 22);
 			this.ChangePassword.Text = "Изменить пароль";
-			this.ChangePassword.Click += new System.EventHandler(this.настройкаПаролейToolStripMenuItem1_Click);
+			this.ChangePassword.Click += new System.EventHandler(this.ChangePassword_Click);
 			// 
 			// Exit
 			// 
@@ -236,12 +236,12 @@
 			this.Exit.Name = "Exit";
 			this.Exit.Size = new System.Drawing.Size(213, 22);
 			this.Exit.Text = "Выйти из программы";
-			this.Exit.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
+			this.Exit.Click += new System.EventHandler(this.Exit_Click);
 			// 
 			// pictureBox1
 			// 
 			this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox1.BackgroundImage = global::WindowsFormsApplication5.Properties.Resources.Makc_m;
+			this.pictureBox1.BackgroundImage = global::TemporaryCertificates.Properties.Resources.Makc_m;
 			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.pictureBox1.Location = new System.Drawing.Point(203, 1);
 			this.pictureBox1.Name = "pictureBox1";
@@ -263,7 +263,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::WindowsFormsApplication5.Properties.Resources._272038;
+			this.BackgroundImage = global::TemporaryCertificates.Properties.Resources._272038;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(480, 361);
 			this.Controls.Add(this.ResetSettings);

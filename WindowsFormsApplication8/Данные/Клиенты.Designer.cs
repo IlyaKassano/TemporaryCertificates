@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
 	partial class Клиенты
 	{
@@ -107,7 +107,7 @@
 			this.LastRecord.Text = ">>";
 			this.toolTip1.SetToolTip(this.LastRecord, "В конец");
 			this.LastRecord.UseVisualStyleBackColor = false;
-			this.LastRecord.Click += new System.EventHandler(this.button6_Click);
+			this.LastRecord.Click += new System.EventHandler(this.LastRecord_Click);
 			// 
 			// NextRecord
 			// 
@@ -120,7 +120,7 @@
 			this.NextRecord.Text = ">";
 			this.toolTip1.SetToolTip(this.NextRecord, "Вперед");
 			this.NextRecord.UseVisualStyleBackColor = false;
-			this.NextRecord.Click += new System.EventHandler(this.button8_Click);
+			this.NextRecord.Click += new System.EventHandler(this.NextRecord_Click);
 			// 
 			// PrevRecord
 			// 
@@ -133,7 +133,7 @@
 			this.PrevRecord.Text = "<";
 			this.toolTip1.SetToolTip(this.PrevRecord, "Назад");
 			this.PrevRecord.UseVisualStyleBackColor = false;
-			this.PrevRecord.Click += new System.EventHandler(this.button10_Click);
+			this.PrevRecord.Click += new System.EventHandler(this.PrevRecord_Click);
 			// 
 			// FirstRecord
 			// 
@@ -146,7 +146,7 @@
 			this.FirstRecord.Text = "<<";
 			this.toolTip1.SetToolTip(this.FirstRecord, "В начало");
 			this.FirstRecord.UseVisualStyleBackColor = false;
-			this.FirstRecord.Click += new System.EventHandler(this.button11_Click);
+			this.FirstRecord.Click += new System.EventHandler(this.FirstRecord_Click);
 			// 
 			// KodDoc
 			// 
@@ -202,7 +202,7 @@
 			this.SaveRecord.TabIndex = 80;
 			this.SaveRecord.Text = "Сохранить данные";
 			this.SaveRecord.UseVisualStyleBackColor = false;
-			this.SaveRecord.Click += new System.EventHandler(this.button7_Click);
+			this.SaveRecord.Click += new System.EventHandler(this.SaveRecord_Click);
 			// 
 			// DeleteRecord
 			// 
@@ -215,7 +215,7 @@
 			this.DeleteRecord.TabIndex = 77;
 			this.DeleteRecord.Text = "Удалить данные";
 			this.DeleteRecord.UseVisualStyleBackColor = false;
-			this.DeleteRecord.Click += new System.EventHandler(this.button9_Click);
+			this.DeleteRecord.Click += new System.EventHandler(this.Delete_Click);
 			// 
 			// label5
 			// 
@@ -402,7 +402,7 @@
 			this.DocName.Name = "DocName";
 			this.DocName.Size = new System.Drawing.Size(515, 21);
 			this.DocName.TabIndex = 114;
-			this.DocName.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+			this.DocName.SelectedIndexChanged += new System.EventHandler(this.DocName_SelectedIndexChanged);
 			// 
 			// PlaceBirth
 			// 
@@ -441,7 +441,7 @@
 			this.KodClient.Name = "KodClient";
 			this.KodClient.Size = new System.Drawing.Size(100, 20);
 			this.KodClient.TabIndex = 83;
-			this.KodClient.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+			this.KodClient.TextChanged += new System.EventHandler(this.KodClient_TextChanged);
 			// 
 			// label3
 			// 
@@ -538,7 +538,7 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = global::WindowsFormsApplication5.Properties.Resources.Makc_m;
+			this.pictureBox1.Image = global::TemporaryCertificates.Properties.Resources.Makc_m;
 			this.pictureBox1.Location = new System.Drawing.Point(560, 18);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(110, 50);

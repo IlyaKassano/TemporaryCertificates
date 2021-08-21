@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Word = Microsoft.Office.Interop.Word;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Оформление_сертификата : Form
     {
@@ -27,8 +27,8 @@ namespace WindowsFormsApplication5
             BackColor = Параметры.colorDialog1.Color;
             if (Авторизация.polzov != "Администратор")
             {
-                CreateRepres.Visible = false;
-                CreateOffice.Visible = false;
+                AddRepres.Visible = false;
+                AddOffice.Visible = false;
                 OfficeCombo.Enabled = false;
             }
 
@@ -100,7 +100,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             int kod_rep = 0;
             int kod_office = 0;
@@ -205,13 +205,13 @@ namespace WindowsFormsApplication5
             this.Close();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void AddRepres_Click(object sender, EventArgs e)
         {
             Представители представители = new Представители();
             представители.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void AddOffice_Click(object sender, EventArgs e)
         {
             Офисы офисы = new Офисы();
             офисы.Show();
@@ -222,18 +222,13 @@ namespace WindowsFormsApplication5
             Журнал_временного_сертификата.n = -1;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void AddClient_Click(object sender, EventArgs e)
         {
             Клиенты клиенты = new Клиенты();
             клиенты.Show();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Print_Click(object sender, EventArgs e)
         {
             if (checkBox1.Checked == false)
             {
@@ -373,7 +368,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void RepresCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Tables["Представитель"].Rows.Count; i++)
             {

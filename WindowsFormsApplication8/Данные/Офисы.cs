@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Офисы : Form
     {
@@ -76,16 +76,14 @@ namespace WindowsFormsApplication5
             maxN = Convert.ToInt32(Tables["Office"].Compute("Max(kodoffice)", string.Empty)) + 1;
         }
 
-        //В начало
-        private void button11_Click(object sender, EventArgs e)
+        private void FirstRecord_Click(object sender, EventArgs e)
         {
             n = 0;
             if (Tables["Office"].Rows.Count > n)
                 FieldsForm_Fill();
         }
 
-        //Назад
-        private void button10_Click(object sender, EventArgs e)
+        private void PrevRecord_Click(object sender, EventArgs e)
         {
             if (n > 0)
             {
@@ -94,8 +92,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-        //Вперед
-        private void button8_Click(object sender, EventArgs e)
+        private void NextRecord_Click(object sender, EventArgs e)
         {
             if (n < Tables["Office"].Rows.Count - 1)
             {
@@ -110,16 +107,14 @@ namespace WindowsFormsApplication5
             }
         }
 
-        //В конец
-        private void button6_Click(object sender, EventArgs e)
+        private void LastRecord_Click(object sender, EventArgs e)
         {
             n = Tables["Office"].Rows.Count;
             FieldsForm_Clear();
             KodOffice.Text = maxN.ToString();
         }
 
-        //Сохранение        
-        private void button7_Click(object sender, EventArgs e)
+        private void SaveRecord_Click(object sender, EventArgs e)
         {
             if (KodOffice.Text == "" || Address.Text == "" || Office.Text == "" || Telephone.Text == "")
             {
@@ -139,15 +134,14 @@ namespace WindowsFormsApplication5
             }
             else
             {
-                string sql = "UPDATE office SET name = '" + Office.Text + "', address='" + Address.Text + "', telephone='" + Telephone.Text +  "' WHERE kodoffice=" + KodOffice.Text;
+                string sql = "UPDATE office SET name = '" + Office.Text + "', address='" + Address.Text + "', telephone='" + Telephone.Text + "' WHERE kodoffice=" + KodOffice.Text;
                 PsqlData.Mod_Execute(sql);
 
                 Tables["Office"].Rows[n].ItemArray = new object[] { KodOffice.Text, Address.Text, Telephone.Text, Office.Text };
             }
         }
 
-        //Удаление
-        private void button9_Click(object sender, EventArgs e)
+        private void DeleteRecord_Click(object sender, EventArgs e)
         {
             string message = "Вы точно хотите удалить из картотеки офис с кодом " + KodOffice.Text + "?";
             string caption = "Удаление офиса";

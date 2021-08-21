@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication5
+﻿namespace TemporaryCertificates
 {
     partial class AboutBox1
     {
@@ -68,7 +68,7 @@
 			// 
 			// logoPictureBox
 			// 
-			this.logoPictureBox.Image = global::WindowsFormsApplication5.Properties.Resources.abstraktsiia_geometriia_fon_belyi_abstract_background1;
+			this.logoPictureBox.Image = global::TemporaryCertificates.Properties.Resources.abstraktsiia_geometriia_fon_belyi_abstract_background1;
 			this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
 			this.logoPictureBox.Name = "logoPictureBox";
 			this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);

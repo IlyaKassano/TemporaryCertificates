@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     public partial class Журнал_временного_сертификата : Form
     {
@@ -25,7 +25,7 @@ namespace WindowsFormsApplication5
         public static int n = -1;
         DataTableCollection Tables = PsqlData.ds.Tables;
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CreateButton_Click(object sender, EventArgs e)
         {
             string sql;
 
@@ -48,7 +48,7 @@ namespace WindowsFormsApplication5
             n = Tables["Временный сертификат"].Rows.Count;
             Tables["Временный сертификат"].Rows.InsertAt(row, n);
             Tables["Временный сертификат"].Rows[n]["Код"] = Convert.ToString(kod);
-            DataRecords.CurrentCell = null;
+            DataGridView.CurrentCell = null;
 
 
 
@@ -56,7 +56,7 @@ namespace WindowsFormsApplication5
             сертификат.Show();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void EditButton_Click(object sender, EventArgs e)
         {
             Оформление_сертификата сертификат = new Оформление_сертификата();
             сертификат.Show();
@@ -64,9 +64,9 @@ namespace WindowsFormsApplication5
 
         private void Журнал_временного_сертификата_Activated(object sender, EventArgs e)
         {
-            DataRecords.DataSource = Tables["Временный сертификат"];
-            DataRecords.AutoResizeColumns();
-            DataRecords.CurrentCell = null;
+            DataGridView.DataSource = Tables["Временный сертификат"];
+            DataGridView.AutoResizeColumns();
+            DataGridView.CurrentCell = null;
         }
 
         private void Журнал_временного_сертификата_Load(object sender, EventArgs e)
@@ -100,13 +100,13 @@ namespace WindowsFormsApplication5
             PsqlData.Table_Fill("Временный сертификат", sql);
 
 
-            DataRecords.DataSource = Tables["Временный сертификат"];
-            radioButton7_CheckedChanged(AllRecords, e);
+            DataGridView.DataSource = Tables["Временный сертификат"];
+            AllRecords_CheckedChanged(AllRecords, e);
             //dataGridView1.Sort(dataGridView1.Columns["Код"], ListSortDirection.Ascending);
-            DataRecords.AllowUserToAddRows = false;
-            DataRecords.BackgroundColor = SystemColors.Control;
-            DataRecords.BorderStyle = BorderStyle.None;
-            DataRecords.RowHeadersVisible = false;
+            DataGridView.AllowUserToAddRows = false;
+            DataGridView.BackgroundColor = SystemColors.Control;
+            DataGridView.BorderStyle = BorderStyle.None;
+            DataGridView.RowHeadersVisible = false;
 
             sql = "SELECT * FROM Client ORDER BY secondname";
             PsqlData.Table_Fill("Клиенты", sql);
@@ -143,19 +143,19 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            n = DataRecords.CurrentRow.Index;
+            n = DataGridView.CurrentRow.Index;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             string sql;
             string message;
 
             try
             {
-                message = "Вы точно хотите удалить временное свидетельство с номером " + DataRecords.Rows[n].Cells["Код"].Value + "?";
+                message = "Вы точно хотите удалить временное свидетельство с номером " + DataGridView.Rows[n].Cells["Код"].Value + "?";
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -168,11 +168,11 @@ namespace WindowsFormsApplication5
             if (rezult == DialogResult.No)
                 return;
 
-            sql = "DELETE FROM tempcertificate WHERE kodtempcert=" + DataRecords.Rows[n].Cells["Код"].Value;
+            sql = "DELETE FROM tempcertificate WHERE kodtempcert=" + DataGridView.Rows[n].Cells["Код"].Value;
             PsqlData.Mod_Execute(sql);
             Tables["Временный сертификат"].Rows.RemoveAt(n);
-            DataRecords.AutoResizeColumns();
-            DataRecords.CurrentCell = null;
+            DataGridView.AutoResizeColumns();
+            DataGridView.CurrentCell = null;
 
             n = -1;
         }
@@ -182,7 +182,7 @@ namespace WindowsFormsApplication5
             n = -1;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void PrintButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -195,20 +195,20 @@ namespace WindowsFormsApplication5
                 int i, j;
                 object output;
 
-                for (j = 0; j < DataRecords.Columns.Count; j++)
+                for (j = 0; j < DataGridView.Columns.Count; j++)
                 {
-                    Sheet_.Cells[1, j + 1].Value = DataRecords.Columns[j].HeaderText;
+                    Sheet_.Cells[1, j + 1].Value = DataGridView.Columns[j].HeaderText;
                 }
 
-                for (i = 0; i < DataRecords.Rows.Count; i++)
+                for (i = 0; i < DataGridView.Rows.Count; i++)
                 {
-                    for (j = 0; j < DataRecords.Columns.Count; j++)
+                    for (j = 0; j < DataGridView.Columns.Count; j++)
                     {
-                        output = DataRecords.Rows[i].Cells[j].Value;
-                        if (DataRecords.Rows[i].Cells[j].Value.Equals(true))
+                        output = DataGridView.Rows[i].Cells[j].Value;
+                        if (DataGridView.Rows[i].Cells[j].Value.Equals(true))
                             output = "Да";
 
-                        if (DataRecords.Rows[i].Cells[j].Value.Equals(false))
+                        if (DataGridView.Rows[i].Cells[j].Value.Equals(false))
                             output = "Нет";
 
                         Sheet_.Cells[i + 2, j + 1].Value = output;
@@ -227,40 +227,40 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void radioButton7_CheckedChanged(object sender, EventArgs e)
+        private void AllRecords_CheckedChanged(object sender, EventArgs e)
         {
             Tables["Временный сертификат"].DefaultView.RowFilter = "";
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void ValidRadio_CheckedChanged(object sender, EventArgs e)
         {
             Tables["Временный сертификат"].DefaultView.RowFilter = "Действителен = true";
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void NotValidRadio_CheckedChanged(object sender, EventArgs e)
         {
             Tables["Временный сертификат"].DefaultView.RowFilter = "Действителен = false";
         }
 
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        private void ClientRadio_CheckedChanged(object sender, EventArgs e)
         {
             Tables["Временный сертификат"].DefaultView.RowFilter = "Клиент = '" + ClientCombo.Text + "'";
             ClientRadio.Checked = true;
         }
 
-        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        private void RepresRadio_CheckedChanged(object sender, EventArgs e)
         {
             Tables["Временный сертификат"].DefaultView.RowFilter = "Представитель = '" + RepresCombo.Text + "'";
             RepresRadio.Checked = true;
         }
 
-        private void radioButton8_CheckedChanged(object sender, EventArgs e)
+        private void OfficeRadio_CheckedChanged(object sender, EventArgs e)
         {
             Tables["Временный сертификат"].DefaultView.RowFilter = "[Наименование филиала] = '" + OfficeCombo.Text + "'";
             OfficeRadio.Checked = true;
         }
 
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        private void DatePickerSecond_CheckedChanged(object sender, EventArgs e)
         {
             if (DateTypeCombo.SelectedIndex == 1)
                 Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата окончания дейст. свидет.] >= '" + DatePickerFirst.Value.Date + "' AND [Дата окончания дейст. свидет.] <= '" + DatePickerSecond.Value.Date + "'";
@@ -269,7 +269,7 @@ namespace WindowsFormsApplication5
             RangeDateRadio.Checked = true;
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private void ExactDateRadio_CheckedChanged(object sender, EventArgs e)
         {
             if (DateTypeCombo.SelectedIndex == 1)
                 Tables["Временный сертификат"].DefaultView.RowFilter = "[Дата окончания дейст. свидет.] = '" + DatePickerFirst.Value.Date + "'";
@@ -278,7 +278,7 @@ namespace WindowsFormsApplication5
             ExactDateRadio.Checked = true;
         }
 
-        private void radioButton3_CheckedChangedEvent(object sender, EventArgs e)
+        private void DatePickerFirst_CheckedChangedEvent(object sender, EventArgs e)
         {
             if (RangeDateRadio.Checked == false)
             {
@@ -294,7 +294,7 @@ namespace WindowsFormsApplication5
             }
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        private void DateTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ExactDateRadio.Checked == true)
             {

@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication5
+namespace TemporaryCertificates
 {
     partial class AboutBox1 : Form
     {
